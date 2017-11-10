@@ -1,4 +1,5 @@
 # StudentManageSystem
+<<<<<<< HEAD
 Student manage system based on C. Developed by PhonnixS. @Beijing University of Chemical Technoly
 <form>
 	<structure>
@@ -20,3 +21,6 @@ Student manage system based on C. Developed by PhonnixS. @Beijing University of 
 		</p>
 	</name>
 </form>
+=======
+Student manage system developed by PhonnixS. @Beijing University of Chemical Technoly
+>>>>>>> upstream/master
