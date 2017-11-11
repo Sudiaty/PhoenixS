@@ -1,20 +1,21 @@
-/*****************************
+/****************************************
 * Author:LiuXL;				
-* Description:Function related
-*	with student class
-*****************************/
+* Description:Function related with 
+*	student class.
+****************************************/
 
+#include <stdio.h>
 #include "student.h"
 
-/*****************************
+/****************************************
 * Author:LiuXL;
 * Function:addStudent();				
-* Description:Add a student's
-*	record;
-*****************************/
+* Description:Add a student's record.
+****************************************/
 void addStudent(Student *stu)
 {
-	int i,status=1;
+	int status,sign;
+	int i;
 	for(i=stuNum;i<MAX_SUB_NO;i++)
 	{
 		printf("请输入学号:");
@@ -28,15 +29,17 @@ void addStudent(Student *stu)
 
 		do
 		{
-			int status=1;
 			printf("是否继续输入（1.继续/0.终止）？");
-			scanf("%d",&status);
-			switch(status)
+			scanf("%d",&sign);
+			switch(sign)
 			{
-				case 1:break;
-				case 0:return;
+				case 1:
+					status=0;
+					break;
+				case 0:
+					return;
 				default:
-					printf("非法输入！");
+					printf("非法输入！\n");
 					status=1;
 			}
 		}while(status);
