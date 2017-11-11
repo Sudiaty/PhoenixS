@@ -24,17 +24,17 @@ Student manage system based on C. Developed by PhonnixS. @Beijing University of 
 		<p>
 			1.文件开头必须声明作者与改文件功能的注释，格式如下：
 			<br>
-			/****************************************
-			* Author:			
-			* Description:
+			/****************************************<br>
+			* Author:<br>
+			* Description:<br>
 			****************************************/
 			<br>
 			2.函数定义前添加声明作者、函数功能、相关描述的注释，格式如下：
 			<br>
-			/****************************************
-			* Author:
-			* Function:				
-			* Description:
+			/****************************************<br>
+			* Author:<br>
+			* Function:<br>				
+			* Description:<br>
 			****************************************/
 			<br>
 			3.其他情况酌情添加注释。
