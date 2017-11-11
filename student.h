@@ -25,8 +25,13 @@ typedef struct StudentClass
 
 //定义对学生信息操作函数
 void addStudent(Student *stu);
-void delStudent(Student *p);
+
+void saveStudent(Student *stu);
+
 void getStudent(Student *p);
+
+void delStudent(Student *p);
+
 void altStudent();
 
 #endif
