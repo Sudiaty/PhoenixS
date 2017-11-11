@@ -1,2 +1,2 @@
 # StudentManageSystem
-Student manage system based on C. Developed by PhonnixS. @Beijing University of Chemical Technoly
+Student manage system developed by PhonnixS. @Beijing University of Chemical Technoly
