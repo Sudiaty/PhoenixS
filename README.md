@@ -11,7 +11,7 @@ Student manage system based on C. Developed by PhonnixS. @Beijing University of 
 		</p>
 	</structure>
 	<name>
-		<h3>代码结构</h3>
+		<h3>命名</h3>
 		<p>
 			0.除用于循环体内计数变量外，名称必须具有实际意义；<br>
 			1.结构体名采用驼峰命名；<br>
