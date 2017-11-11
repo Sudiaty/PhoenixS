@@ -15,15 +15,15 @@ Student manage system based on C. Developed by PhonnixS. @Beijing University of 
 			|--view.c<br>
 			|<br>
 			|--.......<br>
-			1.结构体定义在头文件中，并以对象名命名，一般为名词性名称。例如学生信息定义在Student.h文件中；<br>
+			1.结构体定义在头文件中，并以对象名命名，一般为名词性名称。例如学生信息定义在student.h文件中；<br>
 			2.对结构体对象的操作函数定义在与头文件命名相同的.c文件中；<br>
-			3.输出函数定义在View.h头文件中；<br>
+			3.输出函数定义在view.h头文件中；<br>
 			4.main函数中只调用逻辑函数而不定义，以实现数据对象、控制函数及视图分层，降低代码耦合度，提高可读性。<br><br>
 			<h4>注：</h4>main函数引用外部函数的方法：<br>
 			1.在头文件开头添加如下代码：<br>
 				#ifndef __NAME_H		//将NAME换为相应文件名<br>
 				#define __NAME_H							<br>
-			2.在头文件结尾添加 #enfif<br>
+			2.在头文件结尾添加 #endif<br>
 			3.直接在name.c中编写函数；<br>
 			4.同时编译name.c和main.c。
 		</p>
