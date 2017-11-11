@@ -6,4 +6,5 @@ struct Student
 	int m_iId;
 	char m_cName[4];
 	char m_cGender;
+	char m_cMajor[8];
 }
