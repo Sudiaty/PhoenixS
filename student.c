@@ -73,3 +73,33 @@ void saveStudent(Student *stu)
 	else
 		printf("写入失败!\n");
 }
+
+/****************************************
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:get a student's record.
+****************************************/
+void getStudent(Student *p)
+{
+	int i = 0;     /*学生记录行号*/
+	char s[11];    /*学号*/
+	printf("\n请输入要查询学生的学号：");
+	scanf("%s",&s);
+	for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		if(strncmp(&stu->m_lNo,s,11)==0)
+		{
+			printf("\n存在要查询的学生记录！");
+			break;
+		}
+	}
+	
+	if(i==MAX_STU_NO)
+	{
+		printf("\n不存在要查询的学生记录！");
+		return;
+	}
+	//输出所查学生记录
+	printf("\n所查记录如下：");
+}
+
