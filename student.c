@@ -80,59 +80,59 @@ SunZT@Win
 * Function:delStudent();				
 * Description:Delete info of student.dat.
 ****************************************/
-void delStudent(Student *stu)
+void delStudent(Student *ppStu[MAX_STU_NO])
 {
 	int i=0; 
 	int j=0; 
-	char s[11]; 
+	long lNo; 
 	char c; 
 	printf("\n 请输入要删除的学生学号:"); 
-	scanf("%s",&s); 
+	scanf("%ld",&lNo); 
 	j=i+1; 
-	for(i=0;i<MAXNUM && stuArray[i]!=NULL;i++)
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
 	{    
-	    if(strncmp(stuArray[i]->nu,s,11)==0)
+	    if(ppStu[i]->m_lNo==lNo)
 		{
-		    printf("\n 存在要删除的学生记录");
+		    printf("\n 存在要删除的学生记录\n");
 			break; 
 		} 
 	} 
-	if((i==MAXNUM)||(stuArray[i]==NULL))
+	if((i==MAX_STU_NO)||ppStu[i]==NULL)
 	{ 
-	    printf("\n 不存在要删除的学生记录的");
+	    printf("\n 不存在要删除的学生记录的\n");
 		return; 
 	}
 }
-
 
 /****************************************
 * Author:SunZT;
 * Function:altStudent();				
 * Description:Alt info of student.dat.
 ****************************************/
-void altStudent(Student *stu)
+void altStudent(Student *ppStu[MAX_STU_NO])
 { 
 	int i=0;
     int j=0;
 	int m=0;
 	float sum=0; 
-	char s[11];
+	long lNo;
 	char c;
 	printf("\n 请输入要修改的学生学号:");
-	scanf("%s",&s); 
-	for(i=0;(i<MAXNUM) && (stuArray[i]!=NULL);i++) 
+	scanf("%ld",&lNo); 
+	for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
 	{
-	    if(strncmp(stuArray[i]->nu,s,11)==0)
+	    if(ppStu[i]->m_lNo==lNo)
 		{ 
 		    printf("\n 存在要修改的学生记录");
 			break; 
 		}
 	}
-	if((i==MAXNUM) || (stuArray[i]==NULL)) 
+	if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
 	{
 		printf("\n 不存在要修改的学生记录");
 		return;
 	}
+}
   
   
 /****************************************  
