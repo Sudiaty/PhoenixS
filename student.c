@@ -79,15 +79,15 @@ void saveStudent(Student *stu)
 * Function:getStudent();				
 * Description:get a student's record.
 ****************************************/
-void getStudent(Student *p)
+void getStudent(Student *stu)
 {
 	int i = 0;     /*学生记录行号*/
-	char s[11];    /*学号*/
+	long lNo;    /*学号*/
 	printf("\n请输入要查询学生的学号：");
-	scanf("%s",&s);
+	scanf("%ld",&lNo);
 	for(i=stuNum;i<MAX_STU_NO;i++)
 	{
-		if(strncmp(&stu->m_lNo,s,11)==0)
+		if(stu->m_lNo==lNo)
 		{
 			printf("\n存在要查询的学生记录！");
 			break;
@@ -102,4 +102,3 @@ void getStudent(Student *p)
 	//输出所查学生记录
 	printf("\n所查记录如下：");
 }
-
