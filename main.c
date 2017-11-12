@@ -12,9 +12,9 @@ int main()
 	Student up1602[MAX_STU_NO];
 	Student *stu=up1602;
 
-	//addStudent(stu);	/*debug*/
+	addStudent(stu);	/*debug*/
     
-	//saveStudent(stu);	/*debug*/
+	saveStudent(stu);	/*debug*/
 
 	return 0;
 }

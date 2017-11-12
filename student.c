@@ -17,7 +17,7 @@ void addStudent(Student *stu)
 {
 	int status,sign;	//定义用于判断操作状态的变量
 	int i;
-	for(i=stuNum;i<MAX_SUB_NO;i++)
+	for(i=stuNum;i<MAX_STU_NO;i++)
 	{
 		//录入数据
 		printf("请输入学号:");
