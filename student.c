@@ -73,3 +73,13 @@ void saveStudent(Student *stu)
 	else
 		printf("写入失败!\n");
 }
+
+/****************************************
+* Author:LiuXL;
+* Function:saveStudent();				
+* Description:Save the info to student.dat.
+****************************************/
+void delStudent()
+{
+
+} 
