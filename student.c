@@ -17,7 +17,7 @@ void addStudent(Student *stu)
 {
 	int status,sign;	//定义用于判断操作状态的变量
 	int i;
-	for(i=stuNum;i<MAX_SUB_NO;i++)
+	for(i=stuNum;i<MAX_STU_NO;i++)
 	{
 		//录入数据
 		printf("请输入学号:");
@@ -75,6 +75,7 @@ void saveStudent(Student *stu)
 }
 
 /****************************************
+SunZT@Win
 * Author:SunZT;
 * Function:delStudent();				
 * Description:Delete info of student.dat.
@@ -132,4 +133,33 @@ void altStudent(Student *stu)
 		printf("\n 不存在要修改的学生记录");
 		return;
 	}
+  
+  
+/****************************************  
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:get a student's record.
+****************************************/
+void getStudent(Student *stu)
+{
+	int i = 0;     /*学生记录行号*/
+	long lNo;    /*学号*/
+	printf("\n请输入要查询学生的学号：");
+	scanf("%ld",&lNo);
+	for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		if(stu->m_lNo==lNo)
+		{
+			printf("\n存在要查询的学生记录！");
+			break;
+		}
+	}
+	
+	if(i==MAX_STU_NO)
+	{
+		printf("\n不存在要查询的学生记录！");
+		return;
+	}
+	//输出所查学生记录
+	printf("\n所查记录如下：");
 }
