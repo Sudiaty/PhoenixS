@@ -23,15 +23,17 @@ typedef struct StudentClass
 	int m_iPoint; 
 }Student;
 
-//定义对学生信息操作函数
+//声明对学生信息操作函数
 void addStudent(Student *stu);
 
 void saveStudent(Student *stu);
 
-void getStudent(Student *p);
+void getStudent(Student *stu);
 
-void delStudent(Student *p);
+void echoStudent(Student *stu)
 
-void altStudent();
+void delStudent(Student *stu);
+
+void altStudent(Student *stu);
 
 #endif
