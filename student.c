@@ -75,11 +75,61 @@ void saveStudent(Student *stu)
 }
 
 /****************************************
-* Author:LiuXL;
-* Function:saveStudent();				
-* Description:Save the info to student.dat.
+* Author:SunZT;
+* Function:delStudent();				
+* Description:Delete info of student.dat.
 ****************************************/
-void delStudent()
+void delStudent(Student *stu)
 {
+	int i=0; 
+	int j=0; 
+	char s[11]; 
+	char c; 
+	printf("\n 请输入要删除的学生学号:"); 
+	scanf("%s",&s); 
+	j=i+1; 
+	for(i=0;i<MAXNUM && stuArray[i]!=NULL;i++)
+	{    
+	    if(strncmp(stuArray[i]->nu,s,11)==0)
+		{
+		    printf("\n 存在要删除的学生记录");
+			break; 
+		} 
+	} 
+	if((i==MAXNUM)||(stuArray[i]==NULL))
+	{ 
+	    printf("\n 不存在要删除的学生记录的");
+		return; 
+	}
+}
 
-} 
+
+/****************************************
+* Author:SunZT;
+* Function:altStudent();				
+* Description:Alt info of student.dat.
+****************************************/
+void altStudent(Student *stu)
+{ 
+	int i=0;
+    int j=0;
+	int m=0;
+	float sum=0; 
+	char s[11];
+	char c;
+	printf("\n 请输入要修改的学生学号:");
+	scanf("%s",&s); 
+	for(i=0;(i<MAXNUM) && (stuArray[i]!=NULL);i++) 
+	{
+	    if(strncmp(stuArray[i]->nu,s,11)==0)
+		{ 
+		    printf("\n 存在要修改的学生记录");
+			break; 
+		}
+	}
+	if((i==MAXNUM) || (stuArray[i]==NULL)) 
+	{
+		printf("\n 不存在要修改的学生记录");
+		return;
+	}
+}
