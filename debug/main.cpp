@@ -6,34 +6,34 @@ function while developing.
 
 #include "student.h"
 
-
 /****************************************
-* Author:JiaZG;
-* Function:getStudent();				
-* Description:get a student's record.
+SunZT@Win
+* Author:SunZT;
+* Function:delStudent();				
+* Description:Delete info of student.dat.
 ****************************************/
-void getStudent(Student *stu)
+void delStudent(Student *stu[MAX_STU_NO])
 {
-	int i = 0;     /*学生记录行号*/
-	long lNo;    /*学号*/
-	printf("\n请输入要查询学生的学号：");
-	scanf("%ld",&lNo);
-	for(i=stuNum;i<MAX_STU_NO;i++)
-	{
-		if(stu->m_lNo==lNo)
+	int i=0; 
+	int j=0; 
+	long lNo; 
+	char c; 
+	printf("\n 请输入要删除的学生学号:"); 
+	scanf("%ld",&lNo); 
+	j=i+1; 
+	for(i=0;i<MAX_STU_NO&&stu[i]!=NULL;i++)
+	{    
+	    if(stu[i]->m_lNo==lNo)
 		{
-			printf("\n存在要查询的学生记录！");
-			break;
-		}
+		    printf("\n 存在要删除的学生记录");
+			break; 
+		} 
+	} 
+	if((i==MAX_STU_NO)||stu[i]==NULL)
+	{ 
+	    printf("\n 不存在要删除的学生记录的");
+		return; 
 	}
-	
-	if(i==MAX_STU_NO)
-	{
-		printf("\n不存在要查询的学生记录！");
-		return;
-	}
-	//输出所查学生记录
-	printf("\n所查记录如下：");
 }
 
 /****************************************
@@ -44,18 +44,20 @@ void getStudent(Student *stu)
 int main()
 {
 	//实例化Student
-	Student up1602[MAX_STU_NO]={2016016000,"Debugger",1,1,4};
-	/*
-	学号：2016016000
-	姓名：Debugger
-	性别：男
-	已选课程编号：1
-	GPA：4
-	*/
-	Student *stu=up1602;
+	Student up1602[MAX_STU_NO]={
+		{2016016000,"Debugger",1,1,4},
+		{2016016001,"Error",0,{1,2},4}
+	};
+	
+	Student *pTmp=up1602;
 
-	//
-	getStudent(stu);
+	Student *stu[MAX_STU_NO];
+
+	//pTmp=(Student*)malloc(sizeof(Student));
+
+	stu[0]=pTmp;
+
+	delStudent(stu); 
 
 	return 0;
 }
