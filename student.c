@@ -138,9 +138,9 @@ void altStudent(Student *stu)
 /****************************************  
 * Author:JiaZG;
 * Function:getStudent();				
-* Description:get a student's record.
+* Description:echo a student's record.
 ****************************************/
-void getStudent(Student *stu)
+void echoStudent(Student *stu)
 {
 	int i = 0;     /*学生记录行号*/
 	long lNo;    /*学号*/
@@ -162,4 +162,27 @@ void getStudent(Student *stu)
 	}
 	//输出所查学生记录
 	printf("\n所查记录如下：");
+}
+
+/****************************************
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:get the info to student.dat.
+****************************************/
+void getStudent(Student *stu)
+{
+	FILE *fp;
+	int i;
+
+	//打开student.dat
+	if ((fp=fopen("student.dat","wb+"))==NULL)
+	{
+		printf("Student.dat不存在！\n");
+		exit(0);
+	}
+    for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		fread(stu,sizeof(Student),stuNum,fp);
+	}
+	printf("获取成功！\n");
 }
