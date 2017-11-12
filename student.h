@@ -30,7 +30,7 @@ void saveStudent(Student *stu);
 
 void getStudent(Student *stu);
 
-void echoStudent(Student *stu)
+void echoStudent(Student *stu);
 
 void delStudent(Student *stu);
 
