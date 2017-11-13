@@ -16,5 +16,7 @@ int main()
     
 	saveStudent(stu);	/*debug*/
 
+	getStudent(stu);
+
 	return 0;
 }

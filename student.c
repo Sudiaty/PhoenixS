@@ -73,3 +73,116 @@ void saveStudent(Student *stu)
 	else
 		printf("写入失败!\n");
 }
+
+/****************************************
+SunZT@Win
+* Author:SunZT;
+* Function:delStudent();				
+* Description:Delete info of student.dat.
+****************************************/
+void delStudent(Student *ppStu[MAX_STU_NO])
+{
+	int i=0; 
+	int j=0; 
+	long lNo; 
+	char c; 
+	printf("\n 请输入要删除的学生学号:"); 
+	scanf("%ld",&lNo); 
+	j=i+1; 
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	{    
+	    if(ppStu[i]->m_lNo==lNo)
+		{
+		    printf("\n 存在要删除的学生记录\n");
+			break; 
+		} 
+	} 
+	if((i==MAX_STU_NO)||ppStu[i]==NULL)
+	{ 
+	    printf("\n 不存在要删除的学生记录的\n");
+		return; 
+	}
+}
+
+/****************************************
+* Author:SunZT;
+* Function:altStudent();				
+* Description:Alt info of student.dat.
+****************************************/
+void altStudent(Student *ppStu[MAX_STU_NO])
+{ 
+	int i=0;
+    int j=0;
+	int m=0;
+	float sum=0; 
+	long lNo;
+	char c;
+	printf("\n 请输入要修改的学生学号:");
+	scanf("%ld",&lNo); 
+	for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
+	{
+	    if(ppStu[i]->m_lNo==lNo)
+		{ 
+		    printf("\n 存在要修改的学生记录");
+			break; 
+		}
+	}
+	if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
+	{
+		printf("\n 不存在要修改的学生记录");
+		return;
+	}
+}
+  
+  
+/****************************************  
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:echo a student's record.
+****************************************/
+void echoStudent(Student *stu)
+{
+	int i = 0;     /*学生记录行号*/
+	long lNo;    /*学号*/
+	printf("\n请输入要查询学生的学号：");
+	scanf("%ld",&lNo);
+	for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		if(stu->m_lNo==lNo)
+		{
+			printf("\n存在要查询的学生记录！");
+			break;
+		}
+	}
+	
+	if(i==MAX_STU_NO)
+	{
+		printf("\n不存在要查询的学生记录！");
+		return;
+	}
+	//输出所查学生记录
+	printf("\n所查记录如下：");
+}
+
+/****************************************
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:get the info to student.dat.
+****************************************/
+void getStudent(Student *stu)
+{
+	FILE *fp;
+	int i;
+
+	//打开student.dat
+	if ((fp=fopen("student.dat","wb+"))==NULL)
+	{
+		printf("Student.dat不存在！\n");
+		exit(0);
+	}
+    for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		fread(stu,sizeof(Student),stuNum,fp);
+	}
+	printf("获取成功！\n");
+}
