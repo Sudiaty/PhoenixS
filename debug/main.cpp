@@ -8,34 +8,73 @@ function while developing.
 
 
 /****************************************
-* Author:JiaZG;
-* Function:getStudent();				
-* Description:get a student's record.
+* Author:SunZT;
+* Function:altStudent();				
+* Description:Alt info student.dat.
 ****************************************/
-void getStudent(Student *stu)
-{
-	int i = 0;     /*å­¦ç”Ÿè®°å½•è¡Œå·*/
-	long lNo;    /*å­¦å·*/
-	printf("\nè¯·è¾“å…¥è¦æŸ¥è¯¢å­¦ç”Ÿçš„å­¦å·ï¼š");
-	scanf("%ld",&lNo);
-	for(i=stuNum;i<MAX_STU_NO;i++)
+void altStudent(Student *stu)
+{ 
+	int i=0;
+    int j=0;
+	int m=0;
+	float sum=0; 
+	long lNo;
+	char c;
+	printf("\n ÇëÊäÈëÒªĞŞ¸ÄµÄÑ§ÉúÑ§ºÅ:");
+	scanf("%ld",&lNo); 
+	for(i=0;(i<MAX_STU_NO) && (stu[i]!=NULL);i++) 
 	{
-		if(stu->m_lNo==lNo)
-		{
-			printf("\nå­˜åœ¨è¦æŸ¥è¯¢çš„å­¦ç”Ÿè®°å½•ï¼");
-			break;
+	    if(strncmp(stu[i]->nu,lNo,11)==0)
+		{ 
+		    printf("\n ´æÔÚÒªĞŞ¸ÄµÄÑ§Éú¼ÇÂ¼!");
+			break; 
 		}
 	}
-	
-	if(i==MAX_STU_NO)
+	if((i==MAX_STU_NO) || (stu[i]==NULL)) 
 	{
-		printf("\nä¸å­˜åœ¨è¦æŸ¥è¯¢çš„å­¦ç”Ÿè®°å½•ï¼");
+		printf("\n ²»´æÔÚÒªĞŞ¸ÄµÄÑ§Éú¼ÇÂ¼!");
 		return;
 	}
-	//è¾“å‡ºæ‰€æŸ¥å­¦ç”Ÿè®°å½•
-	printf("\næ‰€æŸ¥è®°å½•å¦‚ä¸‹ï¼š");
-}
-
+    /*¿ªÊ¼ĞŞ¸ÄÑ§ÉúĞÅÏ¢*/ 
+	printf("\n********------------********** Õâ ÊÇ Òª ĞŞ ¸Ä µÄ ¼Ç Â¼ Âğ?**********------------********\n"); 
+	printf("| Ñ§ºÅ | °à¼¶ | ĞÕÃû | ĞÔ±ğ | ÓïÎÄ | ÊıÑ§ | Ó¢Óï | ÕşÖÎ | ×Ü·Ö |Æ½¾ù·Ö|\n"); 
+	printf("|-----------|------|------|------|------|------|------|------|--------|------|\n"); 
+	printf("|%-12s|%-6s|%-6s|%-6s|%6d|%6d|%6d|%6d|%6d|%6.2f|\n",stuArray[i]->nu,stuAr ray[i]->cl,stuArray[i]->name,stuArray[i]->sex,stuArray[i]->score[0], stuArray[i]->score[1],stuArray[i]->score[2],stuArray[i]->score[3],stuArray[i]->sum,stuArray[i]>average);
+	printf("\n********------------********************------------********\n");
+	printf("ÄãÈ·¶¨ÒªĞŞ¸Ä¸Ã¼ÇÂ¼Âğ?Y or N\n"); 
+	scanf("%s",&c); 
+	if((c=='Y') || (c=='y'))
+	{ 
+		m=1;
+	} 
+	else
+	{ 
+		editmenu(stuArray);
+	}
+	while(m==1)
+	{ 
+		printf("ÒªĞŞ¸ÄÄÄ¸ö¿ÆÄ¿µÄ³É¼¨£¨ÓïÎÄÎª 1£¬ÊıÑ§Îª 2£¬Ó¢ÓïÎª 3£¬ÕşÖÎÎª 4£©\n"); 
+		scanf("%d",&j); 
+		do
+		{
+			printf("¿ÆÄ¿%d ³É¼¨",j); 
+			scanf("%d",&stuArray[i]->score[j-1]); 
+			if((stuArray[i]->score[j-1]>100) || (stuArray[i]->score[j-1]<0)) 
+			{ 
+				printf("´íÎóÊı¾İ£¬ ÇëÖØĞÂÊäÈë!\n"); 
+			}}while((stuArray[i]->score[j-1]>100) || (stuArray[i]->score[j-1]<0)); 
+			printf("»¹Òª¼ÌĞøĞŞ¸Ä´Ë¼ÇÂ¼Âğ?Y or N!\n");
+			scanf("%s",&c);
+			if((c=='Y') || (c=='y')) 
+			{ 
+				m=1; } 
+			else  { break;} 
+			for(j=0;j<MAXSUB;j++)
+			{ 
+				sum+=stuArray[i]->score[j];
+			} 
+			stuArray[i]->average=sum/MAXSUB}
+            return stuArray[i]; 
 /****************************************
 * Author:LiuXL;
 * Function:main();				
@@ -54,8 +93,8 @@ int main()
 	*/
 	Student *stu=up1602;
 
-	//
-	getStudent(stu);
+	//µ÷ÓÃÒªµ÷ÊÔµÄº¯Êı
+	delStudent(stu);
 
 	return 0;
 }
