@@ -134,7 +134,31 @@ void altStudent(Student *ppStu[MAX_STU_NO])
 	}
 }
   
-  
+ 
+/****************************************
+* Author:JiaZG;
+* Function:getStudent();				
+* Description:get the info to student.dat.
+****************************************/
+void getStudent(Student *stu)
+{
+	FILE *fp;
+	int i;
+
+	//打开student.dat
+	if ((fp=fopen("student.dat","wb+"))==NULL)
+	{
+		printf("Student.dat不存在！\n");
+		exit(0);
+	}
+    for(i=stuNum;i<MAX_STU_NO;i++)
+	{
+		fread(stu,sizeof(Student),stuNum,fp);
+	}
+	printf("获取成功！\n");
+}çç
+
+ 
 /****************************************  
 * Author:JiaZG;
 * Function:echoStudent();				
@@ -164,25 +188,3 @@ void echoStudent(Student *stu)
 	printf("\n所查记录如下：");
 }
 
-/****************************************
-* Author:JiaZG;
-* Function:getStudent();				
-* Description:get the info to student.dat.
-****************************************/
-void getStudent(Student *stu)
-{
-	FILE *fp;
-	int i;
-
-	//打开student.dat
-	if ((fp=fopen("student.dat","wb+"))==NULL)
-	{
-		printf("Student.dat不存在！\n");
-		exit(0);
-	}
-    for(i=stuNum;i<MAX_STU_NO;i++)
-	{
-		fread(stu,sizeof(Student),stuNum,fp);
-	}
-	printf("获取成功！\n");
-}
