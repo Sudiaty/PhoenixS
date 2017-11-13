@@ -24,16 +24,16 @@ typedef struct StudentClass
 }Student;
 
 //声明对学生信息操作函数
-void addStudent(Student *stu);
+void addStudent(Student *ppStu[MAX_STU_NO]);
 
-void saveStudent(Student *stu);
+void saveStudent(Student *ppStu[MAX_STU_NO]);
 
-void getStudent(Student *stu);
+void getStudent(Student *ppStu[MAX_STU_NO]);
 
-void echoStudent(Student *stu);
+void echoStudent(Student *ppStu[MAX_STU_NO]);
 
-void delStudent(Student *stu);
+void delStudent(Student *ppStu[MAX_STU_NO]);
 
-void altStudent(Student *stu);
+void altStudent(Student *ppStu[MAX_STU_NO]);
 
 #endif
