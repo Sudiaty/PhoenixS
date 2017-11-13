@@ -18,7 +18,7 @@ typedef struct StudentClass
 {
 	long m_lNo;
 	char m_cpName[20];
-	int m_iGender;
+	char m_cpGender[4];
 	int m_ipMajor[MAX_SUB_NO];
 	float m_iPoint; 
 }Student;

@@ -20,12 +20,14 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 	for(i=0;i<MAX_STU_NO;i++)
 	{
 		//录入数据
+		Student *pInfoTmp=(Student *)malloc(sizeof(Student));
 		printf("请输入学号:");
-		scanf("%ld",&ppStu[i]->m_lNo);
+		scanf("%ld",&pInfoTmp->m_lNo);
 		printf("请输入姓名:");
-		scanf("%s",&ppStu[i]->m_cpName);
+		scanf("%s",&pInfoTmp->m_cpName);
 		printf("请输入性别(男m，女f）:");
-		scanf("%d",&ppStu[i]->m_iGender);
+		scanf("%s",&pInfoTmp->m_cpGender);
+		ppStu[i]=pInfoTmp;
 
 		stuNum++;	//学生人数自增
 
@@ -40,6 +42,7 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 					status=0;
 					break;
 				case 0:
+					free(pInfoTmp);
 					return;
 				default:
 					printf("非法输入！\n");
