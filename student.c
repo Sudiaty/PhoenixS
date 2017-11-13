@@ -109,7 +109,7 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 * Function:altStudent();				
 * Description:Alt info of student.dat.
 ****************************************/
-void altStudent(Student *ppStu[MAX_ppStu_NO])
+void altStudent(Student *ppStu[MAX_STU_NO])
 { 
 	int i=0;
     int j=0;
@@ -121,13 +121,13 @@ void altStudent(Student *ppStu[MAX_ppStu_NO])
 	scanf("%ld",&lNo); 
 	for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
 	{
-	    if(ppppStu[i]->m_lNo==lNo)
+	    if(ppStu[i]->m_lNo==lNo)
 		{ 
 		    printf("\n 存在要修改的学生记录");
 			break; 
 		}
 	}
-	if((i==MAX_ppStu_NO) || (ppppStu[i]==NULL)) 
+	if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
 	{
 		printf("\n 不存在要修改的学生记录");
 		return;
@@ -165,13 +165,13 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 * Function:echoStudent();				
 * Description:echo a ppStudent's record.
 ****************************************/
-/*void echoStudent(Student *ppStu[MAX_STU_NO])
+void echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	int i = 0;     /*学生记录行号*/
 	long lNo;    /*学号*/
 	printf("\n请输入要查询学生的学号：");
 	scanf("%ld",&lNo);
-	for(i=stuNum;i<MAX_ppStu_NO;i++)
+	for(i=stuNum;i<MAX_STU_NO;i++)
 	{
 		if(ppStu->m_lNo==lNo)
 		{
@@ -188,5 +188,3 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 	//输出所查学生记录
 	printf("\n所查记录如下：");
 }
-
-*/
