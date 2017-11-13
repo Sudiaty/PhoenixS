@@ -20,7 +20,7 @@ typedef struct StudentClass
 	char m_cpName[20];
 	char m_cpGender[4];
 	int m_ipMajor[MAX_SUB_NO];
-	float m_iPoint; 
+	float m_fPoint; 
 }Student;
 
 //声明对学生信息操作函数
