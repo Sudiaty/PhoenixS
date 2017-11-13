@@ -75,7 +75,6 @@ void saveStudent(Student *stu)
 }
 
 /****************************************
-SunZT@Win
 * Author:SunZT;
 * Function:delStudent();				
 * Description:Delete info of student.dat.
@@ -86,23 +85,40 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 	int j=0; 
 	long lNo; 
 	char c; 
-	printf("\n è¯·è¾“å…¥è¦åˆ é™¤çš„å­¦ç”Ÿå­¦å·:"); 
+	printf("\n ÇëÊäÈëÒªÉ¾³ıµÄÑ§ÉúÑ§ºÅ:"); 
 	scanf("%ld",&lNo); 
 	j=i+1; 
-	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	for(i=0;i<MAX_STU_NO && ppStu[i]!=NULL;i++)
 	{    
 	    if(ppStu[i]->m_lNo==lNo)
 		{
-		    printf("\n å­˜åœ¨è¦åˆ é™¤çš„å­¦ç”Ÿè®°å½•\n");
+		    printf("\n ´æÔÚÒªÉ¾³ıµÄÑ§Éú¼ÇÂ¼");
 			break; 
 		} 
 	} 
-	if((i==MAX_STU_NO)||ppStu[i]==NULL)
+	if((i==MAX_STU_NO)||(ppStu[i]==NULL))
 	{ 
-	    printf("\n ä¸å­˜åœ¨è¦åˆ é™¤çš„å­¦ç”Ÿè®°å½•çš„\n");
+	    printf("\n ²»´æÔÚÒªÉ¾³ıµÄÑ§Éú¼ÇÂ¼µÄ");
 		return; 
 	}
-}
+/*Êä³öÒªÉ¾³ıµÄÑ§ÉúĞÅÏ¢¿ªÊ¼*/ 
+	printf("\n********------------********** Õâ ÊÇ Òª É¾ ³ı µÄ ¼Ç Â¼ Âğ?**********------------********\n"); 
+	printf("| Ñ§ºÅ | ĞÕÃû | ĞÔ±ğ | ¿ÆÄ¿Ò» | ¿ÆÄ¿¶ş | ¿ÆÄ¿Èı | ¿ÆÄ¿ËÄ |\n"); 
+	printf("|-----------|------|------|------|------|------|------|------|--------|------|\n");
+	printf("|%-12s|%-6s|%-6s|%6d|%6d|%6d|%6d|\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_iGender,ppStu[i]->m_ipMajor[0], ppStu[i]->m_ipMajor[1],ppStu[i]->m_ipMajor[2],ppStu[i]->m_ipMajor[3]);
+	printf("\n********------------********** **********------------********\n"); 
+	printf("ÄãÈ·¶¨ÒªÉ¾³ı¸Ã¼ÇÂ¼Âğ?Y or N!\n"); 
+	scanf("%s",&c);
+	if((c=='Y')||(c=='N')) 
+	{ 
+		for(j=i+1;j<MAX_STU_NO-i;j++) 
+		{ ppStu[j-1]=ppStu[j]; } 
+		ppStu[j]=NULL;
+        printf("ÕıÔÚÉ¾³ı......\n"); 
+		printf("\n.......ÒÑ¾­É¾³ıÑ§ºÅÎª%ld µÄÑ§Éú¼ÇÂ¼......\n",lNo); } 
+	else 
+	{ printf("·µ»ØÖ÷²Ëµ¥"); }
+ } 
 
 /****************************************
 * Author:SunZT;
