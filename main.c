@@ -4,6 +4,7 @@
 ****************************************/
 
 #include "student.h"
+#include "course.h"
 
 //Debug
 /****************************************
@@ -24,6 +25,7 @@ int main()
 	//调用需要调试的函数
 	addStudent(ppStu);
 	saveStudent(ppStu);
-	getStudent(ppStu); 
+	echoStudent(ppStu);
+	addCourse(ppStu);
 	return 0;
 }
