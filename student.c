@@ -21,11 +21,11 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 	{
 		//录入数据
 		printf("请输入学号:");
-		scanf("%ld",ppStu[i]->m_lNo);
+		scanf("%ld",ppStu[i].m_lNo);
 		printf("请输入姓名:");
-		scanf("%s",ppStu[i]->m_cpName);
+		scanf("%s",ppStu[i].m_cpName);
 		printf("请输入性别(男m，女f）:");
-		scanf("%d",ppStu[i]->m_iGender);
+		scanf("%d",ppStu[i].m_iGender);
 
 		stuNum++;	//学生人数自增
 
