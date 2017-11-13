@@ -6,13 +6,12 @@ function while developing.
 
 #include "student.h"
 
-
 /****************************************
 * Author:SunZT;
-* Function:altStudent();				
-* Description:Alt info student.dat.
+* Function:altStudent();		
+* Description:Alt info of student.dat.
 ****************************************/
-void altStudent(Student *stu)
+void altStudent(Student *ppStu[MAX_STU_NO])
 { 
 	int i=0;
     int j=0;
@@ -62,39 +61,44 @@ void altStudent(Student *stu)
 			if((stuArray[i]->score[j-1]>100) || (stuArray[i]->score[j-1]<0)) 
 			{ 
 				printf("�������ݣ� ����������!\n"); 
-			}}while((stuArray[i]->score[j-1]>100) || (stuArray[i]->score[j-1]<0)); 
-			printf("��Ҫ�����޸Ĵ˼�¼��?Y or N!\n");
-			scanf("%s",&c);
-			if((c=='Y') || (c=='y')) 
-			{ 
-				m=1; } 
-			else  { break;} 
-			for(j=0;j<MAXSUB;j++)
-			{ 
-				sum+=stuArray[i]->score[j];
-			} 
-			stuArray[i]->average=sum/MAXSUB}
-            return stuArray[i]; 
+			}
+		}while((stuArray[i]->score[j-1]>100) || (stuArray[i]->score[j-1]<0)); 
+			
+			printf("\n 请输入要修改的学生学号:");
+			scanf("%ld",&lNo); 
+			for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
+			{
+			    if(ppStu[i]->m_lNo==lNo)
+				{ 
+				    printf("\n 存在要修改的学生记录");
+					break; 
+				}
+			}
+		if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
+		{
+			printf("\n 不存在要修改的学生记录");
+			return;
+	}
+}
+
+
 /****************************************
-* Author:LiuXL;
+* Author:LiuXL,SunZT;
 * Function:main();				
 * Description:Debug;
 ****************************************/
 int main()
 {
 	//实例化Student
-	Student up1602[MAX_STU_NO]={2016016000,"Debugger",1,1,4};
-	/*
-	学号：2016016000
-	姓名：Debugger
-	性别：男
-	已选课程编号：1
-	GPA：4
-	*/
-	Student *stu=up1602;
-
+	Student pUp1602[MAX_STU_NO]={
+		{2016016036,"刘晓亮",1,1,4},
+		{2016016037,"孙志焘",0,{1,2},4}
+	};
+	//定义结构体指针，ppStu[i]为第i+1个Student数组的指针
+	Student *ppStu[MAX_STU_NO];
+	ppStu[0]=pUp1602;
 	//����Ҫ���Եĺ���
-	delStudent(stu);
-
+	delStudent(ppstu);
+	altStudent(ppStu); 
 	return 0;
 }
