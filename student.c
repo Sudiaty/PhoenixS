@@ -108,36 +108,68 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 }
 
 /****************************************
-* Author:SunZT;
+* Author:SunZT,JiaZG;
 * Function:altStudent();				
-* Description:Alt info of student.dat.
+* Description:alt a student's record.;
 ****************************************/
 void altStudent(Student *ppStu[MAX_STU_NO])
-{ 
-	int i=0;
-    int j=0;
-	int m=0;
-	float sum=0; 
-	long lNo;
-	char c;
-	printf("\n 请输入要修改的学生学号:");
-	scanf("%ld",&lNo); 
-	for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
+{
+	int i = 0;                /*学生记录行号*/
+	int m = 0;             	  /*修改状态标志0不修改*/
+	long lNo;                 /*学号*/
+	char c;                   /*确认指令Y修改N不修改*/
+	printf("\n请输入要修改学生的学号：");
+	scanf("%ld",&lNo);
+	
+	for(i=0;i<MAX_STU_NO;i++)
 	{
-	    if(ppStu[i]->m_lNo==lNo)
-		{ 
-		    printf("\n 存在要修改的学生记录");
-			break; 
+		if(ppStu[i]->m_lNo==lNo)
+		{
+			printf("\n存在要修改的学生记录！");
+			break;
 		}
 	}
-	if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
+	if(i==MAX_STU_NO)
 	{
-		printf("\n 不存在要修改的学生记录");
+		printf("\n不存在要修改的学生记录！");
 		return;
 	}
+	printf("\n该学生记录如下：");
+	printf("是否要修改该记录？y or n\n");
+	scanf("%s",&c);
+	if((c=='Y'|| c=='y'))
+	{
+		m=1;
+	}
+	else
+	{
+		printf("终止修改！\n");
+		return;
+	}
+	
+	if(m==1)
+	{
+		printf("要修改该生的姓名还是性别？n or s\n");
+		scanf("%s",&c);
+		if((c=='n'||c=='N'))
+		{
+			printf("\n请输入修改后该学生的姓名：");
+			scanf("%s",&ppStu[i]->m_cpName);
+		}
+		if((c=='s'||c=='S'))
+		{
+			printf("\n请输入修改后该学生的性别(男m，女f）：");
+			scanf("%s",&ppStu[i]->m_cpGender);
+		}
+		else
+		{
+			printf("非法输入！\n");
+			return;
+		}
+	}
 }
-  
- 
+
+
 /****************************************
 * Author:JiaZG;
 * Function:getStudent();				
