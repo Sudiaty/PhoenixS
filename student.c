@@ -5,19 +5,19 @@
 ****************************************/
 
 #include <stdio.h>
-#include "ppStudent.h"
+#include "student.h"
 
 
 /****************************************
 * Author:LiuXL;
-* Function:addppStudent();				
-* Description:Add a ppStudent's record.
+* Function:addStudent();				
+* Description:Add a student's record.
 ****************************************/
 void addStudent(Student *ppStu[MAX_STU_NO])
 {
 	int status,sign;	//定义用于判断操作状态的变量
 	int i;
-	for(i=0;i<MAX_ppStu_NO;i++)
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		//录入数据
 		printf("请输入学号:");
@@ -52,8 +52,8 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 
 /****************************************
 * Author:LiuXL;
-* Function:saveppStudent();				
-* Description:Save the info to ppStudent.dat.
+* Function:saveStudent();				
+* Description:Save the info to Student.dat.
 ****************************************/
 void saveStudent(Student *ppStu[MAX_STU_NO])
 {
@@ -77,8 +77,8 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 /****************************************
 SunZT@Win
 * Author:SunZT;
-* Function:delppStudent();				
-* Description:Delete info of ppStudent.dat.
+* Function:delStudent();				
+* Description:Delete info of Student.dat.
 ****************************************/
 void delStudent(Student *ppStu[MAX_STU_NO])
 {
@@ -106,10 +106,10 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 
 /****************************************
 * Author:SunZT;
-* Function:altppStudent();				
-* Description:Alt info of ppStudent.dat.
+* Function:altStudent();				
+* Description:Alt info of student.dat.
 ****************************************/
-void altStudent(ppStudent *ppStu[MAX_ppStu_NO])
+void altStudent(Student *ppStu[MAX_ppStu_NO])
 { 
 	int i=0;
     int j=0;
@@ -137,8 +137,8 @@ void altStudent(ppStudent *ppStu[MAX_ppStu_NO])
  
 /****************************************
 * Author:JiaZG;
-* Function:getppStudent();				
-* Description:get the info to ppStudent.dat.
+* Function:getStudent();				
+* Description:get the info to Student.dat.
 ****************************************/
 void getStudent(Student *ppStu[MAX_STU_NO])
 {
@@ -162,7 +162,7 @@ void getStudent(Student *ppStu[MAX_STU_NO])
  
 /****************************************  
 * Author:JiaZG;
-* Function:echoppStudent();				
+* Function:echoStudent();				
 * Description:echo a ppStudent's record.
 ****************************************/
 /*void echoStudent(Student *ppStu[MAX_STU_NO])
@@ -171,7 +171,7 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 	long lNo;    /*学号*/
 	printf("\n请输入要查询学生的学号：");
 	scanf("%ld",&lNo);
-	for(i=ppStuNum;i<MAX_ppStu_NO;i++)
+	for(i=stuNum;i<MAX_ppStu_NO;i++)
 	{
 		if(ppStu->m_lNo==lNo)
 		{
@@ -180,7 +180,7 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 		}
 	}
 	
-	if(i==MAX_ppStu_NO)
+	if(i==MAX_STU_NO)
 	{
 		printf("\n不存在要查询的学生记录！");
 		return;
