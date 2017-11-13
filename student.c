@@ -156,7 +156,7 @@ void getStudent(Student *stu)
 		fread(stu,sizeof(Student),stuNum,fp);
 	}
 	printf("获取成功！\n");
-}çç
+}
 
  
 /****************************************  
