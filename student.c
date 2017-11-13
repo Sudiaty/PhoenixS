@@ -137,7 +137,7 @@ void altStudent(Student *ppStu[MAX_STU_NO])
   
 /****************************************  
 * Author:JiaZG;
-* Function:getStudent();				
+* Function:echoStudent();				
 * Description:echo a student's record.
 ****************************************/
 void echoStudent(Student *stu)
