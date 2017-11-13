@@ -1,7 +1,7 @@
 /****************************************
 * Author:LiuXL;				
 * Description:Function related with 
-*	student class.
+*	ppStudent class.
 ****************************************/
 
 #include <stdio.h>
@@ -13,19 +13,21 @@
 * Function:addStudent();				
 * Description:Add a student's record.
 ****************************************/
-void addStudent(Student *stu)
+void addStudent(Student *ppStu[MAX_STU_NO])
 {
 	int status,sign;	//定义用于判断操作状态的变量
 	int i;
-	for(i=stuNum;i<MAX_STU_NO;i++)
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		//录入数据
+		Student *pInfoTmp=(Student *)malloc(sizeof(Student));
 		printf("请输入学号:");
-		scanf("%ld",&stu->m_lNo);
+		scanf("%ld",&pInfoTmp->m_lNo);
 		printf("请输入姓名:");
-		scanf("%s",&stu->m_cpName);
+		scanf("%s",&pInfoTmp->m_cpName);
 		printf("请输入性别(男m，女f）:");
-		scanf("%d",&stu->m_iGender);
+		scanf("%s",&pInfoTmp->m_cpGender);
+		ppStu[i]=pInfoTmp;
 
 		stuNum++;	//学生人数自增
 
@@ -40,6 +42,7 @@ void addStudent(Student *stu)
 					status=0;
 					break;
 				case 0:
+					free(pInfoTmp);
 					return;
 				default:
 					printf("非法输入！\n");
@@ -53,22 +56,22 @@ void addStudent(Student *stu)
 /****************************************
 * Author:LiuXL;
 * Function:saveStudent();				
-* Description:Save the info to student.dat.
+* Description:Save the info to Student.dat.
 ****************************************/
-void saveStudent(Student *stu)
+void saveStudent(Student *ppStu[MAX_STU_NO])
 {
 	FILE *fp;
 	int i;
 
-	//打开student.dat
-	if ((fp=fopen("student.dat","wb+"))==NULL)
+	//打开ppStudent.dat
+	if ((fp=fopen("Student.dat","wb+"))==NULL)
 	{
 		printf("Student.dat不存在！\n");
 		exit(0);
 	}
 
-	//写入student.dat
-	if(fwrite(stu,sizeof(Student),stuNum,fp))
+	//写入ppStudent.dat
+	if(fwrite(ppStu,sizeof(Student),stuNum,fp))
 		printf("写入成功！\n");
 	else
 		printf("写入失败!\n");
@@ -77,7 +80,7 @@ void saveStudent(Student *stu)
 /****************************************
 * Author:SunZT;
 * Function:delStudent();				
-* Description:Delete info of student.dat.
+* Description:Delete info of Student.dat.
 ****************************************/
 void delStudent(Student *ppStu[MAX_STU_NO])
 {
@@ -121,74 +124,107 @@ void delStudent(Student *ppStu[MAX_STU_NO])
  } 
 
 /****************************************
-* Author:SunZT;
+* Author:SunZT,JiaZG;
 * Function:altStudent();				
-* Description:Alt info of student.dat.
+* Description:alt a student's record.;
 ****************************************/
 void altStudent(Student *ppStu[MAX_STU_NO])
-{ 
-	int i=0;
-    int j=0;
-	int m=0;
-	float sum=0; 
-	long lNo;
-	char c;
-	printf("\n 请输入要修改的学生学号:");
-	scanf("%ld",&lNo); 
-	for(i=0;(i<MAX_STU_NO) && (ppStu[i]!=NULL);i++) 
+{
+	int i = 0;                /*学生记录行号*/
+	int m = 0;             	  /*修改状态标志0不修改*/
+	long lNo;                 /*学号*/
+	char c;                   /*确认指令Y修改N不修改*/
+	printf("\n请输入要修改学生的学号：");
+	scanf("%ld",&lNo);
+	
+	for(i=0;i<MAX_STU_NO;i++)
 	{
-	    if(ppStu[i]->m_lNo==lNo)
-		{ 
-		    printf("\n 存在要修改的学生记录");
-			break; 
+		if(ppStu[i]->m_lNo==lNo)
+		{
+			printf("\n存在要修改的学生记录！");
+			break;
 		}
 	}
-	if((i==MAX_STU_NO) || (ppStu[i]==NULL)) 
+	if(i==MAX_STU_NO)
 	{
-		printf("\n 不存在要修改的学生记录");
+		printf("\n不存在要修改的学生记录！");
 		return;
 	}
+	printf("\n该学生记录如下：");
+	printf("是否要修改该记录？y or n\n");
+	scanf("%s",&c);
+	if((c=='Y'|| c=='y'))
+	{
+		m=1;
+	}
+	else
+	{
+		printf("终止修改！\n");
+		return;
+	}
+	
+	if(m==1)
+	{
+		printf("要修改该生的姓名还是性别？n or s\n");
+		scanf("%s",&c);
+		if((c=='n'||c=='N'))
+		{
+			printf("\n请输入修改后该学生的姓名：");
+			scanf("%s",&ppStu[i]->m_cpName);
+		}
+		if((c=='s'||c=='S'))
+		{
+			printf("\n请输入修改后该学生的性别(男m，女f）：");
+			scanf("%s",&ppStu[i]->m_cpGender);
+		}
+		else
+		{
+			printf("非法输入！\n");
+			return;
+		}
+	}
 }
-  
- 
+
+
 /****************************************
 * Author:JiaZG;
 * Function:getStudent();				
-* Description:get the info to student.dat.
+* Description:get the info to Student.dat.
 ****************************************/
-void getStudent(Student *stu)
+void getStudent(Student *ppStu[MAX_STU_NO])
 {
 	FILE *fp;
 	int i;
 
-	//打开student.dat
-	if ((fp=fopen("student.dat","wb+"))==NULL)
+	//打开Student.dat
+	if ((fp=fopen("Student.dat","wb+"))==NULL)
 	{
 		printf("Student.dat不存在！\n");
 		exit(0);
 	}
-    for(i=stuNum;i<MAX_STU_NO;i++)
+    for(i=0;i<MAX_STU_NO;i++)
 	{
-		fread(stu,sizeof(Student),stuNum,fp);
+		fread(ppStu,sizeof(Student),stuNum,fp);
 	}
 	printf("获取成功！\n");
-}çç
+}
+
 
  
 /****************************************  
 * Author:JiaZG;
 * Function:echoStudent();				
-* Description:echo a student's record.
+* Description:echo a ppStudent's record.
 ****************************************/
-void echoStudent(Student *stu)
+void echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	int i = 0;     /*学生记录行号*/
 	long lNo;    /*学号*/
 	printf("\n请输入要查询学生的学号：");
 	scanf("%ld",&lNo);
-	for(i=stuNum;i<MAX_STU_NO;i++)
+	for(i=0;i<MAX_STU_NO;i++)
 	{
-		if(stu->m_lNo==lNo)
+		if(ppStu[i]->m_lNo==lNo)
 		{
 			printf("\n存在要查询的学生记录！");
 			break;
@@ -203,4 +239,3 @@ void echoStudent(Student *stu)
 	//输出所查学生记录
 	printf("\n所查记录如下：");
 }
-
