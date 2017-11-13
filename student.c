@@ -171,9 +171,9 @@ void echoStudent(Student *ppStu[MAX_STU_NO])
 	long lNo;    /*学号*/
 	printf("\n请输入要查询学生的学号：");
 	scanf("%ld",&lNo);
-	for(i=stuNum;i<MAX_STU_NO;i++)
+	for(i=0;i<MAX_STU_NO;i++)
 	{
-		if(ppStu->m_lNo==lNo)
+		if(ppStu[i]->m_lNo==lNo)
 		{
 			printf("\n存在要查询的学生记录！");
 			break;
