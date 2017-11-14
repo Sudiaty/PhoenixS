@@ -15,26 +15,27 @@
 ****************************************/
 void addStudent(Student *ppStu[MAX_STU_NO])
 {
-	int status,sign;	//定义用于判断操作状态的变量
+	int status,sign;
 	int i;
 	for(i=0;i<MAX_STU_NO;i++)
 	{
-		//录入数据
+		//å½•å…¥æ•°æ®
 		Student *pInfoTmp=(Student *)malloc(sizeof(Student));
-		printf("请输入学号:");
+		printf("请输入学号：");
 		scanf("%ld",&pInfoTmp->m_lNo);
-		printf("请输入姓名:");
+		printf("请输入姓名：");
 		scanf("%s",&pInfoTmp->m_cpName);
-		printf("请输入性别(男m，女f）:");
+		printf("请输入性别：");
 		scanf("%s",&pInfoTmp->m_cpGender);
+		printf("请输入班级：");
+		scanf("%s",&pInfoTmp->m_cpClass);
 		ppStu[i]=pInfoTmp;
 
-		stuNum++;	//学生人数自增
+		stuNum++;
 
-		//判断是否继续录入数据
 		do
 		{
-			printf("是否继续输入（1.继续/0.终止）？");
+			printf("是否继续输入？1.继续，0.终止");
 			scanf("%d",&sign);
 			switch(sign)
 			{
@@ -45,7 +46,7 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 					free(pInfoTmp);
 					return;
 				default:
-					printf("非法输入！\n");
+					printf("指令有误，请重新输入：\n");
 					status=1;
 			}
 		}while(status);
@@ -63,19 +64,96 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	FILE *fp;
 	int i;
 
-	//打开ppStudent.dat
+	//æ‰“å¼€ppStudent.dat
 	if ((fp=fopen("Student.dat","wb+"))==NULL)
 	{
-		printf("Student.dat不存在！\n");
+		printf("Fail to open file!\n");
 		exit(0);
 	}
 
-	//写入ppStudent.dat
-	if(fwrite(ppStu,sizeof(Student),stuNum,fp))
-		printf("写入成功！\n");
-	else
-		printf("写入失败!\n");
+	//获取当前学生人数
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	{
+		//写入数据至Student.dat
+		fwrite(ppStu[i],sizeof(Student),1,fp);
+	}
+	fclose(fp);
 }
+
+
+/****************************************
+* Author:JiaZG,LiuXL;
+* Function:getStudent();				
+* Description:get the info to Student.dat.
+* add return the point of stuct.
+****************************************/
+void getStudent(Student *ppStu[MAX_STU_NO])
+{
+	FILE *fp;
+	int i;
+
+	//读取Student.dat
+	if ((fp=fopen("Student.dat","wb+"))==NULL)
+	{
+		printf("暂无学生记录！\n");
+		exit(0);
+	}
+    for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	{
+		fread(*ppStu,sizeof(Student),1,fp);
+	}
+	fclose(fp);
+}
+
+
+/****************************************  
+* Author:JiaZG;
+* Function:searchStudent();				
+* Description:search a student by m_lNo
+****************************************/
+void searchStudent(Student *ppStu[MAX_STU_NO])
+{
+	int i = 0;
+	long lNo;
+	printf("请输入学生学号：");
+	scanf("%ld",&lNo);
+	for(i=0;i<MAX_STU_NO;i++)
+	{
+		if(ppStu[i]->m_lNo==lNo)
+		{
+			printf("\nå­˜åœ¨è¦æŸ¥è¯¢çš„å­¦ç”Ÿè®°å½•ï¼");
+			break;
+		}
+	}
+	
+	if(i==MAX_STU_NO)
+	{
+		printf("\nä¸å­˜åœ¨è¦æŸ¥è¯¢çš„å­¦ç”Ÿè®°å½•ï¼");
+		return;
+	}
+	//è¾“å‡ºæ‰€æŸ¥å­¦ç”Ÿè®°å½•
+	printf("\næ‰€æŸ¥è®°å½•å¦‚ä¸‹ï¼š");
+}
+
+
+/****************************************  
+* Author:LiuXL;
+* Function:echoStudent();				
+* Description:list all of the students
+****************************************/
+void echoStudent(Student *ppStu[MAX_STU_NO])
+{
+	int i = 0;
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	{
+		printf("%ld %s %s %s\n",
+			ppStu[i]->m_lNo,
+			ppStu[i]->m_cpName,
+			ppStu[i]->m_cpGender,
+			ppStu[i]->m_cpClass);
+	}
+}
+
 
 /****************************************
 * Author:SunZT;
@@ -88,40 +166,40 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 	int j=0; 
 	long lNo; 
 	char c; 
-	printf("\n ������Ҫɾ����ѧ��ѧ��:"); 
+	printf("\n ÇëÊäÈëÒªÉ¾³ýµÄÑ§ÉúÑ§ºÅ:"); 
 	scanf("%ld",&lNo); 
 	j=i+1; 
 	for(i=0;i<MAX_STU_NO && ppStu[i]!=NULL;i++)
 	{    
 	    if(ppStu[i]->m_lNo==lNo)
 		{
-		    printf("\n ����Ҫɾ����ѧ����¼");
+		    printf("\n ´æÔÚÒªÉ¾³ýµÄÑ§Éú¼ÇÂ¼");
 			break; 
 		} 
 	} 
 	if((i==MAX_STU_NO)||(ppStu[i]==NULL))
 	{ 
-	    printf("\n ������Ҫɾ����ѧ����¼��");
+	    printf("\n ²»´æÔÚÒªÉ¾³ýµÄÑ§Éú¼ÇÂ¼µÄ");
 		return; 
 	}
-/*���Ҫɾ����ѧ����Ϣ��ʼ*/ 
-	printf("\n********------------********** �� �� Ҫ ɾ �� �� �� ¼ ��?**********------------********\n"); 
-	printf("| ѧ�� | ���� | �Ա� | ��Ŀһ | ��Ŀ�� | ��Ŀ�� | ��Ŀ�� |\n"); 
+	printf("\n********------------********** Õâ ÊÇ Òª É¾ ³ý µÄ ¼Ç Â¼ Âð?**********------------********\n"); 
+	printf("| Ñ§ºÅ | ÐÕÃû | ÐÔ±ð | ¿ÆÄ¿Ò» | ¿ÆÄ¿¶þ | ¿ÆÄ¿Èý | ¿ÆÄ¿ËÄ |\n"); 
 	printf("|-----------|------|------|------|------|------|------|------|--------|------|\n");
-	printf("|%-12s|%-6s|%-6s|%6d|%6d|%6d|%6d|\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_iGender,ppStu[i]->m_ipMajor[0], ppStu[i]->m_ipMajor[1],ppStu[i]->m_ipMajor[2],ppStu[i]->m_ipMajor[3]);
+	printf("|%-12s|%-6s|%-6s|%6d|%6d|%6d|%6d|\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender,ppStu[i]->m_lpMajor[0], ppStu[i]->m_lpMajor[1],ppStu[i]->m_lpMajor[2],ppStu[i]->m_lpMajor[3]);
 	printf("\n********------------********** **********------------********\n"); 
-	printf("��ȷ��Ҫɾ���ü�¼��?Y or N!\n"); 
+	printf("ÄãÈ·¶¨ÒªÉ¾³ý¸Ã¼ÇÂ¼Âð?Y or N!\n"); 
 	scanf("%s",&c);
 	if((c=='Y')||(c=='N')) 
 	{ 
 		for(j=i+1;j<MAX_STU_NO-i;j++) 
 		{ ppStu[j-1]=ppStu[j]; } 
 		ppStu[j]=NULL;
-        printf("����ɾ��......\n"); 
-		printf("\n.......�Ѿ�ɾ��ѧ��Ϊ%ld ��ѧ����¼......\n",lNo); } 
+        printf("ÕýÔÚÉ¾³ý......\n"); 
+		printf("\n.......ÒÑ¾­É¾³ýÑ§ºÅÎª%ld µÄÑ§Éú¼ÇÂ¼......\n",lNo); } 
 	else 
-	{ printf("�������˵�"); }
+	{ printf("·µ»ØÖ÷²Ëµ¥"); }
  } 
+
 
 /****************************************
 * Author:SunZT,JiaZG;
@@ -130,28 +208,28 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 ****************************************/
 void altStudent(Student *ppStu[MAX_STU_NO])
 {
-	int i = 0;                /*学生记录行号*/
-	int m = 0;             	  /*修改状态标志0不修改*/
-	long lNo;                 /*学号*/
-	char c;                   /*确认指令Y修改N不修改*/
-	printf("\n请输入要修改学生的学号：");
+	int i = 0;                /*å­¦ç”Ÿè®°å½•è¡Œå·*/
+	int m = 0;             	  /*ä¿®æ”¹çŠ¶æ€æ ‡å¿—0ä¸ä¿®æ”¹*/
+	long lNo;                 /*å­¦å·*/
+	char c;                   /*ç¡®è®¤æŒ‡ä»¤Yä¿®æ”¹Nä¸ä¿®æ”¹*/
+	printf("\nè¯·è¾“å…¥è¦ä¿®æ”¹å­¦ç”Ÿçš„å­¦å·ï¼š");
 	scanf("%ld",&lNo);
 	
 	for(i=0;i<MAX_STU_NO;i++)
 	{
 		if(ppStu[i]->m_lNo==lNo)
 		{
-			printf("\n存在要修改的学生记录！");
+			printf("\nå­˜åœ¨è¦ä¿®æ”¹çš„å­¦ç”Ÿè®°å½•ï¼");
 			break;
 		}
 	}
 	if(i==MAX_STU_NO)
 	{
-		printf("\n不存在要修改的学生记录！");
+		printf("\nä¸å­˜åœ¨è¦ä¿®æ”¹çš„å­¦ç”Ÿè®°å½•ï¼");
 		return;
 	}
-	printf("\n该学生记录如下：");
-	printf("是否要修改该记录？y or n\n");
+	printf("\nè¯¥å­¦ç”Ÿè®°å½•å¦‚ä¸‹ï¼š");
+	printf("æ˜¯å¦è¦ä¿®æ”¹è¯¥è®°å½•ï¼Ÿy or n\n");
 	scanf("%s",&c);
 	if((c=='Y'|| c=='y'))
 	{
@@ -159,83 +237,28 @@ void altStudent(Student *ppStu[MAX_STU_NO])
 	}
 	else
 	{
-		printf("终止修改！\n");
+		printf("ç»ˆæ­¢ä¿®æ”¹ï¼\n");
 		return;
 	}
 	
 	if(m==1)
 	{
-		printf("要修改该生的姓名还是性别？n or s\n");
+		printf("è¦ä¿®æ”¹è¯¥ç”Ÿçš„å§“åè¿˜æ˜¯æ€§åˆ«ï¼Ÿn or s\n");
 		scanf("%s",&c);
 		if((c=='n'||c=='N'))
 		{
-			printf("\n请输入修改后该学生的姓名：");
+			printf("\nè¯·è¾“å…¥ä¿®æ”¹åŽè¯¥å­¦ç”Ÿçš„å§“åï¼š");
 			scanf("%s",&ppStu[i]->m_cpName);
 		}
 		if((c=='s'||c=='S'))
 		{
-			printf("\n请输入修改后该学生的性别(男m，女f）：");
+			printf("\nè¯·è¾“å…¥ä¿®æ”¹åŽè¯¥å­¦ç”Ÿçš„æ€§åˆ«(ç”·mï¼Œå¥³fï¼‰ï¼š");
 			scanf("%s",&ppStu[i]->m_cpGender);
 		}
 		else
 		{
-			printf("非法输入！\n");
+			printf("éžæ³•è¾“å…¥ï¼\n");
 			return;
 		}
 	}
-}
-
-
-/****************************************
-* Author:JiaZG;
-* Function:getStudent();				
-* Description:get the info to Student.dat.
-****************************************/
-void getStudent(Student *ppStu[MAX_STU_NO])
-{
-	FILE *fp;
-	int i;
-
-	//打开Student.dat
-	if ((fp=fopen("Student.dat","wb+"))==NULL)
-	{
-		printf("Student.dat不存在！\n");
-		exit(0);
-	}
-    for(i=0;i<MAX_STU_NO;i++)
-	{
-		fread(ppStu,sizeof(Student),stuNum,fp);
-	}
-	printf("获取成功！\n");
-}
-
-
- 
-/****************************************  
-* Author:JiaZG;
-* Function:echoStudent();				
-* Description:echo a ppStudent's record.
-****************************************/
-void echoStudent(Student *ppStu[MAX_STU_NO])
-{
-	int i = 0;     /*学生记录行号*/
-	long lNo;    /*学号*/
-	printf("\n请输入要查询学生的学号：");
-	scanf("%ld",&lNo);
-	for(i=0;i<MAX_STU_NO;i++)
-	{
-		if(ppStu[i]->m_lNo==lNo)
-		{
-			printf("\n存在要查询的学生记录！");
-			break;
-		}
-	}
-	
-	if(i==MAX_STU_NO)
-	{
-		printf("\n不存在要查询的学生记录！");
-		return;
-	}
-	//输出所查学生记录
-	printf("\n所查记录如下：");
 }
