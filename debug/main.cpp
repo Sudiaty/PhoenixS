@@ -5,6 +5,7 @@ function while developing.
 ****************************************/
 
 #include "student.h"
+<<<<<<< HEAD
 
 /****************************************
 * Author:JiaZG;
@@ -68,6 +69,9 @@ void altStudent(Student *ppStu[MAX_STU_NO])
 	}
 }
 
+=======
+#include "course.h"
+>>>>>>> master
 
 
 /****************************************
@@ -86,9 +90,16 @@ int main()
 	Student *ppStu[MAX_STU_NO];
 	
 	//调用需要调试的函数
+<<<<<<< HEAD
 	altStudent(ppStu);
 	return 0;
 }
 
 
 
+=======
+	//altStudent(ppStu);
+
+	return 0;
+}
+>>>>>>> master
