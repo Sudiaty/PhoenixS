@@ -15,7 +15,7 @@ void addCourse(Student *ppStu[MAX_STU_NO])
 	int i,j,k;
 	long lNo;
 	int status,sign;
-	printf("请输入选课学生的学号：\n");
+	printf("请输入选课学生的学号：");
 	scanf("%ld",&lNo);
 	for(i=0;i<MAX_STU_NO;i++)
 	{
@@ -27,6 +27,8 @@ void addCourse(Student *ppStu[MAX_STU_NO])
 			exit(0);
 		}
 	}
+
+	//打印已有课程
 	for(j=0;j<MAX_SUB_NO;j++)
 	{
 		printf("%ld %s %.1f\n",
@@ -38,8 +40,9 @@ void addCourse(Student *ppStu[MAX_STU_NO])
 	for(j=0;j<MAX_SUB_NO;j++)
 	{	
 		long lpMajor[MAX_SUB_NO]={0};
-		printf("请输入课程代码：\n");
+		printf("请输入课程代码：");
 		scanf("%ld",&lpMajor[j]);
+		ppStu[i]->m_lpMajor[j]=lpMajor[j];	
 		do
 		{
 			printf("是否继续输入？1.继续，0.终止");
@@ -48,15 +51,12 @@ void addCourse(Student *ppStu[MAX_STU_NO])
 			{
 				case 1:
 					status=0;
-					saveStudent(ppStu);
-					exit(0);
+					break;
 				case 0:
-					for(k=0;k<MAX_SUB_NO;k++)
-					ppStu[i]->m_lpMajor[k]=lpMajor[k];
 					printf("成功添加课程！\n");
 					return;
 				default:
-					printf("指令有误，请重新输入：\n");
+					printf("指令有误，请重新输入：");
 					status=1;
 			}
 		}while(status);	
