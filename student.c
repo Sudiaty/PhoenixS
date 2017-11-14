@@ -67,7 +67,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	//æ‰“å¼€ppStudent.dat
 	if ((fp=fopen("Student.dat","wb+"))==NULL)
 	{
-		printf("Student.dat\n");
+		printf("Fail to open file!\n");
 		exit(0);
 	}
 
@@ -76,7 +76,8 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	{
 		//写入数据至Student.dat
 		fwrite(ppStu[i],sizeof(Student),1,fp);
-	}	
+	}
+	fclose(fp);
 }
 
 
@@ -101,6 +102,7 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 	{
 		fread(*ppStu,sizeof(Student),1,fp);
 	}
+	fclose(fp);
 }
 
 
