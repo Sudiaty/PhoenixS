@@ -29,7 +29,7 @@ void addStudent(Student *ppStu[MAX_STU_NO]);
 
 void saveStudent(Student *ppStu[MAX_STU_NO]);
 
-Student** getStudent(Student *ppStu[MAX_STU_NO]);
+void getStudent(Student *ppStu[MAX_STU_NO]);
 
 void echoStudent(Student *ppStu[MAX_STU_NO]);
 

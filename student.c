@@ -71,11 +71,12 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 		exit(0);
 	}
 
-	//写入数据至Student.dat
-	if(fwrite(ppStu,sizeof(Student),stuNum,fp))
-		printf("写入成功！\n");
-	else
-		printf("写入失败!\n");
+	//获取当前学生人数
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+	{
+		//写入数据至Student.dat
+		fwrite(ppStu[i],sizeof(Student),1,fp);
+	}	
 }
 
 
@@ -85,7 +86,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 * Description:get the info to Student.dat.
 * add return the point of stuct.
 ****************************************/
-Student** getStudent(Student *ppStu[MAX_STU_NO])
+void getStudent(Student *ppStu[MAX_STU_NO])
 {
 	FILE *fp;
 	int i;
@@ -96,11 +97,10 @@ Student** getStudent(Student *ppStu[MAX_STU_NO])
 		printf("暂无学生记录！\n");
 		exit(0);
 	}
-    for(i=0;i<MAX_STU_NO;i++)
+    for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
 	{
-		fread(ppStu,sizeof(Student),stuNum,fp);
+		fread(*ppStu,sizeof(Student),1,fp);
 	}
-	return ppStu;
 }
 
 
@@ -142,13 +142,13 @@ void searchStudent(Student *ppStu[MAX_STU_NO])
 void echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	int i = 0;
-	for(i=0;i<stuNum;i++)
+	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
 	{
-		printf("%ld %s %s %s",
+		printf("%ld %s %s %s\n",
 			ppStu[i]->m_lNo,
 			ppStu[i]->m_cpName,
 			ppStu[i]->m_cpGender,
-			ppStu[i]->m_cpClass );
+			ppStu[i]->m_cpClass);
 	}
 }
 
