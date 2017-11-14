@@ -24,13 +24,15 @@ int main()
 	*ppStu=pChemUp;
 
 	//调用需要调试的函数
-	
-	echoStudent(ppStu);
 	addStudent(ppStu);
-	saveStudent(ppStu);
 	echoStudent(ppStu);
+	//altStudent(ppStu);
+	saveStudent(ppStu);
 	getStudent(ppStu);
 	echoStudent(ppStu);
-	addCourse(ppStu);
+
+	saveStudent(ppStu);
+	getStudent(ppStu);
+	echoStudent(ppStu);
 	return 0;
 }

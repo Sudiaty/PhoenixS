@@ -143,14 +143,19 @@ void searchStudent(Student *ppStu[MAX_STU_NO])
 ****************************************/
 void echoStudent(Student *ppStu[MAX_STU_NO])
 {
-	int i = 0;
+	int i,j;
 	for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
 	{
-		printf("%ld %s %s %s\n",
+		printf("%ld %s %s %s",
 			ppStu[i]->m_lNo,
 			ppStu[i]->m_cpName,
 			ppStu[i]->m_cpGender,
 			ppStu[i]->m_cpClass);
+		for(j=0;j<MAX_SUB_NO&&ppStu[i]->m_lpMajor[j]!=0;j++)
+		{
+			printf("%ld ",ppStu[i]->m_lpMajor[j]);
+		}
+		printf("\n");
 	}
 }
 
@@ -182,7 +187,7 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 		printf("\n 不存在要删除的学生记录的");
  		return; 
  	}
-/*输出要删除的学生信息开始*/ 
+	/*输出要删除的学生信息开始*/ 
 	printf("这 是 要 删 除 的 记 录 吗?\n"); 
 	printf("学号 姓名 性别\n"); 
  	printf("%ld %s %s\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender); 
@@ -201,7 +206,7 @@ void delStudent(Student *ppStu[MAX_STU_NO])
 
 
 /****************************************
-* Author:SunZT,JiaZG;
+* Author:SunZT,JiaZG,LiuXL;
 * Function:altStudent();				
 * Description:alt a student's record.;
 ****************************************/
@@ -228,6 +233,11 @@ void altStudent(Student *ppStu[MAX_STU_NO])
 		return;
 	}
 	printf("\n该学生记录如下：");
+	printf("%ld %s %s %s\n",
+		ppStu[i]->m_lNo,
+		ppStu[i]->m_cpName,
+		ppStu[i]->m_cpGender,
+		ppStu[i]->m_cpClass); 
  	printf("是否要修改该记录？y or n\n");
 	scanf("%s",&c);
 	if((c=='Y'|| c=='y'))
@@ -240,24 +250,30 @@ void altStudent(Student *ppStu[MAX_STU_NO])
 		return;
 	}
 	
-	if(m==1)
+	while(m==1)
 	{
-		printf("要修改该生的姓名还是性别？(姓名n，性别s)\n");
+		printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
 		scanf("%s",&c);
-		if((c=='n'||c=='N'))
+		switch(c)
 		{
-			printf("\n请输入修改后该学生的姓名：");
-			scanf("%s",&ppStu[i]->m_cpName);
-		}
-		if((c=='s'||c=='S'))
-		{
-			printf("\n请输入修改后该学生的性别(男m，女f）：");
-			scanf("%s",&ppStu[i]->m_cpGender);
-		}
-		else
-		{
-			printf("非法输入！\n");
-			return;
+			case 'n':
+				printf("\n请输入修改后该学生的姓名：");
+				scanf("%s",&ppStu[i]->m_cpName);
+				m=0;
+				break;
+			case 's':
+				printf("\n请输入修改后该学生的性别(男m，女f）：");
+				scanf("%s",&ppStu[i]->m_cpGender);
+				m=0;
+				break;
+			case 'c':
+				printf("\n请输入修改后该学生的班级：");
+				scanf("%s",&ppStu[i]->m_cpClass);
+				m=0;
+				break;
+			default:
+				printf("非法输入！\n");
+				break;
 		}
 	}
 }
