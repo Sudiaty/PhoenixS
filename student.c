@@ -51,6 +51,7 @@ void addStudent(Student *ppStu[MAX_STU_NO])
 			}
 		}while(status);
 	}
+	return;
 }
 
 

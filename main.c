@@ -15,16 +15,24 @@
 ****************************************/
 int main()
 {
-	//实例化Student
-	Student pChemUp[MAX_STU_NO]={
-		{2016016036,"刘晓亮","男",1,4},
-		{2016016037,"孙志焘","男",{1,2},4}
-	};
-	//定义结构体指针，ppStu[i]为第i+1个Student数组的指针
+	/*实例化Student对象*/
 	Student *ppStu[MAX_STU_NO];
-	*ppStu=pChemUp;
+	Student *pTmp=(Student*)malloc(sizeof(Student));
+	ppStu[0]=pTmp;	
 
-	//调用需要调试的函数
-	menuSelect();
+	/*实例化Form对象*/
+	Form *ppStuForm[MAX_ROW];
+	Form *pForm=(Form*)malloc(sizeof(Form));
+	ppStuForm[0]=pForm;
+	/*为对象赋初值*/
+	/*strcpy(ppStuForm[0]->m_cpTitle,"ID");
+	strcpy(ppStuForm[1]->m_cpTitle,"Name");
+	strcpy(ppStuForm[2]->m_cpTitle,"Sex");*/
+
+	/*Action*/
+	addStudent(ppStu);
+	echoStudent(ppStu);
+	saveStudent(ppStu);
+	echoStudent(ppStu);
 	return 0;
 }
