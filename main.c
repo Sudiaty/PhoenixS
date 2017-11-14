@@ -5,6 +5,7 @@
 
 #include "student.h"
 #include "course.h"
+#include "view.h"
 
 //Debug
 /****************************************
@@ -24,15 +25,6 @@ int main()
 	*ppStu=pChemUp;
 
 	//调用需要调试的函数
-	addStudent(ppStu);
-	echoStudent(ppStu);
-	//altStudent(ppStu);
-	saveStudent(ppStu);
-	getStudent(ppStu);
-	echoStudent(ppStu);
-	addCourse(ppStu);
-	saveStudent(ppStu);
-	getStudent(ppStu);
-	echoStudent(ppStu);
+	menuSelect();
 	return 0;
 }
