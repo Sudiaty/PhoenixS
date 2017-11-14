@@ -30,7 +30,7 @@ int main()
 	saveStudent(ppStu);
 	getStudent(ppStu);
 	echoStudent(ppStu);
-
+	addCourse(ppStu);
 	saveStudent(ppStu);
 	getStudent(ppStu);
 	echoStudent(ppStu);
