@@ -183,11 +183,9 @@ void delStudent(Student *ppStu[MAX_STU_NO])
  		return; 
  	}
 /*输出要删除的学生信息开始*/ 
-	printf("\n********------------********** 这 是 要 删 除 的 记 录 吗?**********------------********\n"); 
-	printf("| 学号 | 姓名 | 性别 | 科目一 | 科目二 | 科目三 | 科目四 |\n"); 
- 	printf("|-----------|------|------|------|------|------|------|------|--------|------|\n");
- 	printf("|%-12s|%-6s|%-6s|%6d|%6d|%6d|%6d|\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender,ppStu[i]->m_fpMajor[0], ppStu[i]->m_fpMajor[1],ppStu[i]->m_fpMajor[2],ppStu[i]->m_fpMajor[3]);
- 	printf("\n********------------********** **********------------********\n"); 
+	printf("这 是 要 删 除 的 记 录 吗?\n"); 
+	printf("学号 姓名 性别\n"); 
+ 	printf("%ld %s %s\n",ppStu[i]->m_lNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender); 
 	printf("你确定要删除该记录吗?Y or N!\n");
  	scanf("%s",&c);
  	if((c=='Y')||(c=='N')) 
@@ -196,7 +194,7 @@ void delStudent(Student *ppStu[MAX_STU_NO])
  		{ ppStu[j-1]=ppStu[j]; } 
  		ppStu[j]=NULL;
         printf("正在删除......\n"); 
-		printf("\n.......已经删除学号为%ld 的学生记录......\n",lNo); } 
+		printf("已经删除学号为%ld 的学生记\n",lNo); } 
 	else 
 	{ printf("返回主菜单"); }
   } 
