@@ -18,22 +18,25 @@ typedef struct StudentClass
 {
 	long m_lNo;
 	char m_cpName[20];
-	int m_iGender;
-	int m_ipMajor[MAX_SUB_NO];
-	float m_iPoint; 
+	char m_cpGender[4];
+	char m_cpClass[20];
+	long m_lpMajor[MAX_SUB_NO];
+	float m_fPoint; 
 }Student;
 
 //声明对学生信息操作函数
-void addStudent(Student *stu);
+void addStudent(Student *ppStu[MAX_STU_NO]);
 
-void saveStudent(Student *stu);
+void saveStudent(Student *ppStu[MAX_STU_NO]);
 
-void getStudent(Student *stu);
+void getStudent(Student *ppStu[MAX_STU_NO]);
 
-void echoStudent(Student *stu);
+void echoStudent(Student *ppStu[MAX_STU_NO]);
 
-void delStudent(Student *stu);
+void searchStudent(Student *ppStu[MAX_STU_NO]);
 
-void altStudent(Student *stu);
+void delStudent(Student *ppStu[MAX_STU_NO]);
+
+void altStudent(Student *ppStu[MAX_STU_NO]);
 
 #endif
