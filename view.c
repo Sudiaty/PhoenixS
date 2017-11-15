@@ -25,6 +25,24 @@ void menuSelect()
 
 /****************************************
 * Author:ZhangLY,LiuXL;
+* Function:list();
+* Description:Form used to input.
+****************************************/
+// void list(char *ppList)
+// {
+// 	for(int i=0;i<=MAX_ROW&&strcmp(*ppList[2*i],"\0");i++)
+// 	{
+// 		printf("\033[47;31m                                             \033[0m\n");
+// 		for(int j=0;j<2;j++)
+// 		{
+// 			printf("%1d.%4s",2*i+j,ppList[2*i+j]);
+// 		}
+// 		printf("\033[47;31m                                             \033[0m\n");
+// 	}
+// }
+
+/****************************************
+* Author:ZhangLY,LiuXL;
 * Function:form();
 * Description:Form used to input.
 ****************************************/

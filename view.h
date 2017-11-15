@@ -19,6 +19,7 @@ typedef struct FormClass
 }Form;
 
 void menuSelect();
+
 void dialog(char content[10]);
 void form(Form *ppForm[MAX_ROW]);
 int alert();

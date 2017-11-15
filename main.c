@@ -37,13 +37,34 @@ int main()
     strcpy(ppStuForm[2]->m_cpTitle,"性别");
     strcpy(ppStuForm[3]->m_cpTitle,"班级");
 
+	/*定义主菜单选项*/
+	char menuList[MAX_ROW][15]={"信息维护","课程管理","成绩管理"};
+
     /*Action*/
-    menu:menuSelect();
-    /*结束菜单界面输出*/
-    int menuItem;
-	printf("\n请输入菜单项数字(1 - 6):");
-	scanf("%d",&menuItem);			
-	switch(menuItem) 
+	menu:menuSelect();
+	/*结束菜单界面输出*/
+	//list(menuList);
+	int mainItem,stuItem;
+	printf("\n请输入菜单项数字(1 - 3):");
+	scanf("%d",&mainItem);
+	switch(mainItem)
+	{
+		case 1:
+			printf("\n请输入菜单项数字(1 - 6):");
+			scanf("%d",&stuItem);
+			break;
+		case 2:
+			dialog("系统正在维护！");
+			break;
+		case 3:
+			dialog("系统正在维护！");
+			break;
+		case 4:
+			exit(0);
+		default:
+			goto menu;
+	}				
+	switch(stuItem) 
 	{
 		case 1:
 			dialog("学生数据录入");
@@ -55,12 +76,8 @@ int main()
             }while(alert());
 			break;
 		case 2:
-			printf("—————————————————————————————————————————————\n");
-			printf("\033[47;31m\t\t                             \033[0m\n");
-			printf("\033[47;31m\t\t 学生数据编辑                  \033[0m\n");
-			printf("\033[47;31m\t\t                             \033[0m\n");
-			printf("—————————————————————————————————————————————\n");
-			//altStudent(ppStu[MAX_STU_NO]);
+			dialog("学生信息显示");
+			echoStudent(ppStu);
 			break;
 		case 3:
 			printf("—————————————————————————————————————————————\n");
@@ -94,7 +111,8 @@ int main()
 			printf("—————————————————————————————————————————————\n");
 			// getStudent(ppStu[MAX_STU_NO]);
 			break;
-	}
+		}
+		goto menu;
     
     return 0;
 }
