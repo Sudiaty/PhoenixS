@@ -60,3 +60,4 @@ student.h
 student.c
 main.c
 student.h
+view.c
