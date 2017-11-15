@@ -60,7 +60,7 @@ void table(char cpTable[][20],int iRow)
 	{
 		printf("\033[47;31m|%6s\033[0m",cpTable[k]);
 	}
-	printf("|\`n");
+	printf("|\n");
 	for(int i=0;strcmp(cpTable[iRow*i],"\0");i++)
 	{
 		for(int j=0;j<iRow&&strcmp(cpTable[iRow*i+j],"\0");j++)
