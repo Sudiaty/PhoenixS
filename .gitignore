@@ -61,3 +61,4 @@ student.c
 main.c
 student.h
 view.c
+.DS_Store
