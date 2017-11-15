@@ -13,6 +13,7 @@
 void menuSelect()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int number;                       /*定义输入的数字*/
 		printf("\n\n");                   /*在屏幕上输出3个空行*/
 		                                  /*开始输出菜单*/
@@ -24,6 +25,8 @@ void menuSelect()
 		printf("\t\t\033[47;31m  *主菜单项*  \033[0m\n");
 		printf("\t\t—————————————\n");
 		printf("\n");
+=======
+>>>>>>> 542ad70870491ca51da291caf6905b176db48aab
 =======
 >>>>>>> 542ad70870491ca51da291caf6905b176db48aab
 		printf("\t\033[47;31m1、数据录入\033[0m\t\t\033[47;31m2、数据编辑\033[0m\n");
