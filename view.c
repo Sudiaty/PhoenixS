@@ -31,9 +31,9 @@ void menuSelect()
 void dialog(char content[10])
 {
 	printf("—————————————————————————————————————————————\n");
-	printf("\033[47;31m\t\t                             \033[0m\n");
-	printf("\033[47;31m\t\t %6s                  \033[0m\n",content);
-	printf("\033[47;31m\t\t                             \033[0m\n");
+	printf("\033[47;31m                                             \033[0m\n");
+	printf("\033[47;31m                %6s                 \033[0m\n",content);
+	printf("\033[47;31m                                             \033[0m\n");
 	printf("—————————————————————————————————————————————\n");
 }
 
