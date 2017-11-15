@@ -46,21 +46,51 @@ void menuSelect(Student *ppStu[MAX_STU_NO])
 		switch(number) 
 			{
 				case 1:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生数据录入                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					addStudent(ppStu[MAX_STU_NO]);
 					break;
 				case 2:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生数据编辑                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					altStudent(ppStu[MAX_STU_NO]);
 					break;
 				case 3:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生数据查询                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					searchStudent(ppStu[MAX_STU_NO]);
 					break;
 				case 4:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生数据删除                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					delStudent(ppStu[MAX_STU_NO]);
 					break;
 				case 5:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生管数据保存                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					saveStudent(ppStu[MAX_STU_NO]);
 				    break;
 				case 6:
+					printf("—————————————————————————————————————————————\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("\033[47;31m\t\t 学生管理显示                  \033[0m\n");
+					printf("\033[47;31m\t\t                             \033[0m\n");
+					printf("—————————————————————————————————————————————\n");
 					getStudent(ppStu[MAX_STU_NO]);
 					break;
 			}
