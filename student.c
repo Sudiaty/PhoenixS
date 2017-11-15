@@ -110,21 +110,23 @@ void searchStudent(Student *ppStu[MAX_STU_NO])
 * Function:echoStudent();
 * Description:list all of the students
 ****************************************/
-void echoStudent(Student *ppStu[MAX_STU_NO])
+echoStudent(Student *ppStu[MAX_STU_NO])
 {
-    int i,j;
-    for(i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
+    char cpStuTable[][20]={"学号","姓名","性别","班级"};
+    int j=4;
+    for(int i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
     {
-        printf("%s %s %s %s",
-            ppStu[i]->m_cpNo,
-            ppStu[i]->m_cpName,
-            ppStu[i]->m_cpGender,
-            ppStu[i]->m_cpClass);
-        for(j=0;j<MAX_SUB_NO&&ppStu[i]->m_lpMajor[j]!=0;j++)
-        {
-            printf("%ld ",ppStu[i]->m_lpMajor[j]);
-        }
-        printf("\n");
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpNo);
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpName);
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpGender);
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpClass);
+        return cpStuTable;
+
+        // for(j=0;j<MAX_SUB_NO&&ppStu[i]->m_lpMajor[j]!=0;j++)
+        // {
+        //     printf("%ld ",ppStu[i]->m_lpMajor[j]);
+        // }
+        // printf("\n");
     }
 }
 

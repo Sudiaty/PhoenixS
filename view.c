@@ -28,18 +28,47 @@ void menuSelect()
 * Function:list();
 * Description:Form used to input.
 ****************************************/
-// void list(char *ppList)
-// {
-// 	for(int i=0;i<=MAX_ROW&&strcmp(*ppList[2*i],"\0");i++)
-// 	{
-// 		printf("\033[47;31m                                             \033[0m\n");
-// 		for(int j=0;j<2;j++)
-// 		{
-// 			printf("%1d.%4s",2*i+j,ppList[2*i+j]);
-// 		}
-// 		printf("\033[47;31m                                             \033[0m\n");
-// 	}
-// }
+void stuMenu();
+
+/****************************************
+* Author:LiuXL;
+* Function:list();
+* Description:List the options.
+****************************************/
+void list(char ppList[MAX_ROW][20])
+{
+	for(int i=0;i<=MAX_ROW&&strcmp(ppList[2*i],"\0");i++)
+	{
+		printf("\n\033[47;31m                                             \033[0m\n");
+		for(int j=0;j<2&&strcmp(ppList[2*i+j],"\0");j++)
+		{
+			printf("%1d.%4s",2*i+j+1,ppList[2*i+j]);		//@ZhangLY：待优化
+		}
+		printf("\n\033[47;31m                                             \033[0m\n");
+	}
+}
+
+/****************************************
+* Author:LiuXL;
+* Function:table();
+* Description:Show table. 
+****************************************/
+void table(char cpTable[][20],int iRow)
+{
+	for(int k=0;k<iRow;k++)
+	{
+		printf("\033[47;31m|%6s\033[0m",cpTable[k]);
+	}
+	printf("|\`n");
+	for(int i=0;strcmp(cpTable[iRow*i],"\0");i++)
+	{
+		for(int j=0;j<iRow&&strcmp(cpTable[iRow*i+j],"\0");j++)
+		{
+			printf("|%10s",cpTable[iRow*(i+1)+j]);
+		}
+		printf("|\n");
+	}
+}
 
 /****************************************
 * Author:ZhangLY,LiuXL;
