@@ -10,7 +10,6 @@
 //创建学生信息结构体
 #define MAX_STU_NO 30
 #define MAX_SUB_NO 8
-int stuNum;
 typedef struct StudentClass
 {
     char m_cpNo[10];
@@ -23,7 +22,7 @@ typedef struct StudentClass
 
 
 //声明对学生信息操作函数
-void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[10]);
+void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[10],int *stuNum);
 
 void getStudent(Student *ppStu[MAX_STU_NO]);
 

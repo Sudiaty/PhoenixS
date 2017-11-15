@@ -12,50 +12,13 @@
 * Function:addStudent();
 * Description:Add a student's record.
 ****************************************/
-void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[MAX_ROW])
+void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[MAX_ROW],int *stuNum)
 {
-    strcpy(ppStu[0]->m_cpNo,ppForm[0]->m_cpContent);
-    strcpy(ppStu[0]->m_cpName,ppForm[0]->m_cpContent);
-    strcpy(ppStu[0]->m_cpGender,ppForm[0]->m_cpContent);
-    strcpy(ppStu[0]->m_cpClass,ppForm[0]->m_cpContent);
-
-    // int status,sign;
-    // int i;
-    // for(i=0;i<MAX_STU_NO;i++)
-    // {
-    //     //录入数据
-    //     Student *pInfoTmp=(Student *)malloc(sizeof(Student));
-    //     printf("请输入学号：");
-    //     scanf("%ld",&pInfoTmp->m_cpNo);
-    //     printf("请输入姓名：");
-    //     scanf("%s",&pInfoTmp->m_cpName);
-    //     printf("请输入性别：");
-    //     scanf("%s",&pInfoTmp->m_cpGender);
-    //     printf("请输入班级：");
-    //     scanf("%s",&pInfoTmp->m_cpClass);
-    //     ppStu[i]=pInfoTmp;
-
-    //     stuNum++;
-
-    //     do
-    //     {
-    //         printf("是否继续输入？1.继续，0.终止");
-    //         scanf("%d",&sign);
-    //         switch(sign)
-    //         {
-    //             case 1:
-    //                 status=0;
-    //                 break;
-    //             case 0:
-    //                 free(pInfoTmp);
-    //                 return;
-    //             default:
-    //                 printf("指令有误，请重新输入：\n");
-    //                 status=1;
-    //         }
-    //     }while(status);
-    // }
-    // return;
+    strcpy(ppStu[*stuNum]->m_cpNo,ppForm[0]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpName,ppForm[0]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpGender,ppForm[0]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpClass,ppForm[0]->m_cpContent);
+    stuNum++;
 }
 
 
@@ -150,7 +113,7 @@ void searchStudent(Student *ppStu[MAX_STU_NO])
 void echoStudent(Student *ppStu[MAX_STU_NO])
 {
     int i,j;
-    for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+    for(i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
     {
         printf("%s %s %s %s",
             ppStu[i]->m_cpNo,
