@@ -13,13 +13,13 @@
 void addCourse(Student *ppStu[MAX_STU_NO])
 {
 	int i,j,k;
-	char cpNo[10];
+	long lNo;
 	int status,sign;
 	printf("请输入选课学生的学号：");
-	scanf("%s",&cpNo);
+	scanf("%ld",&lNo);
 	for(i=0;i<MAX_STU_NO;i++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		if(ppStu[i]->m_lNo==lNo)
 		{			
 			break;
 		}else{
