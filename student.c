@@ -59,16 +59,19 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 void getStudent(Student *ppStu[MAX_STU_NO],int *stuNum)
 {
     FILE *fp;
-    int i;
+    int i,j;
 
     //读取Student.dat
     if ((fp=fopen("Student.dat","rb"))==NULL)
     {
         return;
     }
-    for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
+    for(i=0;i<MAX_STU_NO;i++)
     {
         fread(ppStu[i],sizeof(Student),1,fp);
+    }
+    for(j=0;j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo,"\0")!=0;j++)
+    {
         (*stuNum)++;
     }
     fclose(fp);

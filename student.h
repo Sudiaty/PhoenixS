@@ -8,7 +8,7 @@
 #include "view.h"
 
 //创建学生信息结构体
-#define MAX_STU_NO 4
+#define MAX_STU_NO 30
 #define MAX_SUB_NO 8
 typedef struct StudentClass
 {
