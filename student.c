@@ -18,7 +18,7 @@ void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[MAX_ROW],int *stuNum)
     strcpy(ppStu[*stuNum]->m_cpName,ppForm[1]->m_cpContent);
     strcpy(ppStu[*stuNum]->m_cpGender,ppForm[2]->m_cpContent);
     strcpy(ppStu[*stuNum]->m_cpClass,ppForm[3]->m_cpContent);
-    stuNum++;
+    (*stuNum)++;
 }
 
 
