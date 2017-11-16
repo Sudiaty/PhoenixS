@@ -73,8 +73,8 @@ void table(char **cpTable,int iRow)
 
 /****************************************
 * Author:ZhangLY,LiuXL;
-* Function:form();
-* Description:Form used to input.
+* Function:dialog();
+* Description:
 ****************************************/
 void dialog(char content[10])
 {
