@@ -56,7 +56,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 * Description:get the info to Student.txt.
 * add return the point of stuct.
 ****************************************/
-void getStudent(Student *ppStu[MAX_STU_NO])
+void getStudent(Student *ppStu[MAX_STU_NO],int *stuNum)
 {
     FILE *fp;
     int i;
@@ -64,11 +64,12 @@ void getStudent(Student *ppStu[MAX_STU_NO])
     //读取Student.dat
     if ((fp=fopen("Student.dat","rb"))==NULL)
     {
-        printf("暂无学生记录！\n");
+        return;
     }
     for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
     {
         fread(ppStu[i],sizeof(Student),1,fp);
+        (*stuNum)++;
     }
     fclose(fp);
 }
@@ -79,28 +80,26 @@ void getStudent(Student *ppStu[MAX_STU_NO])
 * Function:searchStudent();
 * Description:search a student by m_cpNo
 ****************************************/
-void searchStudent(Student *ppStu[MAX_STU_NO])
+char* searchStudent(Student *ppStu[MAX_STU_NO],char cpNo[10])
 {
     int i = 0;
-    char cpNo[10];
-    printf("\n请输入要查询学生的学号：");
-    scanf("%s",&cpNo);
+    printf("\n请输入学生的学号：");
+    scanf("%s",cpNo);
     for(i=0;i<MAX_STU_NO;i++)
     {
         if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
         {
-            printf("\n存在要查询的学生记录！");
-            break;
+            printf("该学生记录如下：\n");
+            printf("|\t学号\t|\t姓名\t|\t性别\t|\n");
+            printf("|%16s|\t%4s\t|\t%4s\t|\n",ppStu[i]->m_cpNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender);
+            return cpNo;
         }
     }
-
     if(i==MAX_STU_NO)
     {
-        printf("\n不存在要查询的学生记录！");
-        return;
+        printf("\n不存在该学生记录！");
+        return NULL;
     }
-    //输出所查学生记录
-    printf("\n所查记录如下：");
 }
 
 
@@ -140,44 +139,20 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 * Function:delStudent();
 * Description:Delete info of Student.txt.
 ****************************************/
-void delStudent(Student *ppStu[MAX_STU_NO])
-{
-    int i=0;
-    int j=0;
-    char cpNo[10];
-    char c;
-    printf("\n 请输入要删除的学生学号:");
-    scanf("%s",&cpNo);
-    j=i+1;
-    for(i=0;i<MAX_STU_NO && ppStu[i]!=NULL;i++)
-    {
-        if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
-        {
-            printf("\n 存在要删除的学生记录");
-            break;
-        }
-    }
-    if((i==MAX_STU_NO)||(ppStu[i]==NULL))
-    {
-        printf("\n 不存在要删除的学生记录的");
-        return;
-    }
-    /*输出要删除的学生信息开始*/
-    printf("这 是 要 删 除 的 记 录 吗?\n");
-    printf("学号 姓名 性别\n");
-    printf("%ld %s %s\n",ppStu[i]->m_cpNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender);
-    printf("你确定要删除该记录吗?Y or N!\n");
-    scanf("%s",&c);
-    if((c=='Y')||(c=='N'))
-    {
-        for(j=i+1;j<MAX_STU_NO-i;j++)
-        { ppStu[j-1]=ppStu[j]; }
-        ppStu[j]=NULL;
-        printf("正在删除......\n");
-        printf("已经删除学号为%s 的学生记\n",cpNo); }
-    else
-    { printf("返回主菜单"); }
-  }
+// void delStudent(Student *ppStu[MAX_STU_NO],char cpNo[10])
+// {
+//     printf("你确定要删除该记录吗?Y or N!\n");
+//     scanf("%s",&c);
+//     if((c=='Y')||(c=='N'))
+//     {
+//         for(j=i+1;j<MAX_STU_NO-i;j++)
+//         { ppStu[j-1]=ppStu[j]; }
+//         ppStu[j]=NULL;
+//         printf("正在删除......\n");
+//         printf("已经删除学号为%s 的学生记\n",cpNo); }
+//     else
+//     { printf("返回主菜单"); }
+// }
 
 
 /****************************************

@@ -22,7 +22,8 @@ int main()
     {
         Student *pTmp=(Student*)malloc(sizeof(Student));
         ppStu[i]=pTmp;
-    }
+	}
+	getStudent(ppStu,&stuNum);		//自动导入数据
 
     /*实例化Form对象*/
     Form *ppStuForm[MAX_ROW];
@@ -92,13 +93,15 @@ int main()
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				delStudent(ppStu);
+				char cpNo[10];
+				searchStudent(ppStu,cpNo);
+				//delStudent(ppStu);
 				break;
 			case 5:
 				goto home;
 				break;
 			case 6:
-				exit;
+				exit(0);
 			default:
 				goto stuMenu;
 				break;
