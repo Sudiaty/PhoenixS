@@ -65,7 +65,7 @@ void table(char **cpTable,int iRow)
 	{
 		for(int j=0;j<iRow&&cpTable[iRow*i+j]!=NULL;j++)
 		{
-			printf("|%10s",cpTable[iRow*(i+1)+j]);
+			printf("|%10s",cpTable[iRow*i+j]);
 		}
 		printf("|\n");
 	}

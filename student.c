@@ -15,9 +15,9 @@
 void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[MAX_ROW],int *stuNum)
 {
     strcpy(ppStu[*stuNum]->m_cpNo,ppForm[0]->m_cpContent);
-    strcpy(ppStu[*stuNum]->m_cpName,ppForm[0]->m_cpContent);
-    strcpy(ppStu[*stuNum]->m_cpGender,ppForm[0]->m_cpContent);
-    strcpy(ppStu[*stuNum]->m_cpClass,ppForm[0]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpName,ppForm[1]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpGender,ppForm[2]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpClass,ppForm[3]->m_cpContent);
     stuNum++;
 }
 
@@ -130,11 +130,6 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
         strcpy(cpStuTable[j++],ppStu[i]->m_cpGender);
         cpStuTable[i+7]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpClass);
-        // for(j=0;j<MAX_SUB_NO&&ppStu[i]->m_lpMajor[j]!=0;j++)
-        // {
-        //     printf("%ld ",ppStu[i]->m_lpMajor[j]);
-        // }
-        // printf("\n");
     }
     return cpStuTable;
 }
