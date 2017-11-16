@@ -107,13 +107,17 @@ void form(Form *cpForm[MAX_ROW])
 ****************************************/
 int alert()
 {
-	int sign;
-	loop:printf("是否继续输入？1.继续，0.终止");
-	scanf("%d",&sign);
-	if(sign!=1&&sign!=0){
-		printf("指令有误，请重新输入：\n");
-		goto loop;
-	}else{
-		return sign;
-	}
+	int sign,status=0;
+	loop:
+	do
+	{
+		printf("是否继续输入？1.继续，0.终止");
+		scanf("%d",&sign);
+		if(sign!=1&&sign!=0){
+			printf("指令有误，请重新输入：\n");
+			status=1;
+		}else{
+			return sign;
+		}	
+	}while(status);
 }

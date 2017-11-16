@@ -73,6 +73,7 @@ int main()
 	{
 		switch(stuItem) 
 		{
+			char cpNo[10];
 			case 1:
 				dialog("学生信息显示");
 				char **cpStuTmp=echoStudent(ppStu);
@@ -89,13 +90,17 @@ int main()
 				break;
 			case 3:
 				dialog("修改学生信息");
-				altStudent(ppStu);
+				searchStudent(ppStu,cpNo);
+				do
+				{
+					altStudent(ppStu,cpNo);
+				}while(alert());
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				char cpNo[10];
 				searchStudent(ppStu,cpNo);
-				//delStudent(ppStu);
+				if(alert()) delStudent(ppStu,cpNo,&stuNum);
+				// saveStudent(ppStu);
 				break;
 			case 5:
 				goto home;
