@@ -51,7 +51,7 @@ int main()
 	{
 		case 1:
 			stuMenu:list(stuMenu);
-			getStudent(ppStu);
+			//getStudent(ppStu);
 			printf("\n请输入菜单项数字(1 - 6):");
 			scanf("%d",&stuItem);
 			break;
@@ -67,13 +67,15 @@ int main()
 			dialog("非法输入");
 			goto home;
 	}
+		/*学生信息管理模块*/
 	if(stuItem)
 	{
 		switch(stuItem) 
 		{
 			case 1:
 				dialog("学生信息显示");
-				echoStudent(ppStu);
+				char **cpStuTmp=echoStudent(ppStu);
+				table(cpStuTmp,4);
 				break;
 			case 2:
 				dialog("学生数据录入");

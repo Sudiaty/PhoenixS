@@ -54,16 +54,16 @@ void list(char ppList[MAX_ROW][20])
 * Function:table();
 * Description:Show table. 
 ****************************************/
-void table(char cpTable[][20],int iRow)
+void table(char **cpTable,int iRow)
 {
 	for(int k=0;k<iRow;k++)
 	{
-		printf("\033[47;31m|%6s\033[0m",cpTable[k]);
+		printf("\033[47;31m|%12s\033[0m",cpTable[k]);
 	}
 	printf("|\n");
-	for(int i=0;strcmp(cpTable[iRow*i],"\0");i++)
+	for(int i=1;cpTable[iRow*i]!=NULL;i++)
 	{
-		for(int j=0;j<iRow&&strcmp(cpTable[iRow*i+j],"\0");j++)
+		for(int j=0;j<iRow&&cpTable[iRow*i+j]!=NULL;j++)
 		{
 			printf("|%10s",cpTable[iRow*(i+1)+j]);
 		}

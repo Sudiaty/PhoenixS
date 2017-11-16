@@ -65,7 +65,6 @@ void getStudent(Student *ppStu[MAX_STU_NO])
     if ((fp=fopen("Student.dat","rb"))==NULL)
     {
         printf("暂无学生记录！\n");
-        exit(0);
     }
     for(i=0;i<MAX_STU_NO&&ppStu[i]!=NULL;i++)
     {
@@ -110,24 +109,34 @@ void searchStudent(Student *ppStu[MAX_STU_NO])
 * Function:echoStudent();
 * Description:list all of the students
 ****************************************/
-echoStudent(Student *ppStu[MAX_STU_NO])
+char **echoStudent(Student *ppStu[MAX_STU_NO])
 {
-    char cpStuTable[][20]={"学号","姓名","性别","班级"};
+    char **cpStuTable;
+    cpStuTable=(char **)malloc((MAX_STU_NO*4+4)*sizeof(char*));
+    for (int k=0;k<4;k++)  
+        cpStuTable[k]=(char *)malloc(20*sizeof(char));  
+    cpStuTable[0]="学号";
+    cpStuTable[1]="姓名";
+    cpStuTable[2]="性别";
+    cpStuTable[3]="班级";
     int j=4;
     for(int i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
     {
+        cpStuTable[i+4]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpNo);
+        cpStuTable[i+5]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpName);
+        cpStuTable[i+6]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpGender);
+        cpStuTable[i+7]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpClass);
-        return cpStuTable;
-
         // for(j=0;j<MAX_SUB_NO&&ppStu[i]->m_lpMajor[j]!=0;j++)
         // {
         //     printf("%ld ",ppStu[i]->m_lpMajor[j]);
         // }
         // printf("\n");
     }
+    return cpStuTable;
 }
 
 
