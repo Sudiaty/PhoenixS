@@ -147,12 +147,14 @@ void delStudent(Student *ppStu[MAX_STU_NO],char cpNo[10],int *stuNum)
         if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
         {
             for(int j=i;j<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0")!=0;j++)
-            ppStu[j]=ppStu[j+1];
+            {
+                ppStu[j]=ppStu[j+1];
+                (*stuNum)--;
+                printf("正在删除......\n");
+                printf("已经删除学号为%s 的学生记\n",cpNo);
+            }
         }
-    }
-    (*stuNum)--;
-    printf("正在删除......\n");
-    printf("已经删除学号为%s 的学生记\n",cpNo);
+    } 
 }
 
 
