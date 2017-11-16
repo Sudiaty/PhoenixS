@@ -85,7 +85,7 @@ int main()
 				{
 					form(ppStuForm);
 					addStudent(ppStu,ppStuForm,&stuNum);
-					//saveStudent(ppStu);
+					saveStudent(ppStu);
 				}while(alert());
 				break;
 			case 3:
@@ -94,13 +94,14 @@ int main()
 				{
 					if(searchStudent(ppStu,cpNo));
 						altStudent(ppStu,cpNo);
+						saveStudent(ppStu);
 				}while(alert());
 				break;
 			case 4:
 				dialog("删除学生学籍");
 				if(searchStudent(ppStu,cpNo)&&alert())
 				delStudent(ppStu,cpNo,&stuNum);
-				// saveStudent(ppStu);
+				saveStudent(ppStu);
 				break;
 			case 5:
 				goto home;
