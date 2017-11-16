@@ -114,20 +114,20 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
     cpStuTable=(char **)malloc((MAX_STU_NO*4+4)*sizeof(char*));
     for (int k=0;k<4;k++)  
         cpStuTable[k]=(char *)malloc(20*sizeof(char));  
-    cpStuTable[0]="学号";
-    cpStuTable[1]="姓名";
-    cpStuTable[2]="性别";
-    cpStuTable[3]="班级";
+        cpStuTable[0]="学号";
+        cpStuTable[1]="姓名";
+        cpStuTable[2]="性别";
+        cpStuTable[3]="班级";
     int j=4;
     for(int i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
     {
-        cpStuTable[i+4]=(char *)malloc(20*sizeof(char)); 
+        cpStuTable[4*i+4]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpNo);
-        cpStuTable[i+5]=(char *)malloc(20*sizeof(char)); 
+        cpStuTable[4*i+5]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpName);
-        cpStuTable[i+6]=(char *)malloc(20*sizeof(char)); 
+        cpStuTable[4*i+6]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpGender);
-        cpStuTable[i+7]=(char *)malloc(20*sizeof(char)); 
+        cpStuTable[4*i+7]=(char *)malloc(20*sizeof(char)); 
         strcpy(cpStuTable[j++],ppStu[i]->m_cpClass);
     }
     return cpStuTable;
