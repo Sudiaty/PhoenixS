@@ -39,8 +39,8 @@ int main()
     strcpy(ppStuForm[3]->m_cpTitle,"班级");
 
 	/*定义主菜单选项*/
-	char menuList[MAX_ROW][20]={"信息维护","课程管理","成绩管理","退出"};
-	char stuMenu[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","返回","退出"};
+	char menuList[MAX_ROW][20]={"信息维护","课程管理","成绩管理","退出    "};
+	char stuMenu[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","返回    ","退出    "};
 
 	/*Action*/
 	int mainItem,stuItem=0,courseItem=0,pointItem=0;

@@ -43,8 +43,9 @@ void list(char ppList[MAX_ROW][20])
 		printf("\n\033[47;31m                                             \033[0m\n");
 		for(int j=0;j<2&&strcmp(ppList[2*i+j],"\0");j++)
 		{
-			printf("%1d.%4s",2*i+j+1,ppList[2*i+j]);		//@ZhangLY：待优化
+			printf("\033[47;31m        \033[0m%2d.%6s",2*i+j+1,ppList[2*i+j]);		//@ZhangLY：待优化
 		}
+		printf("\033[47;31m       \033[0m");
 		printf("\n\033[47;31m                                             \033[0m\n");
 	}
 }
