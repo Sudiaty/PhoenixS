@@ -1,75 +1,198 @@
-/****************************************
-* Author:LiuXL;				
-* Description:Function related with 
-*	student class.
+﻿/****************************************
+* Author:LiuXL;
+* Description:Function related with
+*	ppStudent class.
 ****************************************/
 
-#include <stdio.h>
 #include "student.h"
-
+#include "view.h"
 
 /****************************************
 * Author:LiuXL;
-* Function:addStudent();				
+* Function:addStudent();
 * Description:Add a student's record.
 ****************************************/
-void addStudent(Student *stu)
+void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[MAX_ROW],int *stuNum)
 {
-	int status,sign;	//定义用于判断操作状态的变量
-	int i;
-	for(i=stuNum;i<MAX_SUB_NO;i++)
-	{
-		//录入数据
-		printf("请输入学号:");
-		scanf("%ld",&stu->m_lNo);
-		printf("请输入姓名:");
-		scanf("%s",&stu->m_cpName);
-		printf("请输入性别(男m，女f）:");
-		scanf("%d",&stu->m_iGender);
-
-		stuNum++;	//学生人数自增
-
-		//判断是否继续录入数据
-		do
-		{
-			printf("是否继续输入（1.继续/0.终止）？");
-			scanf("%d",&sign);
-			switch(sign)
-			{
-				case 1:
-					status=0;
-					break;
-				case 0:
-					return;
-				default:
-					printf("非法输入！\n");
-					status=1;
-			}
-		}while(status);
-	}
+    strcpy(ppStu[*stuNum]->m_cpNo,ppForm[0]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpName,ppForm[1]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpGender,ppForm[2]->m_cpContent);
+    strcpy(ppStu[*stuNum]->m_cpClass,ppForm[3]->m_cpContent);
+    (*stuNum)++;
 }
 
 
 /****************************************
 * Author:LiuXL;
-* Function:saveStudent();				
-* Description:Save the info to student.dat.
+* Function:saveStudent();
+* Description:Save the info to Student.txt.
 ****************************************/
-void saveStudent(Student *stu)
+void saveStudent(Student *ppStu[MAX_STU_NO])
 {
-	FILE *fp;
-	int i;
+    FILE *fp;
+    int i;
 
-	//打开student.dat
-	if ((fp=fopen("student.dat","wb+"))==NULL)
-	{
-		printf("Student.dat不存在！\n");
-		exit(0);
-	}
+    //读取Student.txt
+    if ((fp=fopen("Student.dat","wb"))==NULL)
+    {
+        printf("Fail to open file!\n");
+        exit(0);
+    }
 
-	//写入student.dat
-	if(fwrite(stu,sizeof(Student),stuNum,fp))
-		printf("写入成功！\n");
-	else
-		printf("写入失败!\n");
+    //获取当前学生人数
+    for(i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0")!=0;i++)
+    {
+        //写入数据至Student.txt
+        if(fwrite(ppStu[i],sizeof(Student),1,fp)!=1)
+        printf("写入失败！\n");
+    }
+    fclose(fp);
+}
+
+
+/****************************************
+* Author:JiaZG,LiuXL;
+* Function:getStudent();
+* Description:get the info to Student.txt.
+* add return the point of stuct.
+****************************************/
+void getStudent(Student *ppStu[MAX_STU_NO],int *stuNum)
+{
+    FILE *fp;
+    int i,j;
+
+    //读取Student.dat
+    if ((fp=fopen("Student.dat","rb"))==NULL)
+    {
+        return;
+    }
+    for(i=0;i<MAX_STU_NO;i++)
+    {
+        fread(ppStu[i],sizeof(Student),1,fp);
+    }
+    for(j=0;j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo,"\0")!=0;j++)
+    {
+        (*stuNum)++;
+    }
+    fclose(fp);
+}
+
+
+/****************************************
+* Author:JiaZG;
+* Function:searchStudent();
+* Description:search a student by m_cpNo
+****************************************/
+char* searchStudent(Student *ppStu[MAX_STU_NO],char cpNo[10])
+{
+    int i = 0;
+    printf("\n请输入学生的学号：");
+    scanf("%s",cpNo);
+    for(i=0;i<MAX_STU_NO;i++)
+    {
+        if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+        {
+            printf("该学生记录如下：\n");
+            printf("|\t学号\t|\t姓名\t|\t性别\t|\n");
+            printf("|%16s|\t%4s\t|\t%4s\t|\n",ppStu[i]->m_cpNo,ppStu[i]->m_cpName,ppStu[i]->m_cpGender);
+            return cpNo;
+        }
+    }
+    if(i==MAX_STU_NO)
+    {
+        printf("\n不存在该学生记录！");
+        return NULL;
+    }
+}
+
+
+/****************************************
+* Author:LiuXL;
+* Function:echoStudent();
+* Description:list all of the students
+****************************************/
+char **echoStudent(Student *ppStu[MAX_STU_NO])
+{
+    char **cpStuTable;
+    cpStuTable=(char **)malloc((MAX_STU_NO*4+4)*sizeof(char*));
+    for (int k=0;k<4;k++)  
+        cpStuTable[k]=(char *)malloc(20*sizeof(char));  
+        cpStuTable[0]="学号";
+        cpStuTable[1]="姓名";
+        cpStuTable[2]="性别";
+        cpStuTable[3]="班级";
+    int j=4;
+    for(int i=0;i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo,"\0");i++)
+    {
+        cpStuTable[4*i+4]=(char *)malloc(20*sizeof(char)); 
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpNo);
+        cpStuTable[4*i+5]=(char *)malloc(20*sizeof(char)); 
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpName);
+        cpStuTable[4*i+6]=(char *)malloc(20*sizeof(char)); 
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpGender);
+        cpStuTable[4*i+7]=(char *)malloc(20*sizeof(char)); 
+        strcpy(cpStuTable[j++],ppStu[i]->m_cpClass);
+    }
+    return cpStuTable;
+}
+
+
+/****************************************
+* Author:SunZT,LiuXL;
+* Function:delStudent();
+* Description:Delete info of Student.txt.
+****************************************/
+void delStudent(Student *ppStu[MAX_STU_NO],char cpNo[10],int *stuNum)
+{
+    
+    for(int i=0;i<MAX_STU_NO;i++)
+    {
+        if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+        {
+            for(int j=i;j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo,"\0")!=0;j++)
+            {
+                ppStu[j]=ppStu[j+1];
+            }
+            (*stuNum)--;
+            printf("正在删除......\n");
+            printf("已经删除学号为%s 的学生记\n",cpNo);
+        }
+    } 
+}
+
+
+/****************************************
+* Author:SunZT,JiaZG,LiuXL;
+* Function:altStudent();
+* Description:alt a student's record.;
+****************************************/
+void altStudent(Student *ppStu[MAX_STU_NO],char cpNo[10])
+{
+    char c;
+    for(int i=0;i<MAX_STU_NO;i++)
+    {
+        if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+        {
+            printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
+            scanf("%s",&c);
+            switch(c)
+            {
+                case 'n':
+                    printf("\n请输入修改后该学生的姓名：");
+                    scanf("%s",&ppStu[i]->m_cpName);
+                    break;
+                case 's':
+                    printf("\n请输入修改后该学生的性别(男m，女f）：");
+                    scanf("%s",&ppStu[i]->m_cpGender);
+                    break;
+                case 'c':
+                    printf("\n请输入修改后该学生的班级：");
+                    scanf("%s",&ppStu[i]->m_cpClass);
+                    break;
+                default:
+                    printf("非法输入！\n");
+                    break;
+            }
+        }
+    }
 }

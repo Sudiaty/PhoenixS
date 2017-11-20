@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+debug/student.h
+.DS_Store
+data_aly.png
+debug/main.cpp
+student.h
+student.dat
+student.h
+student.c
+main.c
+student.h
+view.c
+.DS_Store

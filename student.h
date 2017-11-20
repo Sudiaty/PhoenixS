@@ -1,37 +1,39 @@
-/*****************************
-* Author:LiuXL				
-* Description:Student Obeject
-*****************************/
-
-#ifndef STUDENT_H
+﻿#ifndef STUDENT_H
 #define STUDENT_H
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
+#include "view.h"
+
 //创建学生信息结构体
 #define MAX_STU_NO 30
 #define MAX_SUB_NO 8
-int stuNum;
 typedef struct StudentClass
 {
-	long m_lNo;
-	char m_cpName[20];
-	int m_iGender;
-	int m_ipMajor[MAX_SUB_NO];
-	int m_iPoint; 
+    char m_cpNo[10];
+    char m_cpName[20];
+    char m_cpGender[4];
+    char m_cpClass[20];
+    long m_lpMajor[MAX_SUB_NO];
+    float m_fPoint;
 }Student;
 
-//定义对学生信息操作函数
-void addStudent(Student *stu);
 
-void saveStudent(Student *stu);
+//声明对学生信息操作函数
+void addStudent(Student *ppStu[MAX_STU_NO],Form *ppForm[10],int *stuNum);
 
-void getStudent(Student *p);
+void getStudent(Student *ppStu[MAX_STU_NO],int *stuNum);
 
-void delStudent(Student *p);
+void saveStudent(Student *ppStu[MAX_STU_NO]);
 
-void altStudent();
+char** echoStudent(Student *ppStu[MAX_STU_NO]);
 
-#endif
+char* searchStudent(Student *ppStu[MAX_STU_NO],char cpNo[10]);
+
+void delStudent(Student *ppStu[MAX_STU_NO],char cpNo[10],int *stuNum);
+
+void altStudent(Student *ppStu[MAX_STU_NO],char cpNo[10]);
+
+#endif // MODEL_H
