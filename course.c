@@ -1,33 +1,36 @@
 /****************************************
-* Author:LiuXL;				
-* Description:Function related with 
+* Author:LiuXL;
+* Description:Function related with
 *	ppStudent class.
 ****************************************/
-#include "course.h"
+#include "stdafx.h"
 
 /****************************************
 * Author:LiuXL;
-* Function:addCourse();				
+* Function:addCourse();
 * Description:Add a course for a student.
 ****************************************/
 void addCourse(Student *ppStu[MAX_STU_NO])
 {
-	int i,j,k;
-	long lNo;
-	int status,sign;
-	printf("è¯·è¾“å…¥é€‰è¯¾å­¦ç”Ÿçš„å­¦å·ï¼š\n");
-	scanf("%ld",&lNo);
-	for(i=0;i<MAX_STU_NO;i++)
+	int i, j;
+	char cpNo[10];
+	int status, sign;
+	printf("ÇëÊäÈëÑ¡¿ÎÑ§ÉúµÄÑ§ºÅ£º");
+	scanf("%s", &cpNo);
+	for (i = 0; i<MAX_STU_NO; i++)
 	{
-		if(ppStu[i]->m_lNo==lNo)
-		{			
+		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
+		{
 			break;
-		}else{
-			printf("æ²¡æœ‰è¯¥å­¦ç”Ÿçš„è®°å½•ï¼\n");
+		}
+		else {
+			printf("Ã»ÓĞ¸ÃÑ§ÉúµÄ¼ÇÂ¼£¡\n");
 			exit(0);
 		}
 	}
-	for(j=0;j<MAX_SUB_NO;j++)
+
+	//´òÓ¡ÒÑÓĞ¿Î³Ì
+	for (j = 0; j<MAX_SUB_NO; j++)
 	{
 		printf("%ld %s %.1f\n",
 			pChem[j].m_lCourseNo,
@@ -35,30 +38,28 @@ void addCourse(Student *ppStu[MAX_STU_NO])
 			pChem[j].m_fGoal);
 	}
 
-	for(j=0;j<MAX_SUB_NO;j++)
-	{	
-		long lpMajor[MAX_SUB_NO]={0};
-		printf("è¯·è¾“å…¥è¯¾ç¨‹ä»£ç ï¼š\n");
-		scanf("%ld",&lpMajor[j]);
+	for (j = 0; j<MAX_SUB_NO; j++)
+	{
+		long lpMajor[MAX_SUB_NO] = { 0 };
+		printf("ÇëÊäÈë¿Î³Ì´úÂë£º");
+		scanf("%ld", &lpMajor[j]);
+		ppStu[i]->m_lpMajor[j] = lpMajor[j];
 		do
 		{
-			printf("æ˜¯å¦ç»§ç»­è¾“å…¥ï¼Ÿ1.ç»§ç»­ï¼Œ0.ç»ˆæ­¢");
-			scanf("%d",&sign);
-			switch(sign)
+			printf("ÊÇ·ñ¼ÌĞøÊäÈë£¿1.¼ÌĞø£¬0.ÖÕÖ¹");
+			scanf("%d", &sign);
+			switch (sign)
 			{
-				case 1:
-					status=0;
-					saveStudent(ppStu);
-					exit(0);
-				case 0:
-					for(k=0;k<MAX_SUB_NO;k++)
-					ppStu[i]->m_lpMajor[k]=lpMajor[k];
-					printf("æˆåŠŸæ·»åŠ è¯¾ç¨‹ï¼\n");
-					return;
-				default:
-					printf("æŒ‡ä»¤æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š\n");
-					status=1;
+			case 1:
+				status = 0;
+				break;
+			case 0:
+				printf("³É¹¦Ìí¼Ó¿Î³Ì£¡\n");
+				return;
+			default:
+				printf("Ö¸ÁîÓĞÎó£¬ÇëÖØĞÂÊäÈë£º");
+				status = 1;
 			}
-		}while(status);	
+		} while (status);
 	}
 }
