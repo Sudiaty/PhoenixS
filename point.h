@@ -1,17 +1,15 @@
+#pragma once
 /*****************************
-* Author:LiuXL				
+* Author:LiuXL
 * Description:Point Obeject
 *****************************/
 
-#ifndef __POINT_H
-#define __POINT_H
+#ifndef POINT_H
+#define POINT_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include "student.h"
+#include <stdio.h>
 
-//åˆ›å»ºæˆç»©ä¿¡æ¯
+//´´½¨³É¼¨ĞÅÏ¢
 typedef struct PointClass
 {
 	long m_lCourseNo;
@@ -19,6 +17,6 @@ typedef struct PointClass
 	float m_fGoal;
 }Point;
 
-//å£°æ˜Pointå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
+//ÉùÃ÷Point¶ÔÏó¾ßÓĞµÄ·½·¨
 
 #endif
