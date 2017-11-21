@@ -1,21 +1,21 @@
-﻿/*****************************
+#pragma once
+/*****************************
 * Author:LiuXL
-* Description:Point Obeject
+* Description:View Obeject
 *****************************/
 
 #ifndef VIEW_H
 #define VIEW_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+
+#include <stdio.h>
 
 #define MAX_ROW 10
 #define STU_FORM_ROW 4
 typedef struct FormClass
 {
-    char m_cpTitle[20];
-    char m_cpContent[20];
+	char m_cpTitle[20];
+	char m_cpContent[20];
 }Form;
 
 void menuSelect();
@@ -24,7 +24,7 @@ void menu();
 
 void list(char ppList[MAX_ROW][20]);
 
-void table(char **cpTable,int iRow);
+void table(char **cpTable, int iRow);
 
 void dialog(char content[10]);
 

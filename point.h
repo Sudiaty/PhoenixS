@@ -1,15 +1,13 @@
+#pragma once
 /*****************************
-* Author:LiuXL				
+* Author:LiuXL
 * Description:Point Obeject
 *****************************/
 
-#ifndef __POINT_H
-#define __POINT_H
+#ifndef POINT_H
+#define POINT_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include "student.h"
+#include <stdio.h>
 
 //创建成绩信息
 typedef struct PointClass
