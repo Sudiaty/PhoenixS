@@ -11,9 +11,7 @@ items.
 * Description:Add a menu.
 ****************************************/
 void menuSelect()
-{
-
-	int number;                       /*定义输入的数字*/
+{                      /*定义输入的数字*/
 	printf("\n\n");                   /*在屏幕上输出3个空行*/
 									  /*开始输出菜单*/
 	printf("—————————————————————————————————————————————\n");
@@ -114,7 +112,6 @@ void form(Form *cpForm[MAX_ROW])
 int alert()
 {
 	int sign, status = 0;
-loop:
 	do
 	{
 		printf("是否继续？1.继续，0.终止");
