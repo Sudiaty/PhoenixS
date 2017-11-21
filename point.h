@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-//´´½¨³É¼¨ĞÅÏ¢
+//åˆ›å»ºæˆç»©ä¿¡æ¯
 typedef struct PointClass
 {
 	long m_lCourseNo;
@@ -17,6 +17,6 @@ typedef struct PointClass
 	float m_fGoal;
 }Point;
 
-//ÉùÃ÷Point¶ÔÏó¾ßÓĞµÄ·½·¨
+//å£°æ˜Pointå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
 
 #endif

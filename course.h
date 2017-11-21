@@ -1,4 +1,3 @@
-#pragma once
 /*****************************
 * Author:LiuXL
 * Description:Course Obeject
@@ -11,7 +10,7 @@
 
 #include "student.h"
 
-//´´½¨¿Î±íĞÅÏ¢
+//åˆ›å»ºè¯¾è¡¨ä¿¡æ¯
 typedef struct CourseClass
 {
 	long m_lCourseNo;
@@ -21,15 +20,15 @@ typedef struct CourseClass
 	char m_cpTime[20];
 }Course;
 
-//ÊµÀı»¯¿Î±í
+//å®ä¾‹åŒ–è¯¾è¡¨
 static Course pChem[MAX_SUB_NO] = {
-	{ 11600,"ÆÕÍ¨ÎïÀí(II)",4.0,"B½×201","Mon.1~2;Fri.1~2" },
-	{ 22901,"Ã«Ôó¶«Ë¼Ïë",6.0,"A312","Mon.6~7;THU.3~4" },
-	{ 23500,"ÓĞ»ú»¯Ñ§(I)",3.5,"A212","Tue.3~5" },
-	{ 14302,"CÓïÑÔ³ÌĞòÉè¼Æ",2.5,"B½×102","Fri.8~10" }
+	{ 11600,"æ™®é€šç‰©ç†(II)",4.0,"Bé˜¶201","Mon.1~2;Fri.1~2" },
+	{ 22901,"æ¯›æ³½ä¸œæ€æƒ³",6.0,"A312","Mon.6~7;THU.3~4" },
+	{ 23500,"æœ‰æœºåŒ–å­¦(I)",3.5,"A212","Tue.3~5" },
+	{ 14302,"Cè¯­è¨€ç¨‹åºè®¾è®¡",2.5,"Bé˜¶102","Fri.8~10" }
 };
 
-//ÉùÃ÷Course¶ÔÏó¾ßÓĞµÄ·½·¨
+//å£°æ˜Courseå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
 char** echoCourse(Course *ppCourse[MAX_SUB_NO]);
 void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10]);
 void delCourse(Student *ppStu[MAX_STU_NO]);

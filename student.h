@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include "view.h"
 
-//´´½¨Ñ§ÉúĞÅÏ¢½á¹¹Ìå
+//åˆ›å»ºå­¦ç”Ÿä¿¡æ¯ç»“æ„ä½“
 #define MAX_STU_NO 30
 #define MAX_SUB_NO 8
 typedef struct StudentClass
@@ -24,7 +24,7 @@ typedef struct StudentClass
 }Student;
 
 
-//ÉùÃ÷¶ÔÑ§ÉúĞÅÏ¢²Ù×÷º¯Êı
+//å£°æ˜å¯¹å­¦ç”Ÿä¿¡æ¯æ“ä½œå‡½æ•°
 void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
 
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum);
