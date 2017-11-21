@@ -19,7 +19,7 @@
 ****************************************/
 void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 {
-	// //æ‰“å°å·²æœ‰è¯¾ç¨‹
+	// //´òÓ¡ÒÑÓĞ¿Î³Ì
 	// for(j=0;j<MAX_SUB_NO;j++)
 	// {
 	// 	printf("%ld %s %.1f\n",
@@ -31,12 +31,12 @@ void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 	// for(j=0;j<MAX_SUB_NO;j++)
 	// {	
 	// 	long lpMajor[MAX_SUB_NO]={0};
-	// 	printf("è¯·è¾“å…¥è¯¾ç¨‹ä»£ç ï¼š");
+	// 	printf("ÇëÊäÈë¿Î³Ì´úÂë£º");
 	// 	scanf("%ld",&lpMajor[j]);
 	// 	ppStu[i]->m_lpMajor[j]=lpMajor[j];	
 	// 	do
 	// 	{
-	// 		printf("æ˜¯å¦ç»§ç»­è¾“å…¥ï¼Ÿ1.ç»§ç»­ï¼Œ0.ç»ˆæ­¢");
+	// 		printf("ÊÇ·ñ¼ÌĞøÊäÈë£¿1.¼ÌĞø£¬0.ÖÕÖ¹");
 	// 		scanf("%d",&sign);
 	// 		switch(sign)
 	// 		{
@@ -44,10 +44,10 @@ void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 	// 				status=0;
 	// 				break;
 	// 			case 0:
-	// 				printf("æˆåŠŸæ·»åŠ è¯¾ç¨‹ï¼\n");
+	// 				printf("³É¹¦Ìí¼Ó¿Î³Ì£¡\n");
 	// 				return;
 	// 			default:
-	// 				printf("æŒ‡ä»¤æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š");
+	// 				printf("Ö¸ÁîÓĞÎó£¬ÇëÖØĞÂÊäÈë£º");
 	// 				status=1;
 	// 		}
 	// 	}while(status);	
