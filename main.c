@@ -1,10 +1,8 @@
-﻿/****************************************
+/****************************************
 * Author:LiuXL
 * Description:Main function
 ****************************************/
-#include"view.h"
-#include"student.h"
-#include"course.h"
+#include"stdafx.h"
 
 //全局变量声明
 int stuNum=0;

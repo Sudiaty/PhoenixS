@@ -1,9 +1,9 @@
 /****************************************
-* Author:LiuXL;				
-* Description:Function related with 
+* Author:LiuXL;
+* Description:Function related with
 *	ppStudent class.
 ****************************************/
-#include "course.h"
+#include "stdafx.h"
 
 /****************************************
 * Author:LiuXL;
