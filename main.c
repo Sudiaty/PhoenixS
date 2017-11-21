@@ -10,9 +10,9 @@
 int stuNum=0;
 
 /****************************************
-* Author:LiuXL,SunZT;
+* Author:LiuXL
 * Function:main();
-* Description:Debug;
+* Description:Main function
 ****************************************/
 int main()
 {
@@ -23,7 +23,7 @@ int main()
         Student *pTmp=(Student*)malloc(sizeof(Student));
         ppStu[i]=pTmp;
 	}
-	getStudent(ppStu,&stuNum);		//自动导入数据
+	getStudent(ppStu,&stuNum);		//初始化，自动导入数据
 
     /*实例化Form对象*/
     Form *ppStuForm[MAX_ROW];
@@ -38,14 +38,17 @@ int main()
     strcpy(ppStuForm[2]->m_cpTitle,"性别");
     strcpy(ppStuForm[3]->m_cpTitle,"班级");
 
-	/*定义主菜单选项*/
+	/*定义菜单选项*/
 	char menuList[MAX_ROW][20]={"信息维护","课程管理","成绩管理","退出    "};
 	char stuMenu[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","返回    ","退出    "};
+	char courseMenu[MAX_ROW][20]={"添加课程","退选课程","课表查询","返回    "};
 
 	/*Action*/
-	int mainItem,stuItem=0,courseItem=0,pointItem=0;
+	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
+	char cpNo[10];				//定义用于查找学生的变量
+
 	home:dialog("学生管理系统");
-	list(menuList);
+	list(menuList);				//显示主菜单
 	printf("\n请输入菜单项数字(1 - 4):");
 	scanf("%d",&mainItem);
 	switch(mainItem)
@@ -57,7 +60,10 @@ int main()
 			scanf("%d",&stuItem);
 			break;
 		case 2:
-			dialog("系统正在维护");
+			system("clear");
+			courseMenu:list(courseMenu);
+			printf("\n请输入菜单项数字(1 - 4):");
+			scanf("%d",&courseItem);
 			break;
 		case 3:
 			dialog("系统正在维护");
@@ -65,15 +71,16 @@ int main()
 		case 4:
 			exit(0);
 		default:
-			dialog("非法输入");
+			system("clear");
+			dialog("  非法输入！");
 			goto home;
 	}
+		
 		/*学生信息管理模块*/
 	if(stuItem)
 	{
 		switch(stuItem) 
 		{
-			char cpNo[10];
 			case 1:
 				system("clear");
 				dialog("学生信息显示");
@@ -108,15 +115,48 @@ int main()
 				saveStudent(ppStu);
 				break;
 			case 5:
+				stuItem=0;
 				goto home;
 				break;
 			case 6:
 				exit(0);
 			default:
+				system("clear");
+				dialog("  非法输入！");
 				goto stuMenu;
-				break;
 		}
+		system("clear");
 		goto stuMenu;
+	}
+
+		/*课程信息管理模块*/
+	if(courseItem)
+	{
+		switch(courseItem)
+		{
+			case 1:
+				system("clear");
+				dialog("  添加课程  ");
+				do
+				{
+					if(searchStudent(ppStu,cpNo));
+				}while(alert());
+
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				courseItem=0;
+				goto home;
+			default:
+				system("clear");
+				dialog("  非法输入！");
+				goto courseMenu;
+		}
+		system("clear");
+		goto courseMenu;
 	}
     return 0;
 }
