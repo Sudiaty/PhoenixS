@@ -11,15 +11,15 @@
 #include "view.h"
 
 //创建学生信息结构体
-#define MAX_STU_NO 30
-#define MAX_SUB_NO 8
+#define MAX_STU_NO 5
+#define MAX_SUB_NO 5
 typedef struct StudentClass
 {
 	char m_cpNo[10];
 	char m_cpName[20];
 	char m_cpGender[4];
 	char m_cpClass[20];
-	long m_lpMajor[MAX_SUB_NO];
+	char m_cpMajor[MAX_SUB_NO][10];
 	float m_fPoint;
 }Student;
 

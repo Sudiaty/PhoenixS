@@ -10,7 +10,27 @@
 * Function:echoCourse();				
 * Description:List the courses exist.
 ****************************************/
-
+char** echoCourse(Course *ppCourse[MAX_SUB_NO])
+{
+	char **cpCourseTable;
+	cpCourseTable = (char **)malloc((MAX_SUB_NO * 3 + 3) * sizeof(char*));
+	for (int k = 0; k<3; k++)
+		cpCourseTable[k] = (char *)malloc(20 * sizeof(char));
+	cpCourseTable[0] = "课程代码";
+	cpCourseTable[1] = "课程名称";
+	cpCourseTable[2] = "学分";
+	int j=3;
+	for (int i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
+	{
+		cpCourseTable[3 * i + 3] = (char *)malloc(20 * sizeof(char));
+		strcpy(cpCourseTable[j++], ppCourse[i]->m_cpCourseNo);
+		cpCourseTable[3 * i + 4] = (char *)malloc(20 * sizeof(char));
+		strcpy(cpCourseTable[j++], ppCourse[i]->m_cpCourseName);
+		cpCourseTable[3 * i + 5] = (char *)malloc(20 * sizeof(char));
+		sprintf(cpCourseTable[j++],"%.2f",ppCourse[i]->m_fGoal);
+	}
+	return cpCourseTable;
+}
 
 /****************************************
 * Author:LiuXL;
@@ -19,49 +39,28 @@
 ****************************************/
 void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 {
-	// //打印已有课程
-	// for(j=0;j<MAX_SUB_NO;j++)
-	// {
-	// 	printf("%ld %s %.1f\n",
-	// 		pChem[j].m_lCourseNo,
-	// 		pChem[j].m_cpCourseName,
-	// 		pChem[j].m_fGoal);
-	// }
-
-	// for(j=0;j<MAX_SUB_NO;j++)
-	// {	
-	// 	long lpMajor[MAX_SUB_NO]={0};
-	// 	printf("请输入课程代码：");
-	// 	scanf("%ld",&lpMajor[j]);
-	// 	ppStu[i]->m_lpMajor[j]=lpMajor[j];	
-	// 	do
-	// 	{
-	// 		printf("是否继续输入？1.继续，0.终止");
-	// 		scanf("%d",&sign);
-	// 		switch(sign)
-	// 		{
-	// 			case 1:
-	// 				status=0;
-	// 				break;
-	// 			case 0:
-	// 				printf("成功添加课程！\n");
-	// 				return;
-	// 			default:
-	// 				printf("指令有误，请重新输入：");
-	// 				status=1;
-	// 		}
-	// 	}while(status);	
-	// }
+	char cpMajor[10];
+	for (int i = 0; i<MAX_STU_NO; i++)
+	{
+		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
+		{
+			int j;
+			for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[j],"\0")!=0;j++);
+			printf("请输入课程代码：");
+			scanf("%s",cpMajor);
+			strcpy(ppStu[i]->m_cpMajor[j],cpMajor);
+		}
+	}
 }
 
 
 
 /****************************************
-* Author:JiaZG;
+* Author:JiaZG,LiuXL;
 * Function:printCourse();				
 * Description:print a course for a student.
 ****************************************/
-void printCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
+char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10])
 {
 	for(int i=0;i<MAX_STU_NO;i++)
 	{
@@ -77,50 +76,53 @@ void printCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 				cpCourseTable[3]="上课地点";
 				cpCourseTable[4]="上课时间";
 			int j=5;
-			for(int i=0;i<MAX_SUB_NO&&strcmp(pChem[i]->m_lCourseNo,"\0");i++)
+			for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[n],"\0")!=0;n++)
 			{
-				cpStuTable[5*i+5]=(char *)malloc(20*sizeof(char)); 
-				strcpy(cpCourseTable[j++],pChem[i]->m_cpNo);
-				cpStuTable[5*i+6]=(char *)malloc(20*sizeof(char)); 
-				strcpy(cpCourseTable[j++],pChem[i]->m_cpCourseName);
-				cpStuTable[5*i+7]=(char *)malloc(20*sizeof(char)); 
-				strcpy(cpCourseTable[j++],pChem[i]->m_fGoal);
-				cpStuTable[5*i+8]=(char *)malloc(20*sizeof(char)); 
-				strcpy(cpCourseTable[j++],pChem[i]->m_cpAdress);
-				cpStuTable[5*i+9]=(char *)malloc(20*sizeof(char)); 
-				strcpy(cpCourseTable[j++],pChem[i]->m_cpTime);
+				for(int m=0;m<MAX_SUB_NO;m++)
+				{
+					if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[i]->m_cpMajor[n])==0)
+					{
+						cpCourseTable[5*n+5]=(char *)malloc(20*sizeof(char)); 
+						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseNo);
+						cpCourseTable[5*n+6]=(char *)malloc(20*sizeof(char)); 
+						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseName);
+						cpCourseTable[5*n+7]=(char *)malloc(20*sizeof(char)); 
+						sprintf(cpCourseTable[j++],"%.2f",ppCourse[m]->m_fGoal);
+						cpCourseTable[5*n+8]=(char *)malloc(20*sizeof(char)); 
+						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpAdress);
+						cpCourseTable[5*n+9]=(char *)malloc(20*sizeof(char)); 
+						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpTime);
+						break;
+					}
+				}
 			}
 			return cpCourseTable;
-		}
 		}
 	}
 }
 
-
-
 /****************************************
-* Author:JiaZG;
-* Function:delCourse();				
-* Description:delete a course for a student.
+* Author:JiaZG,LiuXL;
+* Function:searchCourse();				
+* Description:查找指定学生指定代码的课程
 ****************************************/
-void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],long lCourseNo)
+char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10])
 {
-	
 	for(int i=0;i<MAX_STU_NO;i++)
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			int j = 0;
+			int j=0;
 			printf("\n请输入要退选的课程代码：");
-			scanf("%s",lCourseNo);
-			for(j=0;i<MAX_SUB_NO;j++)
+			scanf("%s",cpCourseNo);
+			for(j=0;j<MAX_SUB_NO;j++)
 			{
-				if(strcmp(pChem[j]->m_lCourseNo,lCourseNo)==0)
+				if(strcmp(ppCourse[j]->m_cpCourseNo,cpCourseNo)==0)
 				{
 					printf("该课程记录如下：\n");
 					printf("|\t课程代码\t|\t课程名称\t|\t课程学分\t|\t上课地点\t|\t上课时间\t|\n");
-					printf("|%16s|\t%4s\t|\t%4s\t|\t%16s\t|\t%16s\t|\n",pChem[j]->m_lCourseNo,pChem[j]->m_cpCourseName,pChem[j]->m_fGoal,pChem[j]->m_cpAdress,pChem[j]->m_cpTime);
-					return lCourseNo;
+					printf("|%16s|\t%4s\t|\t%4s\t|\t%16f\t|\t%16s\t|\n",ppCourse[j]->m_cpCourseNo,ppCourse[j]->m_cpCourseName,ppCourse[j]->m_fGoal,ppCourse[j]->m_cpAdress,ppCourse[j]->m_cpTime);
+					return cpCourseNo;
 				}
 			}
 			if(j==MAX_SUB_NO)
@@ -128,19 +130,34 @@ void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],long lCourseNo)
 				printf("\n不存在该课程！");
 				return NULL;
 			}
-			for(int k=j;k<MAX_SUB_NO&&strcmp(ppStu[j]->m_lCourseNo,"\0")!=0;k++)
-			{
-				ppStu[k]=ppStu[k+1];
-			}
-			printf("正在退课......\n");
-			printf("已经退选课程代码为%s 的课程\n",lCourseNo);
 		}
-	} 
+	}
 }
 
-
-
-
-
-
-		
+/****************************************
+* Author:JiaZG;
+* Function:delCourse();				
+* Description:delete a course for a student.
+****************************************/
+void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
+{
+	for(int j=0;j<MAX_STU_NO;j++)
+	{
+		if(strcmp(ppStu[j]->m_cpNo,cpNo)==0)
+		{
+			for(int i=0;i<MAX_STU_NO;i++)
+			{
+				if(strcmp(ppStu[j]->m_cpMajor[i],cpCourseNo)==0)
+				{
+					for(int k=i;k<MAX_SUB_NO&&strcmp(ppStu[j]->m_cpMajor[k],"\0")!=0;k++)
+					{
+						strcpy(ppStu[j]->m_cpMajor[k],ppStu[j]->m_cpMajor[k+1]);
+					}
+					printf("正在退课......\n");
+					printf("已经退选课程代码为%s 的课程\n",cpCourseNo);
+					break;
+				}
+			}
+		}
+	}
+}
