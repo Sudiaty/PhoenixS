@@ -51,8 +51,8 @@ int main()
 	switch(mainItem)
 	{
 		case 1:
+			system("clear");
 			stuMenu:list(stuMenu);
-			//getStudent(ppStu);
 			printf("\n请输入菜单项数字(1 - 6):");
 			scanf("%d",&stuItem);
 			break;
@@ -75,11 +75,13 @@ int main()
 		{
 			char cpNo[10];
 			case 1:
+				system("clear");
 				dialog("学生信息显示");
 				char **cpStuTmp=echoStudent(ppStu);
 				table(cpStuTmp,4);
 				break;
 			case 2:
+				system("clear");
 				dialog("学生数据录入");
 				do
 				{
@@ -89,6 +91,7 @@ int main()
 				}while(alert());
 				break;
 			case 3:
+				system("clear");
 				dialog("修改学生信息");
 				do
 				{
@@ -98,6 +101,7 @@ int main()
 				}while(alert());
 				break;
 			case 4:
+				system("clear");
 				dialog("删除学生学籍");
 				if(searchStudent(ppStu,cpNo)&&alert())
 				delStudent(ppStu,cpNo,&stuNum);
