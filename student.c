@@ -92,13 +92,13 @@ long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 			printf("该学生记录如下：\n");
 			printf("|\t学号\t|\t姓名\t|\t性别\t|\n");
 			printf("|%16s|\t%4s\t|\t%4s\t|\n", ppStu[i]->m_cpNo, ppStu[i]->m_cpName, ppStu[i]->m_cpGender);
-			return i;
+			return i+1;
 		}
 	}
 	if (i == MAX_STU_NO)
 	{
 		printf("\n不存在该学生记录！");
-		return -1;
+		return 0;
 	}
 }
 
@@ -163,33 +163,28 @@ void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
 * Function:altStudent();
 * Description:alt a student's record.;
 ****************************************/
-void altStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
+void altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 {
+	int iNo=lNo-1;
 	char c;
-	for (int i = 0; i<MAX_STU_NO; i++)
+	printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
+	scanf("%s", &c);
+	switch (c)
 	{
-		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
-		{
-			printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
-			scanf("%s", &c);
-			switch (c)
-			{
-			case 'n':
-				printf("\n请输入修改后该学生的姓名：");
-				scanf("%s", &ppStu[i]->m_cpName);
-				break;
-			case 's':
-				printf("\n请输入修改后该学生的性别(男m，女f）：");
-				scanf("%s", &ppStu[i]->m_cpGender);
-				break;
-			case 'c':
-				printf("\n请输入修改后该学生的班级：");
-				scanf("%s", &ppStu[i]->m_cpClass);
-				break;
-			default:
-				printf("非法输入！\n");
-				break;
-			}
-		}
+		case 'n':
+			printf("\n请输入修改后该学生的姓名：");
+			scanf("%s", &ppStu[iNo]->m_cpName);
+			break;
+		case 's':
+			printf("\n请输入修改后该学生的性别(男m，女f）：");
+			scanf("%s", &ppStu[iNo]->m_cpGender);
+			break;
+		case 'c':
+			printf("\n请输入修改后该学生的班级：");
+			scanf("%s", &ppStu[iNo]->m_cpClass);
+			break;
+		default:
+			printf("非法输入！\n");
+			break;
 	}
 }
