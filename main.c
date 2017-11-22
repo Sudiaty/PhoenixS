@@ -159,7 +159,7 @@ int main()
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				if(searchStudent(ppStu,cpNo))
+				if(searchStudent(ppStu,cpNo)&&alert())
 				delStudent(ppStu,cpNo,&stuNum);
 				saveStudent(ppStu);
 				system("clear");
@@ -187,13 +187,13 @@ int main()
 			case 1:
 				system("clear");
 				dialog("  添加课程  ");
-				if(searchStudent(ppStu,cpNo))
+				if(stuNo=searchStudent(ppStu,cpNo))
 				{
 					cpCourseTmp=echoCourse(ppCourse);
 					table(cpCourseTmp,3);
 					do
 					{
-						addCourse(ppStu,cpNo);
+						addCourse(ppStu,stuNo);
 					}while(alert());
 					saveStudent(ppStu);
 				}
@@ -212,8 +212,8 @@ int main()
 			case 3:
 				system("clear");
 				dialog("  打印课表  ");
-				if(searchStudent(ppStu,cpNo)){
-					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
+				if(stuNo=searchStudent(ppStu,cpNo)){
+					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					table(cpCourseTmp,5);
 				}
 				break;
@@ -237,8 +237,8 @@ int main()
 			case 1:
 				system("clear");
 				dialog("  成绩录入  ");
-				if(searchStudent(ppStu,cpNo)){
-					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
+				if(stuNo=searchStudent(ppStu,cpNo)){
+					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					table(cpCourseTmp,5);
 					do
 					{

@@ -112,12 +112,10 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	char **cpStuTable;
 	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 4) * sizeof(char*));
-	for (int k = 0; k<4; k++)
-		cpStuTable[k] = (char *)malloc(20 * sizeof(char));
-		cpStuTable[0] = "学号";
-		cpStuTable[1] = "姓名";
-		cpStuTable[2] = "性别";
-		cpStuTable[3] = "班级";
+	cpStuTable[0] = "学号";
+	cpStuTable[1] = "姓名";
+	cpStuTable[2] = "性别";
+	cpStuTable[3] = "班级";
 	int j = 4;
 	for (int i = 0; i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo, "\0"); i++)
 	{
