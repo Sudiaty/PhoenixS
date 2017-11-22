@@ -151,15 +151,19 @@ int main()
 				dialog("修改学生信息");
 				do
 				{
-					if(searchStudent(ppStu,cpNo));
+					stuNo=searchStudent(ppStu,cpNo);
+					if(stuNo==-1)
+					{
 						altStudent(ppStu,cpNo);
 						saveStudent(ppStu);
+					}
 				}while(alert());
 				system("clear");
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				if(searchStudent(ppStu,cpNo)&&alert())
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo==-1&&alert())
 				delStudent(ppStu,cpNo,&stuNum);
 				saveStudent(ppStu);
 				system("clear");
@@ -187,7 +191,9 @@ int main()
 			case 1:
 				system("clear");
 				dialog("  添加课程  ");
-				if(searchStudent(ppStu,cpNo)){
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo==-1)
+				{
 					cpCourseTmp=echoCourse(ppCourse);
 					table(cpCourseTmp,3);
 					do
@@ -200,7 +206,8 @@ int main()
 			case 2:
 				system("clear");
 				dialog("  退选课程  ");
-				if(searchStudent(ppStu,cpNo))
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo==-1)
 				{
 					searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
 					if(alert())
@@ -211,7 +218,8 @@ int main()
 			case 3:
 				system("clear");
 				dialog("  打印课表  ");
-				if(searchStudent(ppStu,cpNo)){
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo==-1){
 					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
 					table(cpCourseTmp,5);
 				}
@@ -236,7 +244,8 @@ int main()
 			case 1:
 				system("clear");
 				dialog("  成绩录入  ");
-				if(searchStudent(ppStu,cpNo)){
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo==-1){
 					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
 					table(cpCourseTmp,5);
 					do
@@ -255,7 +264,7 @@ int main()
 				system("clear");
 				dialog("  成绩查询  ");
 				stuNo=searchStudent(ppStu,cpNo);
-				if(stuNo!=-1)
+				if(stuNo==-1)
 				{
 					printf("GPA:%.2f\n",ppStu[stuNo]->m_fPoint);
 					
