@@ -99,7 +99,7 @@ void dialog(char content[10])
 void form(Form *cpForm[MAX_ROW])
 {
 	int i;
-	for (i = 0; i<MAX_ROW&&cpForm[i] != NULL; i++)
+	for (i = 0; i<MAX_ROW&&cpForm[i]->m_cpTitle!=NULL; i++)
 	{
 		printf("%s", cpForm[i]->m_cpTitle);
 		scanf("%s", &cpForm[i]->m_cpContent);

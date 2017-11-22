@@ -9,14 +9,23 @@
 
 #include <stdio.h>
 
+#include "student.h"
+
 //创建成绩信息
 typedef struct PointClass
 {
-	long m_lCourseNo;
-	long m_lNo;
+	char m_cpCourseNo[10];
+	char m_cpNo[10];
 	float m_fGoal;
 }Point;
 
 //声明Point对象具有的方法
+void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum);
+
+void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);
+
+void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum);
+
+void calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10]);
 
 #endif

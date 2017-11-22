@@ -1,7 +1,7 @@
 /****************************************
 * Author:LiuXL;
 * Description:Function related with
-*	ppStudent class.
+*	course class.
 ****************************************/
 #include "stdafx.h"
 
@@ -104,7 +104,7 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 /****************************************
 * Author:JiaZG,LiuXL;
 * Function:searchCourse();				
-* Description:查找指定学生指定代码的课程
+* Description:验证课程是否存在
 ****************************************/
 char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10])
 {
@@ -113,7 +113,7 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
 			int j=0;
-			printf("\n请输入要退选的课程代码：");
+			printf("\n请输入课程代码：");
 			scanf("%s",cpCourseNo);
 			for(j=0;j<MAX_SUB_NO;j++)
 			{
@@ -141,17 +141,17 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 ****************************************/
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
 {
-	for(int j=0;j<MAX_STU_NO;j++)
+	for(int i=0;i<MAX_STU_NO;i++)
 	{
-		if(strcmp(ppStu[j]->m_cpNo,cpNo)==0)
+		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			for(int i=0;i<MAX_STU_NO;i++)
+			for(int j=0;j<MAX_STU_NO;j++)
 			{
-				if(strcmp(ppStu[j]->m_cpMajor[i],cpCourseNo)==0)
+				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
 				{
-					for(int k=i;k<MAX_SUB_NO&&strcmp(ppStu[j]->m_cpMajor[k],"\0")!=0;k++)
+					for(int k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
 					{
-						strcpy(ppStu[j]->m_cpMajor[k],ppStu[j]->m_cpMajor[k+1]);
+						strcpy(ppStu[i]->m_cpMajor[k],ppStu[i]->m_cpMajor[k+1]);
 					}
 					printf("正在退课......\n");
 					printf("已经退选课程代码为%s 的课程\n",cpCourseNo);

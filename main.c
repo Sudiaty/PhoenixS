@@ -6,6 +6,7 @@
 
 //全局变量声明
 int stuNum=0;
+int pointNum=0;
 
 /****************************************
 * Author:LiuXL
@@ -25,7 +26,7 @@ int main()
 	}
 
 /****************************************
-* 实例化Student对象
+* 实例化Course对象
 ****************************************/
     Course *ppCourse[MAX_SUB_NO];
 	for(int i=0;i<MAX_SUB_NO;i++)
@@ -34,11 +35,16 @@ int main()
 	}
 
 /****************************************
+* 实例化Point对象
+****************************************/
+	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO];
+
+/****************************************
 * 实例化用于接收信息的表单
 ****************************************/
     Form *ppStuForm[MAX_ROW];
-    /*为学生信息表单对象赋初值*/
-    for (int i=0; i<STU_FORM_ROW;++i)
+    /*初始化学生信息表单*/
+    for(int i=0; i<STU_FORM_ROW;i++)
     {
         Form *pTmp=(Form*)malloc(sizeof(Form));
         ppStuForm[i]=pTmp;
@@ -51,15 +57,20 @@ int main()
 /****************************************
 * 实例化表格数组
 ****************************************/
-//定义用于显示学生信息的数组指针，与table函数对接
+	//用于显示学生信息的数组指针，与table函数对接
 	char **cpStuTmp;
-//定义用于显示课程信息的数组指针，与table函数对接
+	//用于显示课程信息的数组指针，与table函数对接
 	char **cpCourseTmp;
+	//用于显示成绩信息的数组指针，与table函数对接
+	char **cpPointTmp;
 
-	/*定义菜单选项*/
-	char menuList[MAX_ROW][20]={"信息维护","课程管理","成绩管理","退出    "};
-	char stuMenu[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","返回    ","退出    "};
-	char courseMenu[MAX_ROW][20]={"添加课程","退选课程","课表查询","返回    "};
+/****************************************
+* 定义菜单选项
+****************************************/
+	char menuList[MAX_ROW][20]={"信息维护","课程管理","成绩管理","  退出  "};
+	char stuMenu[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","  返回  ","  退出  "};
+	char courseMenu[MAX_ROW][20]={"添加课程","退选课程","课表查询","  返回  "};
+	char pointMenu[MAX_ROW][20]={"成绩录入","成绩查询","成绩统计","  返回  "};
 
 
 /****************************************
@@ -67,14 +78,17 @@ int main()
 *				Action
 *
 ****************************************/
+/*变量声明*/
 	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
 	char cpNo[10];				//用于查找学生的变量
 	char cpCourseNo[10];			//用于查找课程的变量
 
-	getStudent(ppStu,&stuNum);		//初始化，自动导入数据
-	
+	getStudent(ppStu,&stuNum);
+	getPoint(ppPoint,&pointNum);		//初始化，自动导入数据
+
+/*显示主菜单*/
 	home:dialog("学生管理系统");
-	list(menuList);				//显示主菜单
+	list(menuList);
 	printf("\n请输入菜单项数字(1 - 4):");
 	scanf("%d",&mainItem);
 	switch(mainItem)
@@ -92,7 +106,10 @@ int main()
 			scanf("%d",&courseItem);
 			break;
 		case 3:
-			dialog("系统正在维护");
+			system("clear");
+			pointMenu:list(pointMenu);
+			printf("\n请输入菜单项数字(1 - 4):");
+			scanf("%d",&pointItem);
 			break;
 		case 4:
 			exit(0);
@@ -101,8 +118,8 @@ int main()
 			dialog("  非法输入！");
 			goto home;
 	}
-		
-	/*学生信息管理模块*/
+			
+/*学生信息管理模块*/
 	if(stuItem)
 	{
 		switch(stuItem) 
@@ -155,7 +172,7 @@ int main()
 		goto stuMenu;
 	}
 
-	/*课程信息管理模块*/
+/*课程信息管理模块*/
 	if(courseItem)
 	{
 		switch(courseItem)
@@ -202,6 +219,58 @@ int main()
 				goto courseMenu;
 		}
 		goto courseMenu;
+	}
+
+/*成绩管理模块*/
+	if(pointItem)
+	{
+		switch(pointItem)
+		{
+			case 1:
+				system("clear");
+				dialog("  成绩录入  ");
+				if(searchStudent(ppStu,cpNo)){
+					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
+					table(cpCourseTmp,5);
+					do
+					{
+						searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
+						Point *pTmp=(Point*)malloc(sizeof(Point));
+        				ppPoint[pointNum]=pTmp;
+						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);
+					}while(alert());
+					savePoint(ppPoint);
+					calGPA(ppStu,ppCourse,ppPoint,cpNo);
+					saveStudent(ppStu);
+				}
+				break;
+			case 2:
+				system("clear");
+				dialog("  成绩查询  ");
+				if(searchStudent(ppStu,cpNo))
+				{
+					calGPA(ppStu,ppCourse,ppPoint,cpNo);
+					//cpPointTmp=echoCourse(ppStu,ppPoint,cpNo);
+				}
+				break;
+			case 3:
+				system("clear");
+				dialog("  成绩统计  ");
+				if(searchStudent(ppStu,cpNo)){
+					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
+					table(cpCourseTmp,5);
+				}
+				break;
+			case 4:
+				system("clear");
+				pointItem=0;
+				goto home;
+			default:
+				system("clear");
+				dialog("  非法输入！");
+				goto pointMenu;
+		}
+		goto pointMenu;
 	}
     return 0;
 }

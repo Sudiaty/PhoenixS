@@ -52,7 +52,6 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 * Author:JiaZG,LiuXL;
 * Function:getStudent();
 * Description:get the info to Student.txt.
-* add return the point of stuct.
 ****************************************/
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 {
