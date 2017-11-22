@@ -56,10 +56,10 @@ int main()
         Form *pTmp=(Form*)malloc(sizeof(Form));
         ppStuForm[i]=pTmp;
     }
-    strcpy(ppStuForm[0]->m_cpTitle,"学号");
-    strcpy(ppStuForm[1]->m_cpTitle,"姓名");
-    strcpy(ppStuForm[2]->m_cpTitle,"性别");
-    strcpy(ppStuForm[3]->m_cpTitle,"班级");
+    strcpy(ppStuForm[0]->m_cpTitle,"\033[47;31m学号\033[0m");
+    strcpy(ppStuForm[1]->m_cpTitle,"\033[47;31m姓名\033[0m");
+    strcpy(ppStuForm[2]->m_cpTitle,"\033[47;31m性别\033[0m");
+    strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 
 /****************************************
 * 实例化表格数组
