@@ -41,7 +41,7 @@ void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],c
 * Function:savePoint();
 * Description:Save the info to point.dat.
 ****************************************/
-void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],int *pointNum)
+void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO])
 {
 	FILE *fp;
 	int i=0;
@@ -51,7 +51,7 @@ void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],int *pointNum)
 		printf("Fail to open file!\n");
 		exit(0);
 	}
-	for (i = 0; i<MAX_STU_NO*MAX_SUB_NO&&ppPoint[i]!=NULL; i++)
+	for (i = 0;i<MAX_STU_NO*MAX_SUB_NO&&ppPoint[i]!=NULL;i++)
 	{
 		if (fwrite(ppPoint[i], sizeof(Point), 1, fp) != 1)
 			printf("写入失败！\n");
@@ -77,7 +77,7 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 		Point *pTmp=(Point*)malloc(sizeof(Point));
 		ppPoint[i]=pTmp;
 		fread(ppPoint[i], sizeof(Point), 1, fp);
-	}while(!strcmp(ppPoint[i++]->m_cpNo, "\0")&&i<MAX_STU_NO*MAX_SUB_NO);
+	}while(strcmp(ppPoint[i++]->m_cpNo, "\0")&&i<MAX_STU_NO*MAX_SUB_NO);
 	(*pointNum)=i;
 }
 
@@ -103,9 +103,9 @@ void calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoi
 						fpPoint[j][0]=ppCourse[k]->m_fGoal;				//统计已选课程学分
 						for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//对成绩数组遍历
 						{
-							if(!strcmp(ppPoint[m]->m_cpNo, "\0"))
+							if(ppPoint[m]==NULL)
 							{
-								//printf("没有相应成绩记录！")；				//Debug
+								printf("没有“%s”的成绩记录！\n",ppCourse[k]->m_cpCourseName);				//Debug
 								fpPoint[j][1]=0;
 								break;
 							}

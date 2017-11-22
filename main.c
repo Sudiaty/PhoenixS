@@ -38,6 +38,12 @@ int main()
 * 实例化Point对象
 ****************************************/
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO];
+	for(int i=0;i<MAX_STU_NO*MAX_SUB_NO;i++)
+	{
+		ppPoint[i]=0x0;
+	}
+	// Point *p=(Point*)malloc(sizeof(Point));
+	// ppPoint[0]=p;
 
 /****************************************
 * 实例化用于接收信息的表单
