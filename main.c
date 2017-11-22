@@ -7,6 +7,7 @@
 //全局变量声明
 int stuNum=0;
 int pointNum=0;
+long stuNo=-1;
 
 /****************************************
 * Author:LiuXL
@@ -253,19 +254,19 @@ int main()
 			case 2:
 				system("clear");
 				dialog("  成绩查询  ");
-				if(searchStudent(ppStu,cpNo))
+				stuNo=searchStudent(ppStu,cpNo);
+				if(stuNo!=-1)
 				{
-					calGPA(ppStu,ppCourse,ppPoint,cpNo);
-					//cpPointTmp=echoCourse(ppStu,ppPoint,cpNo);
+					printf("GPA:%.2f\n",ppStu[stuNo]->m_fPoint);
+					
+					cpPointTmp=echoPoint(ppStu,ppCourse,ppPoint,stuNo);
+					table(cpPointTmp,3);
 				}
 				break;
 			case 3:
 				system("clear");
-				dialog("  成绩统计  ");
-				if(searchStudent(ppStu,cpNo)){
-					cpCourseTmp=printCourse(ppStu,ppCourse,cpNo);
-					table(cpCourseTmp,5);
-				}
+				dialog("系统正在维护");
+				
 				break;
 			case 4:
 				system("clear");

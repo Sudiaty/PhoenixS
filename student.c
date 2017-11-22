@@ -80,9 +80,9 @@ void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 * Function:searchStudent();
 * Description:search a student by m_cpNo
 ****************************************/
-char* searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
+long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 {
-	int i = 0;
+	long i = 0;
 	printf("\n请输入学生的学号：");
 	scanf("%s", cpNo);
 	for (i = 0; i<MAX_STU_NO; i++)
@@ -92,13 +92,13 @@ char* searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 			printf("该学生记录如下：\n");
 			printf("|\t学号\t|\t姓名\t|\t性别\t|\n");
 			printf("|%16s|\t%4s\t|\t%4s\t|\n", ppStu[i]->m_cpNo, ppStu[i]->m_cpName, ppStu[i]->m_cpGender);
-			return cpNo;
+			return i;
 		}
 	}
 	if (i == MAX_STU_NO)
 	{
 		printf("\n不存在该学生记录！");
-		return NULL;
+		return -1;
 	}
 }
 

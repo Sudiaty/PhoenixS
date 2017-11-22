@@ -97,6 +97,7 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 				}
 			}
 			return cpCourseTable;
+			break;
 		}
 	}
 }

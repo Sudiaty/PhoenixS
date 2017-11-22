@@ -11,7 +11,9 @@
 * Function:addPoint();
 * Description:录入成绩
 ****************************************/
-void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum)
+void addPoint(Student *ppStu[MAX_STU_NO],
+	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
+	char cpNo[10],char cpCourseNo[10],int *pointNum)
 {
 	float fGoal;
     for(int i=0;i<MAX_STU_NO;i++)
@@ -84,9 +86,12 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 /****************************************
 * Author:LiuXL;
 * Function:calGPA();
-* Description:返回指定学生的成绩
+* Description:返回指定学生的绩点
 ****************************************/
-void calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10])
+float calGPA(Student *ppStu[MAX_STU_NO],
+	Course *ppCourse[MAX_SUB_NO],
+	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
+	char cpNo[10])
 {
 	float fpPoint[MAX_SUB_NO][2],fGPA=0,fSumPoint=0,fSumGoal=0;
 	for(int i=0;i<MAX_STU_NO;i++)			//对学生表遍历
@@ -127,14 +132,64 @@ void calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoi
 			}
 			fGPA=fSumGoal/fSumPoint;
 			ppStu[i]->m_fPoint=fGPA;
-			printf("%.2f",fGPA);
+			// printf("%.2f",fGPA);				//Debug
 			break;			//找到指定学生后跳出循环
 		}
 	}
+	return fGPA;
 }
 
 /****************************************
 * Author:LiuXL;
 * Function:echoPoint();
-* Description:返回指定学生的成绩
+* Description:返回指定学生的成绩单
+****************************************/
+char** echoPoint(Student *ppStu[MAX_STU_NO],
+	Course *ppCourse[MAX_SUB_NO],
+	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
+	long lNo)
+{
+	char **cpPointTable;
+	cpPointTable=(char **)malloc((MAX_SUB_NO*3+3)*sizeof(char*));
+	for (int k=0;k<3;k++)  
+		cpPointTable[k]=(char *)malloc(20*sizeof(char));  
+		cpPointTable[0]="课程";
+		cpPointTable[1]="学分";
+		cpPointTable[2]="成绩";
+	int j=3;
+	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[lNo]->m_cpMajor[n],"\0")!=0;n++)				//对指定学生所选课程进行遍历，n为该生所选课程序数
+	{
+		for(int m=0;m<MAX_SUB_NO;m++)
+		{
+			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[lNo]->m_cpMajor[n])==0)				//匹配课程信息
+			{
+				cpPointTable[3*n+3]=(char *)malloc(20*sizeof(char)); 
+				strcpy(cpPointTable[j++],ppCourse[m]->m_cpCourseName);
+				cpPointTable[3*n+4]=(char *)malloc(20*sizeof(char)); 
+				sprintf(cpPointTable[j++],"%.2f",ppCourse[m]->m_fGoal);
+				cpPointTable[3*n+5]=(char *)malloc(20*sizeof(char));
+				for(int pNo=0;pNo<MAX_STU_NO*MAX_SUB_NO;pNo++)
+				{
+					if(ppPoint[pNo]==NULL)
+					{
+						strcpy(cpPointTable[j++],"0");
+						break;
+					}
+					if(!strcmp(ppPoint[pNo]->m_cpNo,ppStu[lNo]->m_cpNo)&&!strcmp(ppCourse[m]->m_cpCourseNo,ppPoint[pNo]->m_cpCourseNo))
+					{
+						sprintf(cpPointTable[j++],"%.1f",ppPoint[pNo]->m_fGoal);
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+	return cpPointTable;
+}
+
+/****************************************
+* Author:LiuXL;
+* Function:echoPoint();
+* Description:返回指定学生的成绩单
 ****************************************/

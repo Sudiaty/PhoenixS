@@ -26,6 +26,8 @@ void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);
 
 void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum);
 
-void calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10]);
+float calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10]);
+
+char** echoPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],long lNo);
 
 #endif
