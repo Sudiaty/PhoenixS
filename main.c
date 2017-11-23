@@ -144,6 +144,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 					addStudent(ppStu,ppStuForm,&stuNum);
 					saveStudent(ppStu);
 				}while(alert());
+				system("clear");
 				break;
 			case 3:
 				dialog("修改学生信息");
@@ -250,6 +251,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 					savePoint(ppPoint);
 					calGPA(ppStu,ppCourse,ppPoint,cpNo);
 					saveStudent(ppStu);
+					system("clear");
 				}
 				break;
 			case 2:
