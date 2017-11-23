@@ -9,7 +9,7 @@
 /****************************************
 * Author:LiuXL;
 * Function:addPoint();
-* Description:å½•å…¥æˆç»©
+* Description:Â¼Èë³É¼¨
 ****************************************/
 void addPoint(Student *ppStu[MAX_STU_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
@@ -24,7 +24,7 @@ void addPoint(Student *ppStu[MAX_STU_NO],
 			{
 				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
 				{
-					printf("è¯·è¾“å…¥æˆç»©ï¼š");
+					printf("ÇëÊäÈë³É¼¨£º");
 					scanf("%f",&fGoal);
 					strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
 					strcpy(ppPoint[*pointNum]->m_cpNo,cpNo);
@@ -56,7 +56,7 @@ void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO])
 	for (i = 0;i<MAX_STU_NO*MAX_SUB_NO&&ppPoint[i]!=NULL;i++)
 	{
 		if (fwrite(ppPoint[i], sizeof(Point), 1, fp) != 1)
-			printf("å†™å…¥å¤±è´¥ï¼\n");
+			printf("Ğ´ÈëÊ§°Ü£¡\n");
 	}
 	fclose(fp);
 }
@@ -86,7 +86,7 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 /****************************************
 * Author:LiuXL;
 * Function:calGPA();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„ç»©ç‚¹
+* Description:·µ»ØÖ¸¶¨Ñ§ÉúµÄ¼¨µã
 ****************************************/
 float calGPA(Student *ppStu[MAX_STU_NO],
 	Course *ppCourse[MAX_SUB_NO],
@@ -94,23 +94,23 @@ float calGPA(Student *ppStu[MAX_STU_NO],
 	char cpNo[10])
 {
 	float fpPoint[MAX_SUB_NO][2],fGPA=0,fSumPoint=0,fSumGoal=0;
-	for(int i=0;i<MAX_STU_NO;i++)			//å¯¹å­¦ç”Ÿè¡¨éå†
+	for(int i=0;i<MAX_STU_NO;i++)			//¶ÔÑ§Éú±í±éÀú
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			int j=0;		//æŒ‡å®šå­¦ç”Ÿçš„è¯¾ç¨‹åºæ•°
+			int j=0;		//Ö¸¶¨Ñ§ÉúµÄ¿Î³ÌĞòÊı
 			for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[j],"\0");j++)
 			{
-				for(int k=0;k<MAX_SUB_NO;k++)				//å¯¹è¯¾ç¨‹è¡¨éå†ï¼Œkä¸ºç¬¬j+1ä»¬è¯¾ç¨‹åœ¨pChemä¸­çš„åºæ•°
+				for(int k=0;k<MAX_SUB_NO;k++)				//¶Ô¿Î³Ì±í±éÀú£¬kÎªµÚj+1ÃÇ¿Î³ÌÔÚpChemÖĞµÄĞòÊı
 				{
 					if(!strcmp(ppStu[i]->m_cpMajor[j],ppCourse[k]->m_cpCourseNo))
 					{
-						fpPoint[j][0]=ppCourse[k]->m_fGoal;				//ç»Ÿè®¡å·²é€‰è¯¾ç¨‹å­¦åˆ†
-						for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//å¯¹æˆç»©æ•°ç»„éå†
+						fpPoint[j][0]=ppCourse[k]->m_fGoal;				//Í³¼ÆÒÑÑ¡¿Î³ÌÑ§·Ö
+						for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//¶Ô³É¼¨Êı×é±éÀú
 						{
 							if(ppPoint[m]==NULL)
 							{
-								printf("æ²¡æœ‰â€œ%sâ€çš„æˆç»©è®°å½•ï¼\n",ppCourse[k]->m_cpCourseName);				//Debug
+								printf("Ã»ÓĞ¡°%s¡±µÄ³É¼¨¼ÇÂ¼£¡\n",ppCourse[k]->m_cpCourseName);				//Debug
 								fpPoint[j][1]=0;
 								break;
 							}
@@ -121,7 +121,7 @@ float calGPA(Student *ppStu[MAX_STU_NO],
 								break;
 							}
 						}
-						break;				//æ‰¾åˆ°æŒ‡å®šè¯¾ç¨‹åè·³å‡ºå¾ªç¯
+						break;				//ÕÒµ½Ö¸¶¨¿Î³ÌºóÌø³öÑ­»·
 					}
 				}
 			}
@@ -133,7 +133,7 @@ float calGPA(Student *ppStu[MAX_STU_NO],
 			fGPA=fSumGoal/fSumPoint;
 			ppStu[i]->m_fPoint=fGPA;
 			// printf("%.2f",fGPA);				//Debug
-			break;			//æ‰¾åˆ°æŒ‡å®šå­¦ç”Ÿåè·³å‡ºå¾ªç¯
+			break;			//ÕÒµ½Ö¸¶¨Ñ§ÉúºóÌø³öÑ­»·
 		}
 	}
 	return fGPA;
@@ -142,7 +142,7 @@ float calGPA(Student *ppStu[MAX_STU_NO],
 /****************************************
 * Author:LiuXL;
 * Function:echoPoint();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„æˆç»©å•
+* Description:·µ»ØÖ¸¶¨Ñ§ÉúµÄ³É¼¨µ¥
 ****************************************/
 char** echoPoint(Student *ppStu[MAX_STU_NO],
 	Course *ppCourse[MAX_SUB_NO],
@@ -153,15 +153,15 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 	cpPointTable=(char **)malloc((MAX_SUB_NO*3+3)*sizeof(char*));
 	for (int k=0;k<3;k++)  
 		cpPointTable[k]=(char *)malloc(20*sizeof(char));  
-		cpPointTable[0]="è¯¾ç¨‹";
-		cpPointTable[1]="å­¦åˆ†";
-		cpPointTable[2]="æˆç»©";
+		cpPointTable[0]="¿Î³Ì";
+		cpPointTable[1]="Ñ§·Ö";
+		cpPointTable[2]="³É¼¨";
 	int j=3;
-	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[lNo]->m_cpMajor[n],"\0")!=0;n++)				//å¯¹æŒ‡å®šå­¦ç”Ÿæ‰€é€‰è¯¾ç¨‹è¿›è¡Œéå†ï¼Œnä¸ºè¯¥ç”Ÿæ‰€é€‰è¯¾ç¨‹åºæ•°
+	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[lNo]->m_cpMajor[n],"\0")!=0;n++)				//¶ÔÖ¸¶¨Ñ§ÉúËùÑ¡¿Î³Ì½øĞĞ±éÀú£¬nÎª¸ÃÉúËùÑ¡¿Î³ÌĞòÊı
 	{
 		for(int m=0;m<MAX_SUB_NO;m++)
 		{
-			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[lNo]->m_cpMajor[n])==0)				//åŒ¹é…è¯¾ç¨‹ä¿¡æ¯
+			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[lNo]->m_cpMajor[n])==0)				//Æ¥Åä¿Î³ÌĞÅÏ¢
 			{
 				cpPointTable[3*n+3]=(char *)malloc(20*sizeof(char)); 
 				strcpy(cpPointTable[j++],ppCourse[m]->m_cpCourseName);
@@ -191,5 +191,5 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 /****************************************
 * Author:LiuXL;
 * Function:echoPoint();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„æˆç»©å•
+* Description:·µ»ØÖ¸¶¨Ñ§ÉúµÄ³É¼¨µ¥
 ****************************************/
