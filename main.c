@@ -189,6 +189,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 						addCourse(ppStu,stuNo);
 					}while(alert());
 					saveStudent(ppStu);
+					system("clear");
 				}
 				break;
 			case 2:
@@ -207,6 +208,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 				dialog("  打印课表  ");
 				if(stuNo=searchStudent(ppStu,cpNo)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
+					echo("个人课表打印");
 					table(cpCourseTmp,5);
 				}
 				break;
@@ -232,12 +234,12 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 				dialog("  成绩录入  ");
 				if(stuNo=searchStudent(ppStu,cpNo)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
+					echo("已开设课程");
 					table(cpCourseTmp,5);
 					do
 					{
 						searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
-						Point *pTmp=(Point*)malloc(sizeof(Point));
-        				ppPoint[pointNum]=pTmp;
+						DST_SPPI(Point,ppPoint,pointNum)
 						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);
 					}while(alert());
 					savePoint(ppPoint);

@@ -26,6 +26,8 @@ void list(char ppList[MAX_ROW][20]);
 
 void table(char **cpTable, int iRow);
 
+void echo(char content[10]);
+
 void dialog(char content[10]);
 
 void form(Form *ppForm[MAX_ROW]);

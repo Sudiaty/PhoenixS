@@ -89,9 +89,9 @@ long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 	{
 		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
 		{
-			printf("该学生记录如下：\n");
+			printf("\n该学生记录如下：\n");
 			printf("|\t学号\t|\t姓名\t|\t性别\t|\n");
-			printf("|\t%s\t|\t%s\t|\t%s\t|\n", ppStu[i]->m_cpNo, ppStu[i]->m_cpName, ppStu[i]->m_cpGender);
+			printf("|\t%s\t|\t%s\t|\t%s\t|\n\n", ppStu[i]->m_cpNo, ppStu[i]->m_cpName, ppStu[i]->m_cpGender);
 			return i+1;
 		}
 	}
