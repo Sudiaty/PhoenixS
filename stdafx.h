@@ -19,5 +19,8 @@
 #include "course.h"
 #include "point.h"
 
+#define INIT_SPP(pp,top) for(int i=0;i<top;i++)pp[i]=0x0                //初始化结构体指针，解决Windows段错误（未初始化的结构体指针数组不全为空；
+
+#define DST_SPP(type,pp,top) for(int i=0;i<top;i++){type*pTmp=(type*)malloc(sizeof(type));pp[i]=pTmp;}              //为结构图指针数组分配内存；
 
 // TODO: 在此处引用程序需要的其他头文件

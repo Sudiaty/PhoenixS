@@ -19,57 +19,34 @@ int main()
 /****************************************
 * 实例化Student对象
 ****************************************/
-    Student *ppStu[MAX_STU_NO];
-    for(int i=0;i<MAX_STU_NO;i++)
-    {
-        Student *pTmp=(Student*)malloc(sizeof(Student));
-        ppStu[i]=pTmp;
-	}
+    int i;
+	Student *ppStu[MAX_STU_NO];
+	DST_SPP(Student,ppStu,MAX_STU_NO)
 
 /****************************************
 * 实例化Course对象
 ****************************************/
     Course *ppCourse[MAX_SUB_NO];
-	for(int i=0;i<MAX_SUB_NO;i++)
-	{
-		ppCourse[i]=&pChem[i];
-	}
+	for(i=0;i<MAX_SUB_NO;i++) ppCourse[i]=&pChem[i];
 
 /****************************************
 * 实例化Point对象
 ****************************************/
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO];
-	for(int i=0;i<MAX_STU_NO*MAX_SUB_NO;i++)
-	{
-		ppPoint[i]=0x0;
-	}
-	// Point *p=(Point*)malloc(sizeof(Point));
-	// ppPoint[0]=p;
+	INIT_SPP(ppPoint,MAX_STU_NO*MAX_SUB_NO);
 
 /****************************************
 * 实例化用于接收信息的表单
 ****************************************/
     Form *ppStuForm[MAX_ROW];
-    /*初始化学生信息表单*/
-    for(int i=0; i<STU_FORM_ROW;i++)
-    {
-        Form *pTmp=(Form*)malloc(sizeof(Form));
-        ppStuForm[i]=pTmp;
-    }
-    strcpy(ppStuForm[0]->m_cpTitle,"\033[47;31m学号\033[0m");
-    strcpy(ppStuForm[1]->m_cpTitle,"\033[47;31m姓名\033[0m");
-    strcpy(ppStuForm[2]->m_cpTitle,"\033[47;31m性别\033[0m");
-    strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
-
+	INIT_SPP(ppStuForm,MAX_ROW);
+    
 /****************************************
 * 实例化表格数组
 ****************************************/
-	//用于显示学生信息的数组指针，与table函数对接
-	char **cpStuTmp;
-	//用于显示课程信息的数组指针，与table函数对接
-	char **cpCourseTmp;
-	//用于显示成绩信息的数组指针，与table函数对接
-	char **cpPointTmp;
+	char **cpStuTmp;			//用于显示学生信息的数组指针，与table函数对接
+	char **cpCourseTmp;			//用于显示课程信息的数组指针，与table函数对接	
+	char **cpPointTmp;			//用于显示成绩信息的数组指针，与table函数对接
 
 /****************************************
 * 定义菜单选项
@@ -79,19 +56,35 @@ int main()
 	char courseMenu[MAX_ROW][20]={"添加课程","退选课程","课表查询","  返回  "};
 	char pointMenu[MAX_ROW][20]={"成绩录入","成绩查询","成绩统计","  返回  "};
 
+/*主界面相关变量声明*/
+	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
+	char cpNo[10];				//用于查找学生的变量
+	char cpCourseNo[10];			//用于查找课程的变量
+
+
+/****************************************
+* 
+*				Initial
+*
+****************************************/
+/*初始化学生信息表单*/
+DST_SPP(Form,ppStuForm,4)
+strcpy(ppStuForm[0]->m_cpTitle,"\033[47;31m学号\033[0m");
+strcpy(ppStuForm[1]->m_cpTitle,"\033[47;31m姓名\033[0m");
+strcpy(ppStuForm[2]->m_cpTitle,"\033[47;31m性别\033[0m");
+strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
+
+
+
 
 /****************************************
 * 
 *				Action
 *
 ****************************************/
-/*变量声明*/
-	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
-	char cpNo[10];				//用于查找学生的变量
-	char cpCourseNo[10];			//用于查找课程的变量
-
 	getStudent(ppStu,&stuNum);
 	getPoint(ppPoint,&pointNum);		//初始化，自动导入数据
+
 
 /*显示主菜单*/
 	home:dialog("学生管理系统");
