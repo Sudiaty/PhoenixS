@@ -1,7 +1,7 @@
 /****************************************
 * Author:LiuXL;
 * Description:Functions related with
-*   point class.
+*   Point class.
 ****************************************/
 
 #include "stdafx.h"
@@ -41,7 +41,7 @@ void addPoint(Student *ppStu[MAX_STU_NO],
 /****************************************
 * Author:LiuXL;
 * Function:savePoint();
-* Description:Save the info to point.dat.
+* Description:Save the info to Point.dat.
 ****************************************/
 void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO])
 {
@@ -153,7 +153,7 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 	cpPointTable=(char **)malloc((MAX_SUB_NO*3+3)*sizeof(char*));
 	for (int k=0;k<3;k++)  
 		cpPointTable[k]=(char *)malloc(20*sizeof(char));  
-		cpPointTable[0]="课程";
+		cpPointTable[0]="课程名称";
 		cpPointTable[1]="学分";
 		cpPointTable[2]="成绩";
 	int j=3;

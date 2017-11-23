@@ -14,7 +14,7 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 {
 	char **cpCourseTable;
 	cpCourseTable = (char **)malloc((MAX_SUB_NO * 3 + 3) * sizeof(char*));
-	cpCourseTable[0] = "课程代码";
+	cpCourseTable[0] = "代码";
 	cpCourseTable[1] = "课程名称";
 	cpCourseTable[2] = "学分";
 	int j=3;
@@ -58,10 +58,10 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 	stuNo--;
 	char **cpCourseTable;
 	cpCourseTable=(char **)malloc((MAX_SUB_NO*5+5)*sizeof(char*));
-	cpCourseTable[0]="课程代码";
+	cpCourseTable[0]="代码";
 	cpCourseTable[1]="课程名称";
-	cpCourseTable[2]="课程学分";
-	cpCourseTable[3]="上课地点";
+	cpCourseTable[2]="学分";
+	cpCourseTable[3]="地点";
 	cpCourseTable[4]="上课时间";
 	int j=5;
 	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
