@@ -1,6 +1,6 @@
 /*****************************
 * Author:LiuXL
-* Description:Course Obeject
+* Description:course Obeject
 *****************************/
 
 #ifndef COURSE_H
@@ -10,7 +10,7 @@
 
 #include "student.h"
 
-//创建课表信息
+//?????α????
 typedef struct CourseClass
 {
 	char m_cpCourseNo[10];
@@ -20,20 +20,36 @@ typedef struct CourseClass
 	char m_cpTime[20];
 }Course;
 
-//实例化课表
+//??????α?
+<<<<<<< HEAD
 static Course pChem[MAX_SUB_NO] = {
-	{ "PHY2","普通物理(II)",4.0,"B阶201","Mon.1~2;Fri.1~2" },
-	{ "MXI","毛泽东思想",6.0,"A312","Mon.6~7;THU.3~4" },
-	{ "ORG1","有机化学(I)",3.5,"A212","Tue.3~5" },
-	{ "CSE","C语言程序设计",2.5,"B阶102","Fri.8~10" },
-	{ "EEE","应用电工学",2.5,"A阶203","Wed.8~9" }
+	{ "PHY2","???????(II)",4.0,"B??201","Mon.1~2;Fri.1~2" },
+	{ "MXI","??????",6.0,"A312","Mon.6~7;THU.3~4" },
+	{ "ORG1","?л????(I)",3.5,"A212","Tue.3~5" },
+=======
+static course pChem[MAX_SUB_NO] = {
+	{ "PHY","???????",4.0,"B??201","Mon.1~2;Fri.1~2" },
+	{ "MXI","??????",6.0,"A312","Mon.6~7;THU.3~4" },
+	{ "ORG","?л????",3.5,"A212","Tue.3~5" },
+>>>>>>> origin/LiuXL@Win7
+	{ "CSE","C??????????",2.5,"B??102","Fri.8~10" },
+	{ "EEE","???繤?",2.5,"A??203","Wed.8~9" }
 };
 
-//声明Course对象具有的方法
+<<<<<<< HEAD
+//????Course??????е????
 char** echoCourse(Course *ppCourse[MAX_SUB_NO]);
 void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10]);
 char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10]);
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10]);
 char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10]);
+=======
+//????course??????е????
+char** echoCourse(course *ppCourse[MAX_SUB_NO]);
+void addCourse(Student *ppStu[MAX_STU_NO],long stuNo);
+char* searchCourse(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10]);
+void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10]);
+char** printCourse(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],long stuNo);
+>>>>>>> origin/LiuXL@Win7
 
 #endif

@@ -12,15 +12,13 @@
 ****************************************/
 char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 {
+	int i,j=3;
 	char **cpCourseTable;
 	cpCourseTable = (char **)malloc((MAX_SUB_NO * 3 + 3) * sizeof(char*));
-	for (int k = 0; k<3; k++)
-		cpCourseTable[k] = (char *)malloc(20 * sizeof(char));
 	cpCourseTable[0] = "课程代码";
 	cpCourseTable[1] = "课程名称";
 	cpCourseTable[2] = "学分";
-	int j=3;
-	for (int i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
+	for (i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
 	{
 		cpCourseTable[3 * i + 3] = (char *)malloc(20 * sizeof(char));
 		strcpy(cpCourseTable[j++], ppCourse[i]->m_cpCourseNo);
@@ -37,20 +35,15 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 * Function:addCourse();				
 * Description:Add a course for a student.
 ****************************************/
-void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
+void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 {
 	char cpMajor[10];
-	for (int i = 0; i<MAX_STU_NO; i++)
-	{
-		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
-		{
-			int j;
-			for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[j],"\0")!=0;j++);
-			printf("请输入课程代码：");
-			scanf("%s",cpMajor);
-			strcpy(ppStu[i]->m_cpMajor[j],cpMajor);
-		}
-	}
+	int j;
+	stuNo--;
+	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0")!=0;j++);
+	printf("请输入课程代码：");
+	scanf("%s",cpMajor);
+	strcpy(ppStu[stuNo]->m_cpMajor[j],cpMajor);
 }
 
 
@@ -60,46 +53,38 @@ void addCourse(Student *ppStu[MAX_STU_NO],char cpNo[10])
 * Function:printCourse();				
 * Description:print a course for a student.
 ****************************************/
-char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10])
+char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo)
 {
-	for(int i=0;i<MAX_STU_NO;i++)
+	int j=5,m,n;
+	char **cpCourseTable;
+	stuNo--;
+	cpCourseTable=(char **)malloc((MAX_SUB_NO*5+5)*sizeof(char*));
+	cpCourseTable[0]="课程代码";
+	cpCourseTable[1]="课程名称";
+	cpCourseTable[2]="课程学分";
+	cpCourseTable[3]="上课地点";
+	cpCourseTable[4]="上课时间";
+	for(n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		for(m=0;m<MAX_SUB_NO;m++)
 		{
-			char **cpCourseTable;
-			cpCourseTable=(char **)malloc((MAX_SUB_NO*5+5)*sizeof(char*));
-			for (int k=0;k<5;k++)  
-				cpCourseTable[k]=(char *)malloc(20*sizeof(char));  
-				cpCourseTable[0]="课程代码";
-				cpCourseTable[1]="课程名称";
-				cpCourseTable[2]="课程学分";
-				cpCourseTable[3]="上课地点";
-				cpCourseTable[4]="上课时间";
-			int j=5;
-			for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[n],"\0")!=0;n++)
+			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[stuNo]->m_cpMajor[n])==0)
 			{
-				for(int m=0;m<MAX_SUB_NO;m++)
-				{
-					if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[i]->m_cpMajor[n])==0)
-					{
-						cpCourseTable[5*n+5]=(char *)malloc(20*sizeof(char)); 
-						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseNo);
-						cpCourseTable[5*n+6]=(char *)malloc(20*sizeof(char)); 
-						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseName);
-						cpCourseTable[5*n+7]=(char *)malloc(20*sizeof(char)); 
-						sprintf(cpCourseTable[j++],"%.2f",ppCourse[m]->m_fGoal);
-						cpCourseTable[5*n+8]=(char *)malloc(20*sizeof(char)); 
-						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpAdress);
-						cpCourseTable[5*n+9]=(char *)malloc(20*sizeof(char)); 
-						strcpy(cpCourseTable[j++],ppCourse[m]->m_cpTime);
-						break;
-					}
-				}
+				cpCourseTable[5*n+5]=(char *)malloc(20*sizeof(char)); 
+				strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseNo);
+				cpCourseTable[5*n+6]=(char *)malloc(20*sizeof(char)); 
+				strcpy(cpCourseTable[j++],ppCourse[m]->m_cpCourseName);
+				cpCourseTable[5*n+7]=(char *)malloc(20*sizeof(char)); 
+				sprintf(cpCourseTable[j++],"%.2f",ppCourse[m]->m_fGoal);
+				cpCourseTable[5*n+8]=(char *)malloc(20*sizeof(char)); 
+				strcpy(cpCourseTable[j++],ppCourse[m]->m_cpAdress);
+				cpCourseTable[5*n+9]=(char *)malloc(20*sizeof(char)); 
+				strcpy(cpCourseTable[j++],ppCourse[m]->m_cpTime);
+				break;
 			}
-			return cpCourseTable;
-			break;
 		}
 	}
+	return cpCourseTable;
 }
 
 /****************************************
@@ -109,11 +94,11 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 ****************************************/
 char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10])
 {
-	for(int i=0;i<MAX_STU_NO;i++)
+	int i,j;
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			int j=0;
 			printf("\n请输入课程代码：");
 			scanf("%s",cpCourseNo);
 			for(j=0;j<MAX_SUB_NO;j++)
@@ -142,15 +127,16 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 ****************************************/
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
 {
-	for(int i=0;i<MAX_STU_NO;i++)
+	int i,j,k;
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			for(int j=0;j<MAX_STU_NO;j++)
+			for(j=0;j<MAX_STU_NO;j++)
 			{
 				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
 				{
-					for(int k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
+					for(k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
 					{
 						strcpy(ppStu[i]->m_cpMajor[k],ppStu[i]->m_cpMajor[k+1]);
 					}
