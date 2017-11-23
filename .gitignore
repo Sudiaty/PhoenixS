@@ -62,3 +62,8 @@ main.c
 student.h
 view.c
 .DS_Store
+/SMS.sln
+/SMS.vcxproj
+/SMS.vcxproj.filters
+/.vs/SMS/v15
+/Debug
