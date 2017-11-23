@@ -45,10 +45,10 @@ void list(char ppList[MAX_ROW][20])
 {
 	for (int i = 0; i <= MAX_ROW&&strcmp(ppList[2 * i], "\0"); i++)
 	{
-		printf("\n\033[47;31m                                             \033[0m\n");
+		printf("\n\033[47;31m%45s\033[0m\n");
 		for (int j = 0; j<2 && strcmp(ppList[2 * i + j], "\0"); j++)
 		{
-			printf("\033[47;31m        \033[0m%2d.%6s", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
+			printf("\033[47;31m        \033[0m%-2d.%-6s", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
 		}
 		printf("\033[47;31m       \033[0m");
 		printf("\n\033[47;31m                                             \033[0m\n");
@@ -64,7 +64,7 @@ void table(char **cpTable, int iRow)
 {
 	for (int k = 0; k<iRow; k++)
 	{
-		printf("\033[47;31m|%12s\033[0m", cpTable[k]);
+		printf("|%10s", cpTable[k]);
 	}
 	printf("|\n");
 	for (int i = 1; cpTable[iRow*i] != NULL; i++)
@@ -101,8 +101,8 @@ void form(Form *cpForm[MAX_ROW])
 	int i;
 	for (i = 0; i<MAX_ROW&&cpForm[i]->m_cpTitle!=NULL; i++)
 	{
-		printf("%s", cpForm[i]->m_cpTitle);
-		scanf("%s", &cpForm[i]->m_cpContent);
+		printf("%10s", cpForm[i]->m_cpTitle);
+		scanf("%10s", &cpForm[i]->m_cpContent);
 	}
 }
 
@@ -117,10 +117,10 @@ int alert()
 loop:
 	do
 	{
-		printf("是否继续？1.继续，0.终止");
+		printf("\033[47;31m是否继续？1.继续，0.终止\033[0m");
 		scanf("%d", &sign);
 		if (sign != 1 && sign != 0) {
-			printf("指令有误，请重新输入：\n");
+			printf("\033[47;31m指令有误，请重新输入：\033\n");
 			status = 1;
 		}
 		else {
