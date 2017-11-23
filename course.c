@@ -113,7 +113,7 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 			}
 			if(j==MAX_SUB_NO)
 			{
-				printf("\n不存在该课程！");
+				printf("\n不存在该课程！\n");
 				return NULL;
 			}
 		}
