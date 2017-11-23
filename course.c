@@ -1,7 +1,7 @@
 /****************************************
 * Author:LiuXL;
 * Description:Function related with
-*	course class.
+*	Course class.
 ****************************************/
 #include "stdafx.h"
 
@@ -33,7 +33,7 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 /****************************************
 * Author:LiuXL;
 * Function:addCourse();				
-* Description:Add a course for a student.
+* Description:Add a Course for a student.
 ****************************************/
 void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 {
@@ -51,7 +51,7 @@ void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 /****************************************
 * Author:JiaZG,LiuXL;
 * Function:printCourse();				
-* Description:print a course for a student.
+* Description:print a Course for a student.
 ****************************************/
 char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo)
 {
@@ -123,7 +123,7 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 /****************************************
 * Author:JiaZG;
 * Function:delCourse();				
-* Description:delete a course for a student.
+* Description:delete a Course for a student.
 ****************************************/
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
 {
