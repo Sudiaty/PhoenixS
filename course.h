@@ -1,6 +1,6 @@
 /*****************************
 * Author:LiuXL
-* Description:Course Obeject
+* Description:course Obeject
 *****************************/
 
 #ifndef COURSE_H
@@ -10,7 +10,7 @@
 
 #include "student.h"
 
-//åˆ›å»ºè¯¾è¡¨ä¿¡æ¯
+//´´½¨¿Î±íĞÅÏ¢
 typedef struct CourseClass
 {
 	char m_cpCourseNo[10];
@@ -18,22 +18,22 @@ typedef struct CourseClass
 	float m_fGoal;
 	char m_cpAdress[10];
 	char m_cpTime[20];
-}Course;
+}course;
 
-//å®ä¾‹åŒ–è¯¾è¡¨
-static Course pChem[MAX_SUB_NO] = {
-	{ "PHY","æ™®é€šç‰©ç†",4.0,"Bé˜¶201","Mon.1~2;Fri.1~2" },
-	{ "MXI","æ¯›æ³½ä¸œæ€æƒ³",6.0,"A312","Mon.6~7;THU.3~4" },
-	{ "ORG","æœ‰æœºåŒ–å­¦",3.5,"A212","Tue.3~5" },
-	{ "CSE","Cè¯­è¨€ç¨‹åºè®¾è®¡",2.5,"Bé˜¶102","Fri.8~10" },
-	{ "EEE","åº”ç”¨ç”µå·¥å­¦",2.5,"Aé˜¶203","Wed.8~9" }
+//ÊµÀı»¯¿Î±í
+static course pChem[MAX_SUB_NO] = {
+	{ "PHY","ÆÕÍ¨ÎïÀí",4.0,"B½×201","Mon.1~2;Fri.1~2" },
+	{ "MXI","Ã«Ôó¶«Ë¼Ïë",6.0,"A312","Mon.6~7;THU.3~4" },
+	{ "ORG","ÓĞ»ú»¯Ñ§",3.5,"A212","Tue.3~5" },
+	{ "CSE","CÓïÑÔ³ÌĞòÉè¼Æ",2.5,"B½×102","Fri.8~10" },
+	{ "EEE","Ó¦ÓÃµç¹¤Ñ§",2.5,"A½×203","Wed.8~9" }
 };
 
-//å£°æ˜Courseå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
-char** echoCourse(Course *ppCourse[MAX_SUB_NO]);
+//ÉùÃ÷course¶ÔÏó¾ßÓĞµÄ·½·¨
+char** echoCourse(course *ppCourse[MAX_SUB_NO]);
 void addCourse(Student *ppStu[MAX_STU_NO],long stuNo);
-char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10]);
+char* searchCourse(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10]);
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10]);
-char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo);
+char** printCourse(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],long stuNo);
 
 #endif

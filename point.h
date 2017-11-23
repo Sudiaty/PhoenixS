@@ -1,7 +1,7 @@
 #pragma once
 /*****************************
 * Author:LiuXL
-* Description:Point Obeject
+* Description:point Obeject
 *****************************/
 
 #ifndef POINT_H
@@ -11,23 +11,23 @@
 
 #include "student.h"
 
-//ÂàõÂª∫ÊàêÁª©‰ø°ÊÅØ
+//¥¥Ω®≥…º®–≈œ¢
 typedef struct PointClass
 {
 	char m_cpCourseNo[10];
 	char m_cpNo[10];
 	float m_fGoal;
-}Point;
+}point;
 
-//Â£∞ÊòéPointÂØπË±°ÂÖ∑ÊúâÁöÑÊñπÊ≥ï
-void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum);
+//…˘√˜point∂‘œÛæﬂ”–µƒ∑Ω∑®
+void addPoint(Student *ppStu[MAX_STU_NO],point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum);
 
-void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);
+void savePoint(point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);
 
-void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum);
+void getPoint(point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum);
 
-float calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10]);
+float calGPA(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10]);
 
-char** echoPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],long lNo);
+char** echoPoint(Student *ppStu[MAX_STU_NO],course *ppCourse[MAX_SUB_NO],point *ppPoint[MAX_STU_NO*MAX_SUB_NO],long lNo);
 
 #endif

@@ -12,13 +12,13 @@
 ****************************************/
 char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 {
+	int i,j=3;
 	char **cpCourseTable;
 	cpCourseTable = (char **)malloc((MAX_SUB_NO * 3 + 3) * sizeof(char*));
-	cpCourseTable[0] = "è¯¾ç¨‹ä»£ç ";
-	cpCourseTable[1] = "è¯¾ç¨‹åç§°";
-	cpCourseTable[2] = "å­¦åˆ†";
-	int j=3;
-	for (int i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
+	cpCourseTable[0] = "¿Î³Ì´úÂë";
+	cpCourseTable[1] = "¿Î³ÌÃû³Æ";
+	cpCourseTable[2] = "Ñ§·Ö";
+	for (i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
 	{
 		cpCourseTable[3 * i + 3] = (char *)malloc(20 * sizeof(char));
 		strcpy(cpCourseTable[j++], ppCourse[i]->m_cpCourseNo);
@@ -37,11 +37,11 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 ****************************************/
 void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 {
-	stuNo--;
 	char cpMajor[10];
 	int j;
+	stuNo--;
 	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0")!=0;j++);
-	printf("è¯·è¾“å…¥è¯¾ç¨‹ä»£ç ï¼š");
+	printf("ÇëÊäÈë¿Î³Ì´úÂë£º");
 	scanf("%s",cpMajor);
 	strcpy(ppStu[stuNo]->m_cpMajor[j],cpMajor);
 }
@@ -55,18 +55,18 @@ void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 ****************************************/
 char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo)
 {
-	stuNo--;
+	int j=5,m,n;
 	char **cpCourseTable;
+	stuNo--;
 	cpCourseTable=(char **)malloc((MAX_SUB_NO*5+5)*sizeof(char*));
-	cpCourseTable[0]="è¯¾ç¨‹ä»£ç ";
-	cpCourseTable[1]="è¯¾ç¨‹åç§°";
-	cpCourseTable[2]="è¯¾ç¨‹å­¦åˆ†";
-	cpCourseTable[3]="ä¸Šè¯¾åœ°ç‚¹";
-	cpCourseTable[4]="ä¸Šè¯¾æ—¶é—´";
-	int j=5;
-	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
+	cpCourseTable[0]="¿Î³Ì´úÂë";
+	cpCourseTable[1]="¿Î³ÌÃû³Æ";
+	cpCourseTable[2]="¿Î³ÌÑ§·Ö";
+	cpCourseTable[3]="ÉÏ¿ÎµØµã";
+	cpCourseTable[4]="ÉÏ¿ÎÊ±¼ä";
+	for(n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
 	{
-		for(int m=0;m<MAX_SUB_NO;m++)
+		for(m=0;m<MAX_SUB_NO;m++)
 		{
 			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[stuNo]->m_cpMajor[n])==0)
 			{
@@ -90,30 +90,30 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 /****************************************
 * Author:JiaZG,LiuXL;
 * Function:searchCourse();				
-* Description:éªŒè¯è¯¾ç¨‹æ˜¯å¦å­˜åœ¨
+* Description:ÑéÖ¤¿Î³ÌÊÇ·ñ´æÔÚ
 ****************************************/
 char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10])
 {
-	for(int i=0;i<MAX_STU_NO;i++)
+	int i,j;
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			int j=0;
-			printf("\nè¯·è¾“å…¥è¯¾ç¨‹ä»£ç ï¼š");
+			printf("\nÇëÊäÈë¿Î³Ì´úÂë£º");
 			scanf("%s",cpCourseNo);
 			for(j=0;j<MAX_SUB_NO;j++)
 			{
 				if(strcmp(ppCourse[j]->m_cpCourseNo,cpCourseNo)==0)
 				{
-					printf("è¯¥è¯¾ç¨‹è®°å½•å¦‚ä¸‹ï¼š\n");
-					printf("|\tè¯¾ç¨‹ä»£ç \t|\tè¯¾ç¨‹åç§°\t|\tè¯¾ç¨‹å­¦åˆ†\t|\tä¸Šè¯¾åœ°ç‚¹\t|\tä¸Šè¯¾æ—¶é—´\t|\n");
+					printf("¸Ã¿Î³Ì¼ÇÂ¼ÈçÏÂ£º\n");
+					printf("|\t¿Î³Ì´úÂë\t|\t¿Î³ÌÃû³Æ\t|\t¿Î³ÌÑ§·Ö\t|\tÉÏ¿ÎµØµã\t|\tÉÏ¿ÎÊ±¼ä\t|\n");
 					printf("|%16s|\t%4s\t|\t%4s\t|\t%16f\t|\t%16s\t|\n",ppCourse[j]->m_cpCourseNo,ppCourse[j]->m_cpCourseName,ppCourse[j]->m_fGoal,ppCourse[j]->m_cpAdress,ppCourse[j]->m_cpTime);
 					return cpCourseNo;
 				}
 			}
 			if(j==MAX_SUB_NO)
 			{
-				printf("\nä¸å­˜åœ¨è¯¥è¯¾ç¨‹ï¼");
+				printf("\n²»´æÔÚ¸Ã¿Î³Ì£¡");
 				return NULL;
 			}
 		}
@@ -127,20 +127,21 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 ****************************************/
 void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
 {
-	for(int i=0;i<MAX_STU_NO;i++)
+	int i,j,k;
+	for(i=0;i<MAX_STU_NO;i++)
 	{
 		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
 		{
-			for(int j=0;j<MAX_STU_NO;j++)
+			for(j=0;j<MAX_STU_NO;j++)
 			{
 				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
 				{
-					for(int k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
+					for(k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
 					{
 						strcpy(ppStu[i]->m_cpMajor[k],ppStu[i]->m_cpMajor[k+1]);
 					}
-					printf("æ­£åœ¨é€€è¯¾......\n");
-					printf("å·²ç»é€€é€‰è¯¾ç¨‹ä»£ç ä¸º%s çš„è¯¾ç¨‹\n",cpCourseNo);
+					printf("ÕıÔÚÍË¿Î......\n");
+					printf("ÒÑ¾­ÍËÑ¡¿Î³Ì´úÂëÎª%s µÄ¿Î³Ì\n",cpCourseNo);
 					break;
 				}
 			}

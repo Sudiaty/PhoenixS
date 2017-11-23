@@ -4,7 +4,7 @@
 ****************************************/
 #include"stdafx.h"
 
-//å…¨å±€å˜é‡å£°æ˜
+//È«¾Ö±äÁ¿ÉùÃ÷
 int stuNum=0;
 int pointNum=0;
 long stuNo=-1;
@@ -17,67 +17,84 @@ long stuNo=-1;
 int main()
 {
 /****************************************
-* å®ä¾‹åŒ–Studentå¯¹è±¡
+* ÊµÀı»¯Student¶ÔÏó
 ****************************************/
-    Student *ppStu[MAX_STU_NO];
-    for(int i=0;i<MAX_STU_NO;i++)
+    int i;
+	Student *ppStu[MAX_STU_NO];
+    for(i=0;i<MAX_STU_NO;i++)
     {
         Student *pTmp=(Student*)malloc(sizeof(Student));
         ppStu[i]=pTmp;
 	}
 
 /****************************************
-* å®ä¾‹åŒ–Courseå¯¹è±¡
+* ÊµÀı»¯Course¶ÔÏó
 ****************************************/
-    Course *ppCourse[MAX_SUB_NO];
-	for(int i=0;i<MAX_SUB_NO;i++)
+    course *ppCourse[MAX_SUB_NO];
+	for(i=0;i<MAX_SUB_NO;i++)
 	{
 		ppCourse[i]=&pChem[i];
 	}
 
 /****************************************
-* å®ä¾‹åŒ–Pointå¯¹è±¡
+* ÊµÀı»¯Point¶ÔÏó
 ****************************************/
-	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO];
-	for(int i=0;i<MAX_STU_NO*MAX_SUB_NO;i++)
+	point *ppPoint[MAX_STU_NO*MAX_SUB_NO];
+	INIT_POINT(MAX_STU_NO*MAX_SUB_NO,ppPoint);
+	/*for(i=0;i<MAX_STU_NO*MAX_SUB_NO;i++)
 	{
 		ppPoint[i]=0x0;
-	}
-	// Point *p=(Point*)malloc(sizeof(Point));
+	}*/
+	// point *p=(point*)malloc(sizeof(point));
 	// ppPoint[0]=p;
 
 /****************************************
-* å®ä¾‹åŒ–ç”¨äºæ¥æ”¶ä¿¡æ¯çš„è¡¨å•
+* ÊµÀı»¯ÓÃÓÚ½ÓÊÕĞÅÏ¢µÄ±íµ¥
 ****************************************/
     Form *ppStuForm[MAX_ROW];
-    /*åˆå§‹åŒ–å­¦ç”Ÿä¿¡æ¯è¡¨å•*/
-    for(int i=0; i<STU_FORM_ROW;i++)
-    {
-        Form *pTmp=(Form*)malloc(sizeof(Form));
-        ppStuForm[i]=pTmp;
-    }
-    strcpy(ppStuForm[0]->m_cpTitle,"\033[47;31må­¦å·\033[0m");
-    strcpy(ppStuForm[1]->m_cpTitle,"\033[47;31må§“å\033[0m");
-    strcpy(ppStuForm[2]->m_cpTitle,"\033[47;31mæ€§åˆ«\033[0m");
-    strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31mç­çº§\033[0m");
+    
+/****************************************
+* ÊµÀı»¯±í¸ñÊı×é
+****************************************/
+	
+	char **cpStuTmp;			//ÓÃÓÚÏÔÊ¾Ñ§ÉúĞÅÏ¢µÄÊı×éÖ¸Õë£¬Óëtableº¯Êı¶Ô½Ó
+	
+	char **cpCourseTmp;			//ÓÃÓÚÏÔÊ¾¿Î³ÌĞÅÏ¢µÄÊı×éÖ¸Õë£¬Óëtableº¯Êı¶Ô½Ó
+	
+	char **cpPointTmp;			//ÓÃÓÚÏÔÊ¾³É¼¨ĞÅÏ¢µÄÊı×éÖ¸Õë£¬Óëtableº¯Êı¶Ô½Ó
 
 /****************************************
-* å®ä¾‹åŒ–è¡¨æ ¼æ•°ç»„
+* ¶¨Òå²Ëµ¥Ñ¡Ïî
 ****************************************/
-	//ç”¨äºæ˜¾ç¤ºå­¦ç”Ÿä¿¡æ¯çš„æ•°ç»„æŒ‡é’ˆï¼Œä¸tableå‡½æ•°å¯¹æ¥
-	char **cpStuTmp;
-	//ç”¨äºæ˜¾ç¤ºè¯¾ç¨‹ä¿¡æ¯çš„æ•°ç»„æŒ‡é’ˆï¼Œä¸tableå‡½æ•°å¯¹æ¥
-	char **cpCourseTmp;
-	//ç”¨äºæ˜¾ç¤ºæˆç»©ä¿¡æ¯çš„æ•°ç»„æŒ‡é’ˆï¼Œä¸tableå‡½æ•°å¯¹æ¥
-	char **cpPointTmp;
+	char menuList[MAX_ROW][20]={"ĞÅÏ¢Î¬»¤","¿Î³Ì¹ÜÀí","³É¼¨¹ÜÀí","  ÍË³ö  "};
+	char stuMenu[MAX_ROW][20]={"Ñ§ÉúÁĞ±í","ĞÂÉú×¢²á","ĞÅÏ¢¸üÕı","×¢ÏúÑ§¼®","  ·µ»Ø  ","  ÍË³ö  "};
+	char courseMenu[MAX_ROW][20]={"Ìí¼Ó¿Î³Ì","ÍËÑ¡¿Î³Ì","¿Î±í²éÑ¯","  ·µ»Ø  "};
+	char pointMenu[MAX_ROW][20]={"³É¼¨Â¼Èë","³É¼¨²éÑ¯","³É¼¨Í³¼Æ","  ·µ»Ø  "};
+
+/*±äÁ¿ÉùÃ÷*/
+	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//ÓÃÓÚÅĞ¶ÏÑ¡ÏîµÄ±äÁ¿
+	char cpNo[10];				//ÓÃÓÚ²éÕÒÑ§ÉúµÄ±äÁ¿
+	char cpCourseNo[10];			//ÓÃÓÚ²éÕÒ¿Î³ÌµÄ±äÁ¿
+
 
 /****************************************
-* å®šä¹‰èœå•é€‰é¡¹
+* 
+*				Initial
+*
 ****************************************/
-	char menuList[MAX_ROW][20]={"ä¿¡æ¯ç»´æŠ¤","è¯¾ç¨‹ç®¡ç†","æˆç»©ç®¡ç†","  é€€å‡º  "};
-	char stuMenu[MAX_ROW][20]={"å­¦ç”Ÿåˆ—è¡¨","æ–°ç”Ÿæ³¨å†Œ","ä¿¡æ¯æ›´æ­£","æ³¨é”€å­¦ç±","  è¿”å›  ","  é€€å‡º  "};
-	char courseMenu[MAX_ROW][20]={"æ·»åŠ è¯¾ç¨‹","é€€é€‰è¯¾ç¨‹","è¯¾è¡¨æŸ¥è¯¢","  è¿”å›  "};
-	char pointMenu[MAX_ROW][20]={"æˆç»©å½•å…¥","æˆç»©æŸ¥è¯¢","æˆç»©ç»Ÿè®¡","  è¿”å›  "};
+
+
+
+/*³õÊ¼»¯Ñ§ÉúĞÅÏ¢±íµ¥*/
+for(i=0; i<STU_FORM_ROW;i++)
+{
+    Form *pTmp=(Form*)malloc(sizeof(Form));
+    ppStuForm[i]=pTmp;
+}
+strcpy(ppStuForm[0]->m_cpTitle,"\033[47;31mÑ§ºÅ\033[0m");
+strcpy(ppStuForm[1]->m_cpTitle,"\033[47;31mĞÕÃû\033[0m");
+strcpy(ppStuForm[2]->m_cpTitle,"\033[47;31mĞÔ±ğ\033[0m");
+strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m°à¼¶\033[0m");
 
 
 /****************************************
@@ -85,61 +102,57 @@ int main()
 *				Action
 *
 ****************************************/
-/*å˜é‡å£°æ˜*/
-	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//ç”¨äºåˆ¤æ–­é€‰é¡¹çš„å˜é‡
-	char cpNo[10];				//ç”¨äºæŸ¥æ‰¾å­¦ç”Ÿçš„å˜é‡
-	char cpCourseNo[10];			//ç”¨äºæŸ¥æ‰¾è¯¾ç¨‹çš„å˜é‡
-
 	getStudent(ppStu,&stuNum);
-	getPoint(ppPoint,&pointNum);		//åˆå§‹åŒ–ï¼Œè‡ªåŠ¨å¯¼å…¥æ•°æ®
+	getPoint(ppPoint,&pointNum);		//³õÊ¼»¯£¬×Ô¶¯µ¼ÈëÊı¾İ
 
-/*æ˜¾ç¤ºä¸»èœå•*/
-	home:dialog("å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ");
+
+/*ÏÔÊ¾Ö÷²Ëµ¥*/
+	home:dialog("Ñ§Éú¹ÜÀíÏµÍ³");
 	list(menuList);
-	printf("\nè¯·è¾“å…¥èœå•é¡¹æ•°å­—(1 - 4):");
+	printf("\nÇëÊäÈë²Ëµ¥ÏîÊı×Ö(1 - 4):");
 	scanf("%d",&mainItem);
 	switch(mainItem)
 	{
 		case 1:
 			system("clear");
 			stuMenu:list(stuMenu);
-			printf("\nè¯·è¾“å…¥èœå•é¡¹æ•°å­—(1 - 6):");
+			printf("\nÇëÊäÈë²Ëµ¥ÏîÊı×Ö(1 - 6):");
 			scanf("%d",&stuItem);
 			break;
 		case 2:
 			system("clear");
 			courseMenu:list(courseMenu);
-			printf("\nè¯·è¾“å…¥èœå•é¡¹æ•°å­—(1 - 4):");
+			printf("\nÇëÊäÈë²Ëµ¥ÏîÊı×Ö(1 - 4):");
 			scanf("%d",&courseItem);
 			break;
 		case 3:
 			system("clear");
 			pointMenu:list(pointMenu);
-			printf("\nè¯·è¾“å…¥èœå•é¡¹æ•°å­—(1 - 4):");
+			printf("\nÇëÊäÈë²Ëµ¥ÏîÊı×Ö(1 - 4):");
 			scanf("%d",&pointItem);
 			break;
 		case 4:
 			exit(0);
 		default:
 			system("clear");
-			dialog("  éæ³•è¾“å…¥ï¼");
+			dialog("  ·Ç·¨ÊäÈë£¡");
 			goto home;
 	}
 			
-/*å­¦ç”Ÿä¿¡æ¯ç®¡ç†æ¨¡å—*/
+/*Ñ§ÉúĞÅÏ¢¹ÜÀíÄ£¿é*/
 	if(stuItem)
 	{
 		switch(stuItem) 
 		{
 			case 1:
 				system("clear");
-				dialog("å­¦ç”Ÿä¿¡æ¯æ˜¾ç¤º"); 
+				dialog("Ñ§ÉúĞÅÏ¢ÏÔÊ¾"); 
 				cpStuTmp=echoStudent(ppStu);
 				table(cpStuTmp,4);
 				break;
 			case 2:
 				system("clear");
-				dialog("å­¦ç”Ÿæ•°æ®å½•å…¥");
+				dialog("Ñ§ÉúÊı¾İÂ¼Èë");
 				do
 				{
 					form(ppStuForm);
@@ -148,7 +161,7 @@ int main()
 				}while(alert());
 				break;
 			case 3:
-				dialog("ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯");
+				dialog("ĞŞ¸ÄÑ§ÉúĞÅÏ¢");
 				do
 				{
 					if(stuNo=searchStudent(ppStu,cpNo))
@@ -158,7 +171,7 @@ int main()
 				system("clear");
 				break;
 			case 4:
-				dialog("åˆ é™¤å­¦ç”Ÿå­¦ç±");
+				dialog("É¾³ıÑ§ÉúÑ§¼®");
 				if(searchStudent(ppStu,cpNo)&&alert())
 				delStudent(ppStu,cpNo,&stuNum);
 				saveStudent(ppStu);
@@ -173,20 +186,20 @@ int main()
 				exit(0);
 			default:
 				system("clear");
-				dialog("  éæ³•è¾“å…¥ï¼");
+				dialog("  ·Ç·¨ÊäÈë£¡");
 				goto stuMenu;
 		}
 		goto stuMenu;
 	}
 
-/*è¯¾ç¨‹ä¿¡æ¯ç®¡ç†æ¨¡å—*/
+/*¿Î³ÌĞÅÏ¢¹ÜÀíÄ£¿é*/
 	if(courseItem)
 	{
 		switch(courseItem)
 		{
 			case 1:
 				system("clear");
-				dialog("  æ·»åŠ è¯¾ç¨‹  ");
+				dialog("  Ìí¼Ó¿Î³Ì  ");
 				if(stuNo=searchStudent(ppStu,cpNo))
 				{
 					cpCourseTmp=echoCourse(ppCourse);
@@ -200,7 +213,7 @@ int main()
 				break;
 			case 2:
 				system("clear");
-				dialog("  é€€é€‰è¯¾ç¨‹  ");
+				dialog("  ÍËÑ¡¿Î³Ì  ");
 				if(searchStudent(ppStu,cpNo))
 				{
 					searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
@@ -211,7 +224,7 @@ int main()
 				break;
 			case 3:
 				system("clear");
-				dialog("  æ‰“å°è¯¾è¡¨  ");
+				dialog("  ´òÓ¡¿Î±í  ");
 				if(stuNo=searchStudent(ppStu,cpNo)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					table(cpCourseTmp,5);
@@ -223,27 +236,27 @@ int main()
 				goto home;
 			default:
 				system("clear");
-				dialog("  éæ³•è¾“å…¥ï¼");
+				dialog("  ·Ç·¨ÊäÈë£¡");
 				goto courseMenu;
 		}
 		goto courseMenu;
 	}
 
-/*æˆç»©ç®¡ç†æ¨¡å—*/
+/*³É¼¨¹ÜÀíÄ£¿é*/
 	if(pointItem)
 	{
 		switch(pointItem)
 		{
 			case 1:
 				system("clear");
-				dialog("  æˆç»©å½•å…¥  ");
+				dialog("  ³É¼¨Â¼Èë  ");
 				if(stuNo=searchStudent(ppStu,cpNo)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					table(cpCourseTmp,5);
 					do
 					{
 						searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
-						Point *pTmp=(Point*)malloc(sizeof(Point));
+						point *pTmp=(point*)malloc(sizeof(point));
         				ppPoint[pointNum]=pTmp;
 						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);
 					}while(alert());
@@ -254,7 +267,7 @@ int main()
 				break;
 			case 2:
 				system("clear");
-				dialog("  æˆç»©æŸ¥è¯¢  ");
+				dialog("  ³É¼¨²éÑ¯  ");
 				stuNo=searchStudent(ppStu,cpNo);
 				if(stuNo)
 				{
@@ -267,7 +280,7 @@ int main()
 				break;
 			case 3:
 				system("clear");
-				dialog("ç³»ç»Ÿæ­£åœ¨ç»´æŠ¤");
+				dialog("ÏµÍ³ÕıÔÚÎ¬»¤");
 				
 				break;
 			case 4:
@@ -276,7 +289,7 @@ int main()
 				goto home;
 			default:
 				system("clear");
-				dialog("  éæ³•è¾“å…¥ï¼");
+				dialog("  ·Ç·¨ÊäÈë£¡");
 				goto pointMenu;
 		}
 		goto pointMenu;
