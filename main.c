@@ -95,19 +95,24 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 	{
 		case 1:
 			system("clear");
-			stuMenu:list(stuMenu);
+			stuMenu:
+			dialog("学生信息管理");
+			list(stuMenu);
 			printf("\n请输入菜单项数字(1 - 6):");
 			scanf("%d",&stuItem);
 			break;
 		case 2:
 			system("clear");
+			dialog("  课程管理  ");
 			courseMenu:list(courseMenu);
 			printf("\n请输入菜单项数字(1 - 4):");
 			scanf("%d",&courseItem);
 			break;
 		case 3:
 			system("clear");
-			pointMenu:list(pointMenu);
+			pointMenu:
+			dialog("  成绩管理  ");
+			list(pointMenu);
 			printf("\n请输入菜单项数字(1 - 4):");
 			scanf("%d",&pointItem);
 			break;
