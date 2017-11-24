@@ -161,9 +161,9 @@ void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
 * Function:altStudent();
 * Description:alt a student's record.;
 ****************************************/
-void altStudent(Student *ppStu[MAX_STU_NO], long lNo)
+void altStudent(Student *ppStu[MAX_STU_NO], long *lNo)
 {
-	int iNo=lNo-1;
+	// int iNo=lNo-1;
 	char c;
 	printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
 	scanf("%s", &c);
@@ -171,15 +171,15 @@ void altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 	{
 		case 'n':
 			printf("\n请输入修改后该学生的姓名：");
-			scanf("%s", &ppStu[iNo]->m_cpName);
+			scanf("%s", &ppStu[*lNo-1]->m_cpName);
 			break;
 		case 's':
 			printf("\n请输入修改后该学生的性别(男m，女f）：");
-			scanf("%s", &ppStu[iNo]->m_cpGender);
+			scanf("%s", &ppStu[*lNo-1]->m_cpGender);
 			break;
 		case 'c':
 			printf("\n请输入修改后该学生的班级：");
-			scanf("%s", &ppStu[iNo]->m_cpClass);
+			scanf("%s", &ppStu[*lNo-1]->m_cpClass);
 			break;
 		default:
 			printf("非法输入！\n");

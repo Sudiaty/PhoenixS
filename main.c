@@ -9,6 +9,7 @@ int stuNum=0;
 int pointNum=0;
 long stuNo=-1;
 
+
 /****************************************
 * Author:LiuXL
 * Function:main();
@@ -42,7 +43,7 @@ int main()
 	INIT_SPP(ppStuForm,MAX_ROW);
     
 /****************************************
-* 实例化表格数组
+* 定义用于传递数据给的表格的字符串数组指针
 ****************************************/
 	char **cpStuTmp;			//用于显示学生信息的数组指针，与table函数对接
 	char **cpCourseTmp;			//用于显示课程信息的数组指针，与table函数对接	
@@ -151,7 +152,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 				do
 				{
 					if(stuNo=searchStudent(ppStu,cpNo))
-						altStudent(ppStu,stuNo);
+						altStudent(ppStu,&stuNo);
 						saveStudent(ppStu);
 				}while(alert());
 				system("clear");

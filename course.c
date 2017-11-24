@@ -107,7 +107,7 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 				{
 					printf("该课程记录如下：\n");
 					printf("|\t代码\t|\t课程名称\t|\t学分\t|\n");
-					printf("|\t%s\t|\t%s\t|\t%s\t|\n",ppCourse[j]->m_cpCourseNo,ppCourse[j]->m_cpCourseName,ppCourse[j]->m_fGoal);
+					printf("|\t%s\t|\t%s\t|\t%2.f\t|\n",ppCourse[j]->m_cpCourseNo,ppCourse[j]->m_cpCourseName,ppCourse[j]->m_fGoal);
 					return cpCourseNo;
 				}
 			}
