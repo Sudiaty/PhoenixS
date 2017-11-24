@@ -163,7 +163,6 @@ void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
 ****************************************/
 void altStudent(Student *ppStu[MAX_STU_NO], long *lNo)
 {
-	// int iNo=lNo-1;
 	char c;
 	printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
 	scanf("%s", &c);
