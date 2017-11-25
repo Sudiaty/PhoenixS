@@ -56,21 +56,27 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 {
 	FILE *fp;
-	int i, j;
-
+	int i=0;
 	//读取Student.dat
 	if ((fp = fopen("Student.dat", "rb")) == NULL)
 	{
 		return;
 	}
-	for (i = 0; i<MAX_STU_NO; i++)
+	do
 	{
-		fread(ppStu[i], sizeof(Student), 1, fp);
-	}
-	for (j = 0; j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo, "\0") != 0; j++)
-	{
-		(*stuNum)++;
-	}
+		Student *pTmp=(Student*)malloc(sizeof(Student));
+		ppStu[i]=pTmp;
+		fread(ppStu[i], sizeof(Point), 1, fp);
+	}while(strcmp(ppStu[i++]->m_cpNo, "\0")&&i<MAX_STU_NO);
+	(*stuNum)=i;
+	// for (i = 0; i<MAX_STU_NO; i++)
+	// {
+	// 	fread(ppStu[i], sizeof(Student), 1, fp);
+	// }
+	// for (j = 0; j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo, "\0") != 0; j++)
+	// {
+	// 	(*stuNum)++;
+	// }
 	fclose(fp);
 }
 
@@ -117,7 +123,7 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 	cpStuTable[2] = "性别";
 	cpStuTable[3] = "班级";
 	int j = 4;
-	for (int i = 0; i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo, "\0"); i++)
+	for (int i = 0; i<MAX_STU_NO&&ppStu[i]!=NULL; i++)
 	{
 		cpStuTable[4 * i + 4] = (char *)malloc(20 * sizeof(char));
 		strcpy(cpStuTable[j++], ppStu[i]->m_cpNo);

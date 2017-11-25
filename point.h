@@ -19,7 +19,7 @@ typedef struct PointClass
 	float m_fGoal;
 }Point;
 
-//声明Point对象具有的方法
+//声明point对象具有的方法
 void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum);
 
 void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);

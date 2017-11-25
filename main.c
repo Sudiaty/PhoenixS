@@ -8,7 +8,8 @@
 int stuNum=0;
 int pointNum=0;
 long stuNo=-1;
-
+int courseNo=-1;
+long pointNo=0;
 
 /****************************************
 * Author:LiuXL
@@ -22,7 +23,8 @@ int main()
 ****************************************/
     int i;
 	Student *ppStu[MAX_STU_NO];
-	DST_SPP(Student,ppStu,MAX_STU_NO)
+	INIT_SPP(ppStu,MAX_STU_NO);
+	// DST_SPP(Student,ppStu,MAX_STU_NO)
 
 /****************************************
 * 实例化Course对象
@@ -142,6 +144,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 				do
 				{
 					form(ppStuForm);
+					DST_SPPI(Student,ppStu,stuNum);
 					addStudent(ppStu,ppStuForm,&stuNum);
 					saveStudent(ppStu);
 				}while(alert());
@@ -263,7 +266,6 @@ strcpy(ppStuForm[3]->m_cpTitle,"\033[47;31m班级\033[0m");
 				{
 					stuNo-=1;
 					printf("GPA:%.2f\n",ppStu[stuNo]->m_fPoint);
-					
 					cpPointTmp=echoPoint(ppStu,ppCourse,ppPoint,stuNo);
 					table(cpPointTmp,3);
 				}
