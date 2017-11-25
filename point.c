@@ -78,9 +78,10 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 	{
 		Point *pTmp=(Point*)malloc(sizeof(Point));
 		ppPoint[i]=pTmp;
-		fread(ppPoint[i], sizeof(Point), 1, fp);
-	}while(strcmp(ppPoint[i++]->m_cpNo, "\0")&&i<MAX_STU_NO*MAX_SUB_NO);
+	}while(fread(ppPoint[i++], sizeof(Point), 1, fp)&&i<MAX_STU_NO*MAX_SUB_NO);
+	ppPoint[--i]=0x0;
 	(*pointNum)=i;
+	fclose(fp);
 }
 
 /****************************************

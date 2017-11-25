@@ -38,7 +38,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	}
 
 	//获取当前学生人数
-	for (i = 0; i<MAX_STU_NO&&strcmp(ppStu[i]->m_cpNo, "\0") != 0; i++)
+	for (i = 0; i<MAX_STU_NO&&ppStu[i]!=NULL; i++)
 	{
 		//写入数据至Student.txt
 		if (fwrite(ppStu[i], sizeof(Student), 1, fp) != 1)
@@ -66,32 +66,23 @@ void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 	{
 		Student *pTmp=(Student*)malloc(sizeof(Student));
 		ppStu[i]=pTmp;
-		fread(ppStu[i], sizeof(Point), 1, fp);
-	}while(strcmp(ppStu[i++]->m_cpNo, "\0")&&i<MAX_STU_NO);
+	}while(fread(ppStu[i++],sizeof(Student),1,fp)&&i<MAX_STU_NO);
+	ppStu[--i]=0x0;
 	(*stuNum)=i;
-	// for (i = 0; i<MAX_STU_NO; i++)
-	// {
-	// 	fread(ppStu[i], sizeof(Student), 1, fp);
-	// }
-	// for (j = 0; j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo, "\0") != 0; j++)
-	// {
-	// 	(*stuNum)++;
-	// }
 	fclose(fp);
 }
-
 
 /****************************************
 * Author:JiaZG;
 * Function:searchStudent();
-* Description:search a student by m_cpNo
+* Description:通过学号获取学生序数
 ****************************************/
 long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 {
 	long i = 0;
 	printf("\n请输入学生的学号：");
 	scanf("%s", cpNo);
-	for (i = 0; i<MAX_STU_NO; i++)
+	for (i = 0; ppStu[i]!=NULL&&i<MAX_STU_NO; i++)
 	{
 		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
 		{
@@ -101,11 +92,8 @@ long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
 			return i+1;
 		}
 	}
-	if (i == MAX_STU_NO)
-	{
-		printf("\n不存在该学生记录！");
-		return 0;
-	}
+	printf("\n不存在该学生记录！\n");
+	return 0;
 }
 
 
