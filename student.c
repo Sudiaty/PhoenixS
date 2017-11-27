@@ -130,22 +130,15 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 * Function:delStudent();
 * Description:Delete info of Student.txt.
 ****************************************/
-void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
+void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 {
-
-	for (int i = 0; i<MAX_STU_NO; i++)
+	for (int j = stuNo-1; j<MAX_STU_NO&&ppStu[j]->m_cpNo!=NULL; j++)
 	{
-		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
-		{
-			for (int j = i; j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo, "\0") != 0; j++)
-			{
-				ppStu[j] = ppStu[j + 1];
-			}
-			(*stuNum)--;
-			printf("正在删除......\n");
-			printf("已经删除学号为%s 的学生记\n", cpNo);
-		}
+		ppStu[j] = ppStu[j + 1];
 	}
+	(*stuNum)--;
+	printf("正在删除......\n");
+	printf("已经删除该学生的记录\n");
 }
 
 

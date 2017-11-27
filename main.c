@@ -156,8 +156,8 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				if(searchStudent(ppStu,cpNo)&&alert())
-				delStudent(ppStu,cpNo,&stuNum);
+				if(stuNo=searchStudent(ppStu,cpNo)&&alert())
+				delStudent(ppStu,stuNo,&stuNum);
 				saveStudent(ppStu);
 				system("cls");
 				break;

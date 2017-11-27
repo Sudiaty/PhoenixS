@@ -35,7 +35,7 @@ char** echoStudent(Student *ppStu[MAX_STU_NO]);
 
 long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10]);
 
-void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum);
+void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum);
 
 void altStudent(Student *ppStu[MAX_STU_NO], long *lNo);
 
