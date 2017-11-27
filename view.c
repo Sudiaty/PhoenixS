@@ -99,10 +99,10 @@ void dialog(char content[10])
 
 /****************************************
 * Author:LiuXL;
-* Function:form();
+* Function:Form();
 * Description:Form used to input.
 ****************************************/
-void form(Form *cpForm[MAX_ROW])
+void userForm(Form *cpForm[MAX_ROW])
 {
 	int i;
 	for (i = 0; i<MAX_ROW&&cpForm[i]->m_cpTitle!=NULL; i++)

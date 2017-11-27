@@ -37,7 +37,6 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 		exit(0);
 	}
 
-	//获取当前学生人数
 	for (i = 0; i<MAX_STU_NO&&ppStu[i]!=NULL; i++)
 	{
 		//写入数据至Student.dat

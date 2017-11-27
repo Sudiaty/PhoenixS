@@ -30,7 +30,7 @@ void echo(char content[10]);
 
 void dialog(char content[10]);
 
-void form(Form *ppForm[MAX_ROW]);
+void Form(Form *ppForm[MAX_ROW]);
 
 int alert();
 

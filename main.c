@@ -137,7 +137,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				dialog("学生数据录入");
 				do
 				{
-					form(ppStuForm);
+					userForm(ppStuForm);
 					DST_SPPI(Student,ppStu,stuNum);
 					addStudent(ppStu,ppStuForm,&stuNum);
 					saveStudent(ppStu);

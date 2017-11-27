@@ -19,7 +19,7 @@
 #include "view.h"
 #include "student.h"
 #include "course.h"
-#include "point.h"
+#include "Point.h"
 
 #define INIT_SPP(pp,top) for(int i=0;i<top;i++)pp[i]=0x0                //初始化结构体指针，解决Windows段错误（未初始化的结构体指针数组不全为空；
 

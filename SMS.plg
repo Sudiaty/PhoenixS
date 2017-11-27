@@ -1,0 +1,199 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: SMS - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Sudiaty\AppData\Local\Temp\RSPCDAD.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/SMS.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Dev\PhoenixS\main.c"
+]
+Creating command line "cl.exe @C:\Users\Sudiaty\AppData\Local\Temp\RSPCDAD.tmp" 
+<h3>Output Window</h3>
+Compiling...
+main.c
+c:\dev\phoenixs\main.c(23) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(23) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(23) : error C2143: syntax error : missing ')' before 'type'
+c:\dev\phoenixs\main.c(23) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(23) : error C2065: 'i' : undeclared identifier
+c:\dev\phoenixs\main.c(23) : warning C4552: '<' : operator has no effect; expected operator with side-effect
+c:\dev\phoenixs\main.c(23) : error C2059: syntax error : ')'
+c:\dev\phoenixs\main.c(24) : error C2143: syntax error : missing ';' before '{'
+c:\dev\phoenixs\main.c(32) : error C2275: 'Course' : illegal use of this type as an expression
+        c:\dev\phoenixs\course.h(21) : see declaration of 'Course'
+c:\dev\phoenixs\main.c(32) : error C2065: 'ppCourse' : undeclared identifier
+c:\dev\phoenixs\main.c(32) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(33) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(33) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(33) : error C2143: syntax error : missing ')' before 'type'
+c:\dev\phoenixs\main.c(33) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(33) : warning C4552: '<' : operator has no effect; expected operator with side-effect
+c:\dev\phoenixs\main.c(33) : error C2059: syntax error : ')'
+c:\dev\phoenixs\main.c(34) : error C2143: syntax error : missing ';' before '{'
+c:\dev\phoenixs\main.c(35) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(35) : warning C4047: '=' : 'int ' differs in levels of indirection from 'struct CourseClass *'
+c:\dev\phoenixs\main.c(35) : error C2106: '=' : left operand must be l-value
+c:\dev\phoenixs\main.c(41) : error C2065: 'Point' : undeclared identifier
+c:\dev\phoenixs\main.c(41) : error C2065: 'ppPoint' : undeclared identifier
+c:\dev\phoenixs\main.c(41) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(41) : warning C4552: '*' : operator has no effect; expected operator with side-effect
+c:\dev\phoenixs\main.c(42) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(42) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(42) : error C2143: syntax error : missing ')' before 'type'
+c:\dev\phoenixs\main.c(42) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(42) : warning C4552: '<' : operator has no effect; expected operator with side-effect
+c:\dev\phoenixs\main.c(42) : error C2059: syntax error : ')'
+c:\dev\phoenixs\main.c(43) : error C2143: syntax error : missing ';' before '{'
+c:\dev\phoenixs\main.c(44) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(44) : error C2106: '=' : left operand must be l-value
+c:\dev\phoenixs\main.c(52) : error C2275: 'Form' : illegal use of this type as an expression
+        c:\dev\phoenixs\view.h(19) : see declaration of 'Form'
+c:\dev\phoenixs\main.c(52) : error C2065: 'ppStuForm' : undeclared identifier
+c:\dev\phoenixs\main.c(52) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(54) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(54) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(54) : error C2143: syntax error : missing ')' before 'type'
+c:\dev\phoenixs\main.c(54) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(54) : warning C4552: '<' : operator has no effect; expected operator with side-effect
+c:\dev\phoenixs\main.c(54) : error C2059: syntax error : ')'
+c:\dev\phoenixs\main.c(55) : error C2143: syntax error : missing ';' before '{'
+c:\dev\phoenixs\main.c(57) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(57) : warning C4047: '=' : 'int ' differs in levels of indirection from 'struct FormClass *'
+c:\dev\phoenixs\main.c(57) : error C2106: '=' : left operand must be l-value
+c:\dev\phoenixs\main.c(59) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(59) : error C2223: left of '->m_cpTitle' must point to struct/union
+c:\dev\phoenixs\main.c(59) : error C2198: 'strcpy' : too few actual parameters
+c:\dev\phoenixs\main.c(60) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(60) : error C2223: left of '->m_cpTitle' must point to struct/union
+c:\dev\phoenixs\main.c(60) : error C2198: 'strcpy' : too few actual parameters
+c:\dev\phoenixs\main.c(61) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(61) : error C2223: left of '->m_cpTitle' must point to struct/union
+c:\dev\phoenixs\main.c(61) : error C2198: 'strcpy' : too few actual parameters
+c:\dev\phoenixs\main.c(62) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(62) : error C2223: left of '->m_cpTitle' must point to struct/union
+c:\dev\phoenixs\main.c(62) : error C2198: 'strcpy' : too few actual parameters
+c:\dev\phoenixs\main.c(68) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(70) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(72) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(77) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(78) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(79) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(80) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(89) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(90) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(91) : error C2143: syntax error : missing ';' before 'type'
+c:\dev\phoenixs\main.c(94) : warning C4047: 'function' : 'struct PointClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(94) : warning C4024: 'getPoint' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(98) : error C2065: 'menuList' : undeclared identifier
+c:\dev\phoenixs\main.c(98) : warning C4047: 'function' : 'char (*)[20]' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(98) : warning C4024: 'list' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(100) : error C2065: 'mainItem' : undeclared identifier
+c:\dev\phoenixs\main.c(105) : error C2065: 'stuMenu' : undeclared identifier
+c:\dev\phoenixs\main.c(105) : warning C4047: 'function' : 'char (*)[20]' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(105) : warning C4024: 'list' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(107) : error C2065: 'stuItem' : undeclared identifier
+c:\dev\phoenixs\main.c(111) : error C2065: 'courseMenu' : undeclared identifier
+c:\dev\phoenixs\main.c(111) : warning C4047: 'function' : 'char (*)[20]' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(111) : warning C4024: 'list' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(113) : error C2065: 'courseItem' : undeclared identifier
+c:\dev\phoenixs\main.c(117) : error C2065: 'pointMenu' : undeclared identifier
+c:\dev\phoenixs\main.c(117) : warning C4047: 'function' : 'char (*)[20]' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(117) : warning C4024: 'list' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(119) : error C2065: 'pointItem' : undeclared identifier
+c:\dev\phoenixs\main.c(137) : error C2065: 'cpStuTmp' : undeclared identifier
+c:\dev\phoenixs\main.c(137) : warning C4047: '=' : 'int ' differs in levels of indirection from 'char ** '
+c:\dev\phoenixs\main.c(138) : warning C4047: 'function' : 'char ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(138) : warning C4024: 'table' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(145) : warning C4047: 'function' : 'struct FormClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(145) : warning C4024: 'form' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(146) : warning C4047: 'function' : 'struct FormClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(146) : warning C4024: 'addStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(154) : error C2065: 'cpNo' : undeclared identifier
+c:\dev\phoenixs\main.c(154) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(154) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(162) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(162) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(163) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(163) : warning C4024: 'delStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(190) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(190) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(192) : error C2065: 'cpCourseTmp' : undeclared identifier
+c:\dev\phoenixs\main.c(192) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(192) : warning C4024: 'echoCourse' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(192) : warning C4047: '=' : 'int ' differs in levels of indirection from 'char ** '
+c:\dev\phoenixs\main.c(193) : warning C4047: 'function' : 'char ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(193) : warning C4024: 'table' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(204) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(204) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(206) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(206) : warning C4024: 'searchCourse' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(206) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(206) : warning C4024: 'searchCourse' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(206) : error C2065: 'cpCourseNo' : undeclared identifier
+c:\dev\phoenixs\main.c(206) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(206) : warning C4024: 'searchCourse' : different types for formal and actual parameter 4
+c:\dev\phoenixs\main.c(208) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(208) : warning C4024: 'delCourse' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(208) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(208) : warning C4024: 'delCourse' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(215) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(215) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(216) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(216) : warning C4024: 'printCourse' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(216) : warning C4047: '=' : 'int ' differs in levels of indirection from 'char ** '
+c:\dev\phoenixs\main.c(217) : warning C4047: 'function' : 'char ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(217) : warning C4024: 'table' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(240) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(240) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(241) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(241) : warning C4024: 'printCourse' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(241) : warning C4047: '=' : 'int ' differs in levels of indirection from 'char ** '
+c:\dev\phoenixs\main.c(242) : warning C4047: 'function' : 'char ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(242) : warning C4024: 'table' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(245) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(245) : warning C4024: 'searchCourse' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(245) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(245) : warning C4024: 'searchCourse' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(245) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(245) : warning C4024: 'searchCourse' : different types for formal and actual parameter 4
+c:\dev\phoenixs\main.c(246) : error C2065: 'pTmp' : undeclared identifier
+c:\dev\phoenixs\main.c(246) : error C2059: syntax error : ')'
+c:\dev\phoenixs\main.c(247) : error C2109: subscript requires array or pointer type
+c:\dev\phoenixs\main.c(247) : error C2106: '=' : left operand must be l-value
+c:\dev\phoenixs\main.c(248) : warning C4047: 'function' : 'struct PointClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(248) : warning C4024: 'addPoint' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(248) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(248) : warning C4024: 'addPoint' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(248) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(248) : warning C4024: 'addPoint' : different types for formal and actual parameter 4
+c:\dev\phoenixs\main.c(250) : warning C4047: 'function' : 'struct PointClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(250) : warning C4024: 'savePoint' : different types for formal and actual parameter 1
+c:\dev\phoenixs\main.c(251) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(251) : warning C4024: 'calGPA' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(251) : warning C4047: 'function' : 'struct PointClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(251) : warning C4024: 'calGPA' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(251) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(251) : warning C4024: 'calGPA' : different types for formal and actual parameter 4
+c:\dev\phoenixs\main.c(258) : warning C4047: 'function' : 'char *' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(258) : warning C4024: 'searchStudent' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(264) : error C2065: 'cpPointTmp' : undeclared identifier
+c:\dev\phoenixs\main.c(264) : warning C4047: 'function' : 'struct CourseClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(264) : warning C4024: 'echoPoint' : different types for formal and actual parameter 2
+c:\dev\phoenixs\main.c(264) : warning C4047: 'function' : 'struct PointClass ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(264) : warning C4024: 'echoPoint' : different types for formal and actual parameter 3
+c:\dev\phoenixs\main.c(264) : warning C4047: '=' : 'int ' differs in levels of indirection from 'char ** '
+c:\dev\phoenixs\main.c(265) : warning C4047: 'function' : 'char ** ' differs in levels of indirection from 'int '
+c:\dev\phoenixs\main.c(265) : warning C4024: 'table' : different types for formal and actual parameter 1
+Ö´ÐÐ cl.exe Ê±³ö´í.
+
+
+
+<h3>Results</h3>
+main.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
