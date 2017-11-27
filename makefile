@@ -1,3 +1,3 @@
 #This is make file
-build.out:main.c view.c student.c course.c
-	gcc main.c view.c student.c course.c point.c -o build.out -g -std=c99
+build.exe:main.c view.c student.c course.c
+	gcc main.c view.c student.c course.c point.c -o build.exe -g -std=c99

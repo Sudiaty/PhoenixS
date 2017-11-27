@@ -11,7 +11,7 @@
 
 #include "student.h"
 
-//åˆ›å»ºæˆç»©ä¿¡æ¯
+//´´½¨³É¼¨ĞÅÏ¢
 typedef struct PointClass
 {
 	char m_cpCourseNo[10];
@@ -19,7 +19,7 @@ typedef struct PointClass
 	float m_fGoal;
 }Point;
 
-//å£°æ˜pointå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
+//ÉùÃ÷point¶ÔÏó¾ßÓĞµÄ·½·¨
 void addPoint(Student *ppStu[MAX_STU_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpNo[10],char cpCourseNo[10],int *pointNum);
 
 void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO]);
