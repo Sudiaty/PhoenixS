@@ -104,6 +104,7 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	char **cpStuTable;
 	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 4) * sizeof(char*));
+	for (int i = 0; i < MAX_STU_NO*4+4; i++) cpStuTable[i] = 0x0;
 	cpStuTable[0] = "学号";
 	cpStuTable[1] = "姓名";
 	cpStuTable[2] = "性别";
