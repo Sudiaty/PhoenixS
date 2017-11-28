@@ -12,10 +12,12 @@
 ****************************************/
 void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
 {
+	int iStuCourseNo = 0;
 	strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
+	for (iStuCourseNo=0;iStuCourseNo<MAX_SUB_NO;iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo],"\0");
 	(*stuNum)++;
 }
 

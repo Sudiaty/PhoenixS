@@ -41,10 +41,10 @@ void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
 	char cpMajor[10];
 	int j;
 	stuNo--;
-	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo-1]->m_cpMajor[j],"\0")!=0;j++);
+	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0")!=0;j++);
 	printf("ÇëÊäÈë¿Î³Ì´úÂë£º");
 	scanf("%s",cpMajor);
-	strcpy(ppStu[stuNo-1]->m_cpMajor[j],cpMajor);
+	strcpy(ppStu[stuNo]->m_cpMajor[j],cpMajor);
 }
 
 
