@@ -199,11 +199,11 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 2:
 				system("cls");
 				dialog("  退选课程  ");
-				if(searchStudent(ppStu,cpNo))
+				if(stuNo=searchStudent(ppStu,cpNo))
 				{
-					searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
+					courseNo=searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
 					if(alert())
-					delCourse(ppStu,cpNo,cpCourseNo);
+					delCourse(ppStu,ppCourse,stuNo,courseNo);
 					saveStudent(ppStu);
 				}
 				break;
@@ -242,9 +242,9 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					table(cpCourseTmp,5);
 					do
 					{
-						searchCourse(ppStu,ppCourse,cpNo,cpCourseNo);
+						searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
 						DST_SPPI(Point,ppPoint,pointNum)
-						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);
+						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);			//searchCourse参数传递
 					}while(alert());
 					savePoint(ppPoint);
 					calGPA(ppStu,ppCourse,ppPoint,cpNo);
