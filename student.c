@@ -78,9 +78,10 @@ void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 * Function:searchStudent();
 * Description:通过学号获取学生序数
 ****************************************/
-long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
+long searchStudent(Student *ppStu[MAX_STU_NO])
 {
 	long i = 0;
+	char cpNo[10];
 	printf("\n请输入学生的学号：");
 	scanf("%s", cpNo);
 	for (i = 0; ppStu[i]!=NULL&&i<MAX_STU_NO; i++)

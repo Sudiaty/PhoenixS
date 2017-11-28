@@ -86,51 +86,45 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 float calGPA(Student *ppStu[MAX_STU_NO],
 	Course *ppCourse[MAX_SUB_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
-	char cpNo[10])
+	long stuNo)
 {
 	float fpPoint[MAX_SUB_NO][2],fGPA=0,fSumPoint=0,fSumGoal=0;
-	for(int i=0;i<MAX_STU_NO;i++)			//对学生表遍历
+	int j=0;		//指定学生的课程序数
+	stuNo--;
+	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0");j++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		for(int k=0;k<MAX_SUB_NO;k++)				//对课程表遍历，k为第j+1们课程在pChem中的序数
 		{
-			int j=0;		//指定学生的课程序数
-			for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[j],"\0");j++)
+			if(!strcmp(ppStu[stuNo]->m_cpMajor[j],ppCourse[k]->m_cpCourseNo))
 			{
-				for(int k=0;k<MAX_SUB_NO;k++)				//对课程表遍历，k为第j+1们课程在pChem中的序数
+				fpPoint[j][0]=ppCourse[k]->m_fGoal;				//统计已选课程学分
+				for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//对成绩数组遍历
 				{
-					if(!strcmp(ppStu[i]->m_cpMajor[j],ppCourse[k]->m_cpCourseNo))
+					if(ppPoint[m]==NULL)
 					{
-						fpPoint[j][0]=ppCourse[k]->m_fGoal;				//统计已选课程学分
-						for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//对成绩数组遍历
-						{
-							if(ppPoint[m]==NULL)
-							{
-								printf("没有“%s”的成绩记录！\n",ppCourse[k]->m_cpCourseName);				//Debug
-								fpPoint[j][1]=0;
-								break;
-							}
-							if(!strcmp(cpNo,ppPoint[m]->m_cpNo)&&!strcmp(ppCourse[k]->m_cpCourseNo,ppPoint[m]->m_cpCourseNo))
-							{
-								// printf("1\n");		//Debug
-								fpPoint[j][1]=0.05*ppPoint[m]->m_fGoal;
-								break;
-							}
-						}
-						break;				//找到指定课程后跳出循环
+						printf("没有“%s”的成绩记录！\n",ppCourse[k]->m_cpCourseName);				//Debug
+						fpPoint[j][1]=0;
+						break;
+					}
+					if(!strcmp(ppStu[stuNo]->m_cpNo,ppPoint[m]->m_cpNo)&&!strcmp(ppCourse[k]->m_cpCourseNo,ppPoint[m]->m_cpCourseNo))
+					{
+						// printf("1\n");		//Debug
+						fpPoint[j][1]=0.05*ppPoint[m]->m_fGoal;
+						break;
 					}
 				}
+				break;				//找到指定课程后跳出循环
 			}
-			for(int n=0;n<j;n++)
-			{
-				fSumPoint+=fpPoint[n][0];
-				fSumGoal+=fpPoint[n][1]*fpPoint[n][0];
-			}
-			fGPA=fSumGoal/fSumPoint;
-			ppStu[i]->m_fPoint=fGPA;
-			// printf("%.2f",fGPA);				//Debug
-			break;			//找到指定学生后跳出循环
 		}
 	}
+	for(int n=0;n<j;n++)
+	{
+		fSumPoint+=fpPoint[n][0];
+		fSumGoal+=fpPoint[n][1]*fpPoint[n][0];
+	}
+	fGPA=fSumGoal/fSumPoint;
+	ppStu[stuNo]->m_fPoint=fGPA;
+	// printf("%.2f",fGPA);				//Debug
 	return fGPA;
 }
 

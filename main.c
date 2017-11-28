@@ -60,7 +60,6 @@ int main()
 
 /*主界面相关变量声明*/
 	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
-	char cpNo[10];				//用于查找学生的变量
 	char cpCourseNo[10];			//用于查找课程的变量
 
 /****************************************
@@ -148,7 +147,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				dialog("修改学生信息");
 				do
 				{
-					if(stuNo=searchStudent(ppStu,cpNo))
+					if(stuNo=searchStudent(ppStu))
 						altStudent(ppStu,&stuNo);
 						saveStudent(ppStu);
 				}while(alert());
@@ -156,7 +155,8 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				break;
 			case 4:
 				dialog("删除学生学籍");
-				if(stuNo=searchStudent(ppStu,cpNo)&&alert())
+				stuNo = searchStudent(ppStu);
+				if(alert())
 				delStudent(ppStu,stuNo,&stuNum);
 				saveStudent(ppStu);
 				system("cls");
@@ -184,7 +184,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 1:
 				system("cls");
 				dialog("  添加课程  ");
-				if(stuNo=searchStudent(ppStu,cpNo))
+				if(stuNo=searchStudent(ppStu))
 				{
 					cpCourseTmp=echoCourse(ppCourse);
 					table(cpCourseTmp,3);
@@ -199,7 +199,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 2:
 				system("cls");
 				dialog("  退选课程  ");
-				if(stuNo=searchStudent(ppStu,cpNo))
+				if(stuNo=searchStudent(ppStu))
 				{
 					courseNo=searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
 					if(alert())
@@ -210,7 +210,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 3:
 				system("cls");
 				dialog("  打印课表  ");
-				if(stuNo=searchStudent(ppStu,cpNo)){
+				if(stuNo=searchStudent(ppStu)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					echo("个人课表打印");
 					table(cpCourseTmp,5);
@@ -236,7 +236,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 1:
 				system("cls");
 				dialog("  成绩录入  ");
-				if(stuNo=searchStudent(ppStu,cpNo)){
+				if(stuNo=searchStudent(ppStu)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					echo("已开设课程");
 					table(cpCourseTmp,5);
@@ -247,7 +247,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 						addPoint(ppStu,ppPoint,stuNo,cpCourseNo,&pointNum);			//searchCourse参数传递
 					}while(alert());
 					savePoint(ppPoint);
-					calGPA(ppStu,ppCourse,ppPoint,cpNo);
+					calGPA(ppStu,ppCourse,ppPoint,stuNo);
 					saveStudent(ppStu);
 					system("cls");
 				}
@@ -255,7 +255,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 2:
 				system("cls");
 				dialog("  成绩查询  ");
-				stuNo=searchStudent(ppStu,cpNo);
+				stuNo=searchStudent(ppStu);
 				if(stuNo)
 				{
 					stuNo-=1;

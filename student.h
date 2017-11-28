@@ -33,7 +33,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO]);
 
 char** echoStudent(Student *ppStu[MAX_STU_NO]);
 
-long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10]);
+long searchStudent(Student *ppStu[MAX_STU_NO]);
 
 void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum);
 
