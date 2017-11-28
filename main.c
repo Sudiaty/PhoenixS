@@ -244,7 +244,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					{
 						searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
 						DST_SPPI(Point,ppPoint,pointNum)
-						addPoint(ppStu,ppPoint,cpNo,cpCourseNo,&pointNum);			//searchCourse参数传递
+						addPoint(ppStu,ppPoint,stuNo,cpCourseNo,&pointNum);			//searchCourse参数传递
 					}while(alert());
 					savePoint(ppPoint);
 					calGPA(ppStu,ppCourse,ppPoint,cpNo);

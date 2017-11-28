@@ -13,26 +13,20 @@
 ****************************************/
 void addPoint(Student *ppStu[MAX_STU_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
-	char cpNo[10],char cpCourseNo[10],int *pointNum)
+	long stuNo,char cpCourseNo[10],int *pointNum)
 {
 	float fGoal;
-    for(int i=0;i<MAX_STU_NO;i++)
+	stuNo--;
+	for(int j=0;j<MAX_STU_NO;j++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		if(strcmp(ppStu[stuNo]->m_cpMajor[j],cpCourseNo)==0)
 		{
-			for(int j=0;j<MAX_STU_NO;j++)
-			{
-				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
-				{
-					printf("请输入成绩：");
-					scanf("%f",&fGoal);
-					strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
-					strcpy(ppPoint[*pointNum]->m_cpNo,cpNo);
-					ppPoint[*pointNum]->m_fGoal=fGoal;
-					(*pointNum)++;
-					break;
-				}
-			}
+			printf("请输入成绩：");
+			scanf("%f",&fGoal);
+			strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
+			strcpy(ppPoint[*pointNum]->m_cpNo, ppStu[stuNo]->m_cpNo);
+			ppPoint[*pointNum]->m_fGoal=fGoal;
+			(*pointNum)++;
 			break;
 		}
 	}
