@@ -1,8 +1,41 @@
-// stdafx.cpp : åªåŒ…æ‹¬æ ‡å‡†åŒ…å«æ–‡ä»¶çš„æºæ–‡ä»¶
-// SMS.pch å°†ä½œä¸ºé¢„ç¼–è¯‘æ ‡å¤´
-// stdafx.obj å°†åŒ…å«é¢„ç¼–è¯‘ç±»å‹ä¿¡æ¯
+// stdafx.cpp : Ö»°üÀ¨±ê×¼°üº¬ÎÄ¼şµÄÔ´ÎÄ¼ş
+// SMS.pch ½«×÷ÎªÔ¤±àÒë±êÍ·
+// stdafx.obj ½«°üº¬Ô¤±àÒëÀàĞÍĞÅÏ¢
 
+#include <string.h>
 #include "stdafx.h"
 
-// TODO: åœ¨ STDAFX.H ä¸­å¼•ç”¨ä»»ä½•æ‰€éœ€çš„é™„åŠ å¤´æ–‡ä»¶ï¼Œ
-//è€Œä¸æ˜¯åœ¨æ­¤æ–‡ä»¶ä¸­å¼•ç”¨
+/****************************************
+* Author:LiuXL;
+* Function:exportTable();
+* Description:Save the info to Point.dat.
+****************************************/
+void exportTable(char** cpTableTmp,char fileName[20],int iRow)
+{
+	FILE *fp;
+	int i = 0,j=0;
+	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>µ¼³öÎÄ¼ş</title></head><body><table>";
+	char endHtml[1000]="</table></body></html>";
+
+	//char fileExtension[10] = ".html";
+	//strcat(fileName, fileExtension);
+	if ((fp = fopen(fileName, "w")) == NULL)
+	{
+		printf("Fail to open file!\n");
+		exit(0);
+	}
+	fprintf(fp, "%s",startHtml);
+	fprintf(fp,"\n<thead>%s</thead>\n",fileName);
+	for (i = 0; cpTableTmp[i*iRow] != NULL; i++)
+	{	
+		fprintf(fp, "<tr>\n");
+		for(j=0;j<iRow;j++)
+			fprintf(fp, "<th>%s</th>\n", cpTableTmp[iRow*i+j]);
+		fprintf(fp, "</tr>\n");
+	}
+	fprintf(fp, "%s",endHtml);
+	fclose(fp);
+}
+
+// TODO: ÔÚ STDAFX.H ÖĞÒıÓÃÈÎºÎËùĞèµÄ¸½¼ÓÍ·ÎÄ¼ş£¬
+//¶ø²»ÊÇÔÚ´ËÎÄ¼şÖĞÒıÓÃ
