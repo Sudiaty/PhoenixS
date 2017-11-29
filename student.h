@@ -37,7 +37,7 @@ long searchStudent(Student *ppStu[MAX_STU_NO]);
 
 void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum);
 
-void altStudent(Student *ppStu[MAX_STU_NO], long lNo);
+int altStudent(Student *ppStu[MAX_STU_NO], long lNo);
 
 char* searchClass(Student *ppStu[MAX_STU_NO], char cpClass[20]);
 #endif // MODEL_H

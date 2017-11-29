@@ -118,26 +118,28 @@ void userForm(Form *cpForm[MAX_ROW])
 
 /****************************************
 * Author:LiuXL,ZhangLY;
-* Function:alert();
+* Function:alert("");
 * Description:
 ****************************************/
-int alert()
+int alert(char content[20])
 {
 	int sign, status = 0;
 	do
 	{
 		theme(207);
 		printf("———————————————————————\n");
-		printf("%11s%s%11s\n","","是否继续？1.继续，0.终止","");
+		printf("%6s%10s%s%6s\n","",content,"是否继续？1.继续，0.终止","");
 		printf("———————————————————————\n");	
 		theme(0);
 		scanf("%d", &sign);
 		printf("\n");
 		if (sign != 1 && sign != 0) {
 			printf("指令有误，请重新输入：\n");
+			sign = 0;
 			status = 1;
 		}
 		else {
+			status = 0;
 			return sign;
 		}
 	} while (status);

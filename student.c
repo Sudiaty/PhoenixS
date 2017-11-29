@@ -140,8 +140,6 @@ void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 		ppStu[j] = ppStu[j + 1];
 	}
 	(*stuNum)--;
-	printf("正在删除......\n");
-	printf("已经删除该学生的记录\n");
 }
 
 
@@ -150,29 +148,35 @@ void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 * Function:altStudent();
 * Description:alt a student's record.;
 ****************************************/
-void altStudent(Student *ppStu[MAX_STU_NO], long lNo)
+int altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 {
 	char c,cpTmp[20];
+	int status=0;
 	lNo--;
 	printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
 	scanf("%s", &c);
-	printf("\n修改后的信息为：");
-	scanf("%s",cpTmp);
 	switch (c)
 	{
-		case 'n':
-			strcpy(ppStu[lNo]->m_cpName,cpTmp);
-			break;
-		case 's':
-			strcpy(ppStu[lNo]->m_cpGender,cpTmp);
-			break;
-		case 'c':
-			strcpy(ppStu[lNo]->m_cpClass,cpTmp);
-			break;
-		default:
-			printf("非法输入！\n");
-			break;
+	case 'n':
+		printf("\n修改后的姓名为：");
+		scanf("%s", ppStu[lNo]->m_cpName);
+		//strcpy(ppStu[lNo]->m_cpName, cpTmp);
+		break;
+	case 's':
+		printf("\n修改后的性别为：");
+		scanf("%s", ppStu[lNo]->m_cpGender);
+		//strcpy(ppStu[lNo]->m_cpGender, cpTmp);
+		break;
+	case 'c':
+		printf("\n修改后的班级为：");
+		scanf("%s", ppStu[lNo]->m_cpClass);
+		//strcpy(ppStu[lNo]->m_cpClass, cpTmp);
+		break;
+	default:
+		printf("非法输入！\n");
+		return 0;
 	}
+	return 1;
 }
 
 /****************************************
