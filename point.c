@@ -218,3 +218,52 @@ char** echoTotalPoint(Student *ppStu[MAX_STU_NO],char cpClass[20])
 	sprintf(cpStuTable[j++], "%.2f", fAvg);
 	return cpStuTable;
 }
+
+/****************************************
+* Author:LiuXL;
+* Function:echoSubPoint();
+* Description:返回指定班级的成绩单
+****************************************/
+char** echoSubPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO], Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpClass[20],int courseNo)
+{
+	float fSum = 0, fAvg = 0;
+	int iNo = 0;
+	char **cpStuTable;
+	int j = 4, Row = 0;
+	courseNo--;
+	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 8) * sizeof(char*));
+	for (int i = 0; i < MAX_STU_NO * 4 + 4; i++) cpStuTable[i] = 0x0;
+	cpStuTable[0] = "学号";
+	cpStuTable[1] = "姓名";
+	cpStuTable[2] = "班级";
+	cpStuTable[3] = "分数";
+	for (int iPointNo = 0; ppPoint[iPointNo] != NULL; iPointNo++)
+	{
+		if (strcmp(ppCourse[courseNo]->m_cpCourseNo, ppPoint[iPointNo]->m_cpCourseNo) == 0)
+		{
+			for (int iStuNo = 0; ppStu[iStuNo] != NULL; iStuNo++)				//对学生进行遍历，匹配课程代码
+			{
+				if (strcmp(ppStu[iStuNo]->m_cpNo, ppPoint[iPointNo]->m_cpNo) == 0 && strcmp(ppStu[iStuNo]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+				{
+					cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpNo);
+					cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpName);
+					cpStuTable[4 * Row + 6] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpClass);
+					cpStuTable[4 * Row + 7] = (char *)malloc(20 * sizeof(char));
+					sprintf(cpStuTable[j++], "%.2f", ppPoint[iPointNo]->m_fGoal);
+					fSum += ppPoint[iPointNo]->m_fGoal;
+					iNo++;
+					Row++;
+				}
+			}
+		}
+	}
+	fAvg = fSum / iNo;
+	cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+	cpStuTable[j++] = "平均分：";
+	cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+	sprintf(cpStuTable[j++], "%.2f", fAvg);
+	return cpStuTable;
+}

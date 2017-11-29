@@ -32,4 +32,6 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *
 
 char** echoTotalPoint(Student *ppStu[MAX_STU_NO], char cpClass[20]);
 
+char** echoSubPoint(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], char cpClass[20], int courseNo);
+
 #endif

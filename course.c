@@ -94,7 +94,7 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 * Function:searchCourse();				
 * Description:验证课程是否存在
 ****************************************/
-int searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo,char cpCourseNo[10])
+int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 {
 	int iCourseNo=0;
 	printf("\n请输入课程代码：");
@@ -105,7 +105,7 @@ int searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long st
 		{
 			printf("该课程记录如下：\n");
 			printf("|\t代码\t|\t课程名称\t|\t学分\t|\n");
-			printf("|\t%s\t|\t%s\t|\t%2.f\t|\n",ppCourse[iCourseNo]->m_cpCourseNo,ppCourse[iCourseNo]->m_cpCourseName,ppCourse[iCourseNo]->m_fGoal);
+			printf("|\t%s\t|\t%s\t|\t%2.f\t|\n\n",ppCourse[iCourseNo]->m_cpCourseNo,ppCourse[iCourseNo]->m_cpCourseName,ppCourse[iCourseNo]->m_fGoal);
 			return iCourseNo+1;
 		}
 	}

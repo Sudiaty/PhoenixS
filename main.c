@@ -57,10 +57,10 @@ int main()
 	char stuList[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","  返回  ","  退出  "};
 	char courseList[MAX_ROW][20]={"添加课程","退选课程","课表查询","  返回  "};
 	char pointList[MAX_ROW][20]={"成绩录入","成绩查询","成绩统计","  返回  "};
-	char totalList[MAX_ROW][20] = { "班级成绩","" };
+	char totalList[MAX_ROW][20] = { "班级成绩","单科成绩","  返回  ","  退出  "};
 
 /*主界面相关变量声明*/
-	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
+	int mainItem, stuItem = 0, courseItem = 0, pointItem = 0,pointTotalItem = 0;				//用于判断选项的变量
 	char cpCourseNo[10];			//用于查找课程的变量
 	char cpClass[20];
 
@@ -203,7 +203,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				dialog("  退选课程  ");
 				if(stuNo=searchStudent(ppStu))
 				{
-					courseNo=searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
+					courseNo=searchCourse(ppCourse,cpCourseNo);
 					if(alert())
 					delCourse(ppStu,ppCourse,stuNo,courseNo);
 					saveStudent(ppStu);
@@ -244,7 +244,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					table(cpCourseTmp,5);
 					do
 					{
-						searchCourse(ppStu,ppCourse,stuNo,cpCourseNo);
+						searchCourse(ppCourse,cpCourseNo);
 						DST_SPPI(Point,ppPoint,pointNum)
 						addPoint(ppStu,ppPoint,stuNo,cpCourseNo,&pointNum);			//searchCourse参数传递
 					}while(alert());
@@ -268,11 +268,39 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				break;
 			case 3:
 				system("cls");
+				totalMenu:
 				dialog("  成绩统计  ");
-				if (searchClass(ppStu, cpClass))
-					cpPointTmp = echoTotalPoint(ppStu, cpClass);
-				table(cpPointTmp, 4);
-				break;
+				list(totalList);
+				printf("\n请输入菜单项数字(1 - 4):");
+				scanf("%d", &pointTotalItem);
+				switch (pointTotalItem)
+				{
+				case 1:
+					system("cls");
+					dialog("班级成绩统计");
+					if (searchClass(ppStu, cpClass))
+						cpPointTmp = echoTotalPoint(ppStu, cpClass);
+					table(cpPointTmp, 4);
+					goto totalMenu;
+				case 2:
+					system("cls");
+					dialog("单科成绩统计");
+					if (searchClass(ppStu, cpClass)&&(courseNo=searchCourse(ppCourse,cpCourseNo)))
+						cpPointTmp = echoSubPoint(ppStu,ppCourse,ppPoint,cpClass,courseNo);
+					table(cpPointTmp, 4);
+					goto totalMenu;
+				case 3:
+					system("cls");
+					pointTotalItem = 0;
+					goto pointMenu;
+					break;
+				case 4:
+					exit(0);
+				default:
+					system("cls");
+					dialog("  非法输入！");
+					goto totalMenu;
+				}
 			case 4:
 				system("cls");
 				pointItem=0;

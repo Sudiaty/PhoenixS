@@ -184,9 +184,10 @@ char* searchClass(Student *ppStu[MAX_STU_NO],char cpClass[20])
 	int i = 0;
 	printf("\n请输入班级(*表示所有班级)：");
 	scanf("%s", cpClass);
-	for (i = 0; ppStu[i] != NULL&&i<MAX_STU_NO&&(strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0); i++)
+	for (i = 0; ppStu[i]!= NULL&&i<MAX_STU_NO; i++)
 	{
-		return cpClass;
+		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+			return cpClass;
 	}
 	printf("\n不存在该班级！\n");
 	return NULL;
