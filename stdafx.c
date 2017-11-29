@@ -1,6 +1,6 @@
-// stdafx.cpp : Ö»°üÀ¨±ê×¼°üº¬ÎÄ¼şµÄÔ´ÎÄ¼ş
-// SMS.pch ½«×÷ÎªÔ¤±àÒë±êÍ·
-// stdafx.obj ½«°üº¬Ô¤±àÒëÀàĞÍĞÅÏ¢
+// stdafx.cpp : åªåŒ…æ‹¬æ ‡å‡†åŒ…å«æ–‡ä»¶çš„æºæ–‡ä»¶
+// SMS.pch å°†ä½œä¸ºé¢„ç¼–è¯‘æ ‡å¤´
+// stdafx.obj å°†åŒ…å«é¢„ç¼–è¯‘ç±»å‹ä¿¡æ¯
 
 #include <string.h>
 #include "stdafx.h"
@@ -14,7 +14,7 @@ void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 {
 	FILE *fp;
 	int i = 0,j=0;
-	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>µ¼³öÎÄ¼ş</title></head><body><table>";
+	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>å¯¼å‡ºæ–‡ä»¶</title></head><body><table>";
 	char endHtml[1000]="</table></body></html>";
 
 	//char fileExtension[10] = ".html";
@@ -37,5 +37,5 @@ void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 	fclose(fp);
 }
 
-// TODO: ÔÚ STDAFX.H ÖĞÒıÓÃÈÎºÎËùĞèµÄ¸½¼ÓÍ·ÎÄ¼ş£¬
-//¶ø²»ÊÇÔÚ´ËÎÄ¼şÖĞÒıÓÃ
+// TODO: åœ¨ STDAFX.H ä¸­å¼•ç”¨ä»»ä½•æ‰€éœ€çš„é™„åŠ å¤´æ–‡ä»¶ï¼Œ
+//è€Œä¸æ˜¯åœ¨æ­¤æ–‡ä»¶ä¸­å¼•ç”¨

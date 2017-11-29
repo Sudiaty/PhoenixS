@@ -10,7 +10,7 @@
 
 #include "student.h"
 
-//´´½¨¿Î±íĞÅÏ¢
+//åˆ›å»ºè¯¾è¡¨ä¿¡æ¯
 typedef struct CourseClass
 {
 	char m_cpCourseNo[10];
@@ -20,16 +20,16 @@ typedef struct CourseClass
 	char m_cpTime[20];
 }Course;
 
-//ÊµÀı»¯¿Î±í
+//å®ä¾‹åŒ–è¯¾è¡¨
 static Course pChem[MAX_SUB_NO] = {
-	{ "PHY","ÆÕÍ¨ÎïÀí",4.0,"B½×201","Mon.1~2;Fri.1~2" },
-	{ "MXI","Ã«Ôó¶«Ë¼Ïë",6.0,"A312","Mon.6~7;THU.3~4" },
-	{ "ORG","ÓĞ»ú»¯Ñ§",3.5,"A212","Tue.3~5" },
-	{ "CSE","CÓïÑÔ³ÌĞòÉè¼Æ",2.5,"B½×102","Fri.8~10" },
-	{ "EEE","Ó¦ÓÃµç¹¤Ñ§",2.5,"A½×203","Wed.8~9" }
+	{ "PHY","æ™®é€šç‰©ç†",4.0,"Bé˜¶201","Mon.1~2;Fri.1~2" },
+	{ "MXI","æ¯›æ³½ä¸œæ€æƒ³",6.0,"A312","Mon.6~7;THU.3~4" },
+	{ "ORG","æœ‰æœºåŒ–å­¦",3.5,"A212","Tue.3~5" },
+	{ "CSE","Cè¯­è¨€ç¨‹åºè®¾è®¡",2.5,"Bé˜¶102","Fri.8~10" },
+	{ "EEE","åº”ç”¨ç”µå·¥å­¦",2.5,"Aé˜¶203","Wed.8~9" }
 };
 
-//ÉùÃ÷Course¶ÔÏó¾ßÓĞµÄ·½·¨
+//å£°æ˜Courseå¯¹è±¡å…·æœ‰çš„æ–¹æ³•
 char** echoCourse(Course *ppCourse[MAX_SUB_NO]);
 void addCourse(Student *ppStu[MAX_STU_NO],long stuNo);
 int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10]);
