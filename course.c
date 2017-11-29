@@ -15,10 +15,11 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 	int i,j=3;
 	char **cpCourseTable;
 	cpCourseTable = (char **)malloc((MAX_SUB_NO * 3 + 3) * sizeof(char*));
-	cpCourseTable[0] = "课程代码";
+	for (i = 0; i < MAX_SUB_NO *3+3; i++) cpCourseTable[i] = 0x0;
+	cpCourseTable[0] = "代码";
 	cpCourseTable[1] = "课程名称";
 	cpCourseTable[2] = "学分";
-	for (i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
+	for (int i = 0; i<MAX_STU_NO&&strcmp(ppCourse[i]->m_cpCourseNo, "\0"); i++)
 	{
 		cpCourseTable[3 * i + 3] = (char *)malloc(20 * sizeof(char));
 		strcpy(cpCourseTable[j++], ppCourse[i]->m_cpCourseNo);
@@ -59,12 +60,13 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 	char **cpCourseTable;
 	stuNo--;
 	cpCourseTable=(char **)malloc((MAX_SUB_NO*5+5)*sizeof(char*));
-	cpCourseTable[0]="课程代码";
+	for (int i= 0; i < MAX_SUB_NO *5+ 5; i++) cpCourseTable[i] = 0x0;
+	cpCourseTable[0]="代码";
 	cpCourseTable[1]="课程名称";
-	cpCourseTable[2]="课程学分";
-	cpCourseTable[3]="上课地点";
+	cpCourseTable[2]="学分";
+	cpCourseTable[3]="地点";
 	cpCourseTable[4]="上课时间";
-	for(n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
+	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[n],"\0")!=0;n++)
 	{
 		for(m=0;m<MAX_SUB_NO;m++)
 		{
@@ -92,31 +94,25 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 * Function:searchCourse();				
 * Description:验证课程是否存在
 ****************************************/
-char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char cpNo[10],char cpCourseNo[10])
+int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 {
-	int i,j;
-	for(i=0;i<MAX_STU_NO;i++)
+	int iCourseNo=0;
+	printf("\n请输入课程代码：");
+	scanf("%s",cpCourseNo);
+	for(iCourseNo=0;iCourseNo<MAX_SUB_NO;iCourseNo++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		if(strcmp(ppCourse[iCourseNo]->m_cpCourseNo,cpCourseNo)==0)
 		{
-			printf("\n请输入课程代码：");
-			scanf("%s",cpCourseNo);
-			for(j=0;j<MAX_SUB_NO;j++)
-			{
-				if(strcmp(ppCourse[j]->m_cpCourseNo,cpCourseNo)==0)
-				{
-					printf("该课程记录如下：\n");
-					printf("|\t课程代码\t|\t课程名称\t|\t课程学分\t|\t上课地点\t|\t上课时间\t|\n");
-					printf("|%16s|\t%4s\t|\t%4s\t|\t%16f\t|\t%16s\t|\n",ppCourse[j]->m_cpCourseNo,ppCourse[j]->m_cpCourseName,ppCourse[j]->m_fGoal,ppCourse[j]->m_cpAdress,ppCourse[j]->m_cpTime);
-					return cpCourseNo;
-				}
-			}
-			if(j==MAX_SUB_NO)
-			{
-				printf("\n不存在该课程！");
-				return NULL;
-			}
+			printf("该课程记录如下：\n");
+			printf("|\t代码\t|\t课程名称\t|\t学分\t|\n");
+			printf("|\t%s\t|\t%s\t|\t%2.f\t|\n\n",ppCourse[iCourseNo]->m_cpCourseNo,ppCourse[iCourseNo]->m_cpCourseName,ppCourse[iCourseNo]->m_fGoal);
+			return iCourseNo+1;
 		}
+	}
+	if(iCourseNo==MAX_SUB_NO)
+	{
+		printf("\n不存在该课程！\n");
+		return 0;
 	}
 }
 
@@ -125,26 +121,20 @@ char* searchCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],char 
 * Function:delCourse();				
 * Description:delete a Course for a student.
 ****************************************/
-void delCourse(Student *ppStu[MAX_STU_NO],char cpNo[10],char cpCourseNo[10])
+void delCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long iStuNo,int iCourseNo)
 {
-	int i,j,k;
-	for(i=0;i<MAX_STU_NO;i++)
+	int iStuCourseNo,k;
+	for(iStuCourseNo=0;iStuCourseNo<MAX_SUB_NO;iStuCourseNo++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		if(strcmp(ppStu[iStuNo-1]->m_cpMajor[iStuCourseNo],ppCourse[iCourseNo-1]->m_cpCourseNo)==0)
 		{
-			for(j=0;j<MAX_STU_NO;j++)
+			for(k=iStuCourseNo;k<MAX_SUB_NO&&strcmp(ppStu[iStuNo-1]->m_cpMajor[k],"\0")!=0;k++)
 			{
-				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
-				{
-					for(k=j;k<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[k],"\0")!=0;k++)
-					{
-						strcpy(ppStu[i]->m_cpMajor[k],ppStu[i]->m_cpMajor[k+1]);
-					}
-					printf("正在退课......\n");
-					printf("已经退选课程代码为%s 的课程\n",cpCourseNo);
-					break;
-				}
+				strcpy(ppStu[iStuNo-1]->m_cpMajor[k],ppStu[iStuNo-1]->m_cpMajor[k+1]);
 			}
+			printf("正在退课......\n");
+			printf("退选成功！\n");
+			break;
 		}
 	}
 }

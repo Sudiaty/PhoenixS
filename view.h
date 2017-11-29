@@ -18,17 +18,15 @@ typedef struct FormClass
 	char m_cpContent[20];
 }Form;
 
-void menuSelect();
-
-void menu();
-
 void list(char ppList[MAX_ROW][20]);
 
 void table(char **cpTable, int iRow);
 
+void echo(char content[10]);
+
 void dialog(char content[10]);
 
-void form(Form *ppForm[MAX_ROW]);
+void userForm(Form *ppForm[MAX_ROW]);
 
 int alert();
 
