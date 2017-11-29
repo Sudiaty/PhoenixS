@@ -173,3 +173,21 @@ void altStudent(Student *ppStu[MAX_STU_NO], long *lNo)
 			break;
 	}
 }
+
+/****************************************
+* Author:JiaZG;
+* Function:searchClass();
+* Description:查询班级是否存在
+****************************************/
+char* searchClass(Student *ppStu[MAX_STU_NO],char cpClass[20])
+{
+	int i = 0;
+	printf("\n请输入班级(*表示所有班级)：");
+	scanf("%s", cpClass);
+	for (i = 0; ppStu[i] != NULL&&i<MAX_STU_NO&&(strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0); i++)
+	{
+		return cpClass;
+	}
+	printf("\n不存在该班级！\n");
+	return NULL;
+}

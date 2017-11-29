@@ -30,4 +30,6 @@ float calGPA(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPo
 
 char** echoPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],long lNo);
 
+char** echoTotalPoint(Student *ppStu[MAX_STU_NO], char cpClass[20]);
+
 #endif

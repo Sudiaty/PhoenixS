@@ -179,6 +179,42 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 
 /****************************************
 * Author:LiuXL;
-* Function:echoPoint();
-* Description:返回指定学生的成绩单
+* Function:echoTotalPoint();
+* Description:返回指定班级的成绩单
 ****************************************/
+char** echoTotalPoint(Student *ppStu[MAX_STU_NO],char cpClass[20])
+{
+	float fSum=0,fAvg=0;
+	int iNo=0;
+	char **cpStuTable;
+	int j = 4,Row=0;
+	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 8) * sizeof(char*));
+	for (int i = 0; i < MAX_STU_NO * 4 + 4; i++) cpStuTable[i] = 0x0;
+	cpStuTable[0] = "学号";
+	cpStuTable[1] = "姓名";
+	cpStuTable[2] = "班级";
+	cpStuTable[3] = "绩点";
+	for (int i = 0; i<MAX_STU_NO&&ppStu[i] != NULL; i++)
+	{
+		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+		{
+			cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpNo);
+			cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpName);
+			cpStuTable[4 * Row + 6] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpClass);
+			cpStuTable[4 * Row + 7] = (char *)malloc(20 * sizeof(char));
+			sprintf(cpStuTable[j++], "%.2f", ppStu[i]->m_fPoint);
+			fSum += ppStu[i]->m_fPoint;
+			iNo++;
+			Row++;
+		}
+	}
+	fAvg = fSum / iNo;
+	cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+	cpStuTable[j++] = "平均绩点：";
+	cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+	sprintf(cpStuTable[j++], "%.2f", fAvg);
+	return cpStuTable;
+}

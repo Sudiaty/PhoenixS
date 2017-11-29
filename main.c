@@ -57,10 +57,12 @@ int main()
 	char stuList[MAX_ROW][20]={"学生列表","新生注册","信息更正","注销学籍","  返回  ","  退出  "};
 	char courseList[MAX_ROW][20]={"添加课程","退选课程","课表查询","  返回  "};
 	char pointList[MAX_ROW][20]={"成绩录入","成绩查询","成绩统计","  返回  "};
+	char totalList[MAX_ROW][20] = { "班级成绩","" };
 
 /*主界面相关变量声明*/
 	int mainItem,stuItem=0,courseItem=0,pointItem=0;				//用于判断选项的变量
 	char cpCourseNo[10];			//用于查找课程的变量
+	char cpClass[20];
 
 /****************************************
 * 
@@ -266,8 +268,10 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				break;
 			case 3:
 				system("cls");
-				dialog("系统正在维护");
-				
+				dialog("  成绩统计  ");
+				if (searchClass(ppStu, cpClass))
+					cpPointTmp = echoTotalPoint(ppStu, cpClass);
+				table(cpPointTmp, 4);
 				break;
 			case 4:
 				system("cls");
