@@ -160,17 +160,14 @@ int altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 	case 'n':
 		printf("\n修改后的姓名为：");
 		scanf("%s", ppStu[lNo]->m_cpName);
-		//strcpy(ppStu[lNo]->m_cpName, cpTmp);
 		break;
 	case 's':
 		printf("\n修改后的性别为：");
 		scanf("%s", ppStu[lNo]->m_cpGender);
-		//strcpy(ppStu[lNo]->m_cpGender, cpTmp);
 		break;
 	case 'c':
 		printf("\n修改后的班级为：");
 		scanf("%s", ppStu[lNo]->m_cpClass);
-		//strcpy(ppStu[lNo]->m_cpClass, cpTmp);
 		break;
 	default:
 		printf("非法输入！\n");

@@ -322,7 +322,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 3:
 				system("cls");
 				totalMenu:
-				dialog("  成绩统计  ");
+				echo("   成绩统计   ");
 				list(totalList);
 				printf("\n请输入菜单项数字(1 - 4):");
 				scanf("%d", &pointTotalItem);
@@ -330,14 +330,14 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				{
 				case 1:
 					system("cls");
-					dialog("班级成绩统计");
+					echo(" 班级成绩统计 ");
 					if (searchClass(ppStu, cpClass))
 						cpPointTmp = echoTotalPoint(ppStu, cpClass);
 					table(cpPointTmp, 4);
 					goto totalMenu;
 				case 2:
 					system("cls");
-					dialog("单科成绩统计");
+					echo(" 单科成绩统计 ");
 					if (searchClass(ppStu, cpClass)&&(courseNo=searchCourse(ppCourse,cpCourseNo)))
 						cpPointTmp = echoSubPoint(ppStu,ppCourse,ppPoint,cpClass,courseNo);
 					table(cpPointTmp, 4);
