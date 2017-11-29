@@ -35,5 +35,5 @@ void addCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long st
 int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10]);
 void delCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long iStuNo, int iCourseNo);
 char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo);
-
+int searchStuCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long stuNo, int courseNo);
 #endif

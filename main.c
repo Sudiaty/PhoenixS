@@ -119,7 +119,8 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			exit(0);
 		default:
 			system("cls");
-			echo("  非法输入！");
+			echo("  非法输入！  ");
+			BACK
 			goto home;
 	}
 			
@@ -155,11 +156,9 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					{
 						saveStudent(ppStu);
 					}
-					else {				//容错处理
-						echo(" 2秒后返回……");
-						Sleep(2000);
-						system("cls");
-						break;
+					else
+					{
+						BACK
 					}
 				}while(alert("修改成功，"));
 				break;
@@ -175,10 +174,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				}
 				else 
 				{
-					echo(" 2秒后返回……");
-					Sleep(2000);
-					system("cls");
-					break;
+					BACK
 				}
 				break;
 			case 5:
@@ -190,7 +186,8 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				exit(0);
 			default:
 				system("cls");
-				echo("  非法输入！");
+				echo("  非法输入！  ");
+				BACK
 				goto stuMenu;
 		}
 		goto stuMenu;
@@ -203,7 +200,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 		{
 			case 1:
 				system("cls");
-				echo("  添加课程  ");
+				echo("   添加课程   ");
 				if(stuNo=searchStudent(ppStu))				//指定添加课程的学生
 				{
 					cpCourseTmp=echoCourse(ppCourse);
@@ -216,11 +213,12 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 							saveStudent(ppStu);
 						}
 						else
-							echo(" 2秒后返回……");
-							Sleep(2000);
-							system("cls");
-							break;
+							BACK
 					}while(alert("添加成功"));				//判断是否继续添加
+				}
+				else
+				{
+					BACK
 				}
 				break;
 			case 2:
@@ -229,18 +227,29 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				if(stuNo=searchStudent(ppStu))
 				{
 					courseNo=searchCourse(ppCourse,cpCourseNo);
-					if(alert(""))
-					delCourse(ppStu,ppCourse,stuNo,courseNo);
-					saveStudent(ppStu);
+					if (alert("确定退选？"))
+					{
+						delCourse(ppStu, ppCourse, stuNo, courseNo);
+						saveStudent(ppStu);
+					}
+					BACK
+				}
+				else
+				{
+					BACK
 				}
 				break;
 			case 3:
 				system("cls");
-				dialog("  打印课表  ");
+				echo("   打印课表   ");
 				if(stuNo=searchStudent(ppStu)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
-					echo("个人课表打印");
+					echo(" 个人课表打印 ");
 					table(cpCourseTmp,5);
+				}
+				else
+				{
+					BACK				//容错处理
 				}
 				break;
 			case 4:
@@ -249,7 +258,8 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				goto home;
 			default:
 				system("cls");
-				echo("  非法输入！");
+				echo("  非法输入！  ");
+				BACK
 				goto courseMenu;
 		}
 		goto courseMenu;
@@ -263,20 +273,34 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			case 1:
 				system("cls");
 				dialog("  成绩录入  ");
-				if(stuNo=searchStudent(ppStu)){
+				if(stuNo=searchStudent(ppStu))
+				{
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
-					echo(" 已开设课程 ");
+					echo("  已开设课程  ");
 					table(cpCourseTmp,5);
 					do
 					{
-						searchCourse(ppCourse,cpCourseNo);
-						DST_SPPI(Point,ppPoint,pointNum)
-						addPoint(ppStu,ppPoint,stuNo,cpCourseNo,&pointNum);			//searchCourse参数传递
-					}while(alert(""));
+						courseNo=searchCourse(ppCourse,cpCourseNo);
+						if (searchStuCourse(ppStu, ppCourse, stuNo, courseNo))
+						{
+							DST_SPPI(Point, ppPoint, pointNum)
+							addPoint(ppStu, ppPoint, stuNo, cpCourseNo, &pointNum);			//searchCourse参数传递
+						}
+						else
+						{
+							echo("  无匹配记录  ");
+							BACK
+							break;
+						}
+					}while(alert("录入成功！"));
 					savePoint(ppPoint);
 					calGPA(ppStu,ppCourse,ppPoint,stuNo);
 					saveStudent(ppStu);
 					system("cls");
+				}
+				else
+				{
+					BACK
 				}
 				break;
 			case 2:
@@ -289,6 +313,10 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					printf("GPA:%.2f\n",ppStu[stuNo]->m_fPoint);
 					cpPointTmp=echoPoint(ppStu,ppCourse,ppPoint,stuNo);
 					table(cpPointTmp,3);
+				}
+				else
+				{
+					BACK
 				}
 				break;
 			case 3:
@@ -324,7 +352,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					exit(0);
 				default:
 					system("cls");
-					echo("  非法输入！");
+					echo("  非法输入！  ");
 					goto totalMenu;
 				}
 			case 4:
@@ -333,7 +361,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				goto home;
 			default:
 				system("cls");
-				echo("  非法输入！");
+				echo("  非法输入！  ");
 				goto pointMenu;
 		}
 		goto pointMenu;

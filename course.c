@@ -101,7 +101,7 @@ int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 	{
 		if(strcmp(ppCourse[iCourseNo]->m_cpCourseNo,cpCourseNo)==0)
 		{
-			printf("该课程记录如下：\n");
+			printf("\n该课程记录如下：\n");
 			printf("|\t代码\t|\t课程名称\t|\t学分\t|\n");
 			printf("|\t%s\t|\t%s\t|\t%2.f\t|\n\n",ppCourse[iCourseNo]->m_cpCourseNo,ppCourse[iCourseNo]->m_cpCourseName,ppCourse[iCourseNo]->m_fGoal);
 			return iCourseNo+1;
@@ -112,6 +112,24 @@ int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 		printf("\n不存在该课程！\n");
 		return 0;
 	}
+}
+
+/****************************************
+* Author:LiuXL;
+* Function:searchStuCourse();
+* Description:验证指定学生与课程是否存在
+****************************************/
+int searchStuCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long stuNo, int courseNo)
+{
+	int iStuCourseNo = 0;
+	stuNo--;
+	courseNo--;
+	for (iStuCourseNo = 0; iStuCourseNo < MAX_SUB_NO&&ppStu[stuNo]->m_cpMajor[iStuCourseNo]!=NULL; iStuCourseNo++)
+	{
+		if (strcmp(ppStu[stuNo]->m_cpMajor[iStuCourseNo], ppCourse[courseNo]->m_cpCourseNo) == 0)
+			return iStuCourseNo + 1;
+	}
+	return 0;
 }
 
 /****************************************
@@ -131,7 +149,7 @@ void delCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long iStu
 				strcpy(ppStu[iStuNo-1]->m_cpMajor[k],ppStu[iStuNo-1]->m_cpMajor[k+1]);
 			}
 			printf("正在退课......\n");
-			printf("退选成功！\n");
+			printf("退选成功！\n\n");
 			break;
 		}
 	}
