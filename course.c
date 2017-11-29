@@ -112,7 +112,7 @@ char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long 
 int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 {
 	int iCourseNo=0;
-	printf("\n请输入课程代码：");
+	printf("请输入课程代码：");
 	scanf("%s",cpCourseNo);
 	for(iCourseNo=0;iCourseNo<MAX_SUB_NO;iCourseNo++)
 	{
@@ -126,7 +126,7 @@ int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10])
 	}
 	if(iCourseNo==MAX_SUB_NO)
 	{
-		printf("\n不存在该课程！\n");
+		printf("\n不存在该课程！\n\n");
 		return 0;
 	}
 }

@@ -68,7 +68,7 @@ void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO])
 	for (i = 0;i<MAX_STU_NO*MAX_SUB_NO&&ppPoint[i]!=NULL;i++)
 	{
 		if (fwrite(ppPoint[i], sizeof(Point), 1, fp) != 1)
-			printf("Ð´ÈëÊ§°Ü£¡\n");
+			printf("Ð´ÈëÊ§°Ü£¡\n\n");
 	}
 	fclose(fp);
 }

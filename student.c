@@ -68,7 +68,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	{
 		//写入数据至Student.dat
 		if (fwrite(ppStu[i], sizeof(Student), 1, fp) != 1)
-			printf("写入失败！\n");
+			printf("写入失败！\n\n");
 	}
 	fclose(fp);
 }
@@ -119,7 +119,7 @@ long searchStudent(Student *ppStu[MAX_STU_NO])
 			return i+1;
 		}
 	}
-	printf("\n不存在该学生记录！\n");
+	printf("\n不存在该学生记录！\n\n");
 	return 0;
 }
 
@@ -195,7 +195,7 @@ int altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 		scanf("%s", ppStu[lNo]->m_cpClass);
 		break;
 	default:
-		printf("非法输入！\n");
+		printf("非法输入！\n\n");
 		return 0;
 	}
 	return 1;
@@ -216,6 +216,6 @@ char* searchClass(Student *ppStu[MAX_STU_NO],char cpClass[20])
 		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
 			return cpClass;
 	}
-	printf("\n不存在该班级！\n");
+	printf("\n不存在该班级！\n\n");
 	return NULL;
 }

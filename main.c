@@ -166,6 +166,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 						break;
 					}
 				}while(alert("修改成功，"));
+				system("cls");
 				break;
 			case 4:
 				system("cls");
@@ -337,16 +338,28 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					system("cls");
 					echo(" 班级成绩统计 ");
 					if (searchClass(ppStu, cpClass))
+					{
 						cpPointTmp = echoTotalPoint(ppStu, cpClass);
-					table(cpPointTmp, 4);
+						table(cpPointTmp, 4);
+					}
+					else
+					{
+						BACK
+					}
 					goto totalMenu;
 				case 2:
 					system("cls");
 					echo(" 单科成绩统计 ");
-					if (searchClass(ppStu, cpClass)&&(courseNo=searchCourse(ppCourse,cpCourseNo)))
-						cpPointTmp = echoSubPoint(ppStu,ppCourse,ppPoint,cpClass,courseNo);
-					table(cpPointTmp, 4);
-					exportTable(cpPointTmp,"SubPoint.html",4);
+					if (searchClass(ppStu, cpClass) && (courseNo = searchCourse(ppCourse, cpCourseNo)))
+					{
+						cpPointTmp = echoSubPoint(ppStu, ppCourse, ppPoint, cpClass, courseNo);
+						table(cpPointTmp, 4);
+						exportTable(cpPointTmp, "SubPoint.html", 4);
+					}			
+					else
+					{
+						BACK
+					}
 					goto totalMenu;
 				case 3:
 					system("cls");
