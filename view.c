@@ -30,15 +30,15 @@ void list(char ppList[MAX_ROW][20])
 {
 	for (int i = 0; i <= MAX_ROW&&strcmp(ppList[2 * i], "\0"); i++)
 	{
-		theme(252);
-		printf("\n%46s\n"," ");
+		theme(124);
+		printf("%46s\n"," ");
 		for (int j = 0; j<2 && strcmp(ppList[2 * i + j], "\0"); j++)
 		{
 			printf("%8s%-2d.%-6s"," ", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY£º´ýÓÅ»¯
 		}
 
 		printf("%8s"," ");
-		printf("\n%46s"," ");
+		printf("\n%46s\n"," ");
 		theme(0);
 	}
 }
@@ -52,7 +52,7 @@ void table(char **cpTable, int iRow)
 {
 	for (int k = 0; k<iRow; k++)
 	{
-		theme(152);
+		theme(124);
 		printf("|\t%s\t", cpTable[k]);
 		theme(0);
 	}
@@ -65,6 +65,7 @@ void table(char **cpTable, int iRow)
 		}
 		printf("|\n");
 	}
+	printf("\n");
 }
 
 /****************************************
@@ -75,10 +76,11 @@ void table(char **cpTable, int iRow)
 void echo(char content[10])
 {
 	theme(252);
-	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
+	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 	printf("%42s%-7s%42s\n","",content,"");
-	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
+	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 	theme(0);
+	printf("\n");
 }
 
 /****************************************
@@ -95,6 +97,7 @@ void dialog(char content[10])
 	printf("%46s\n","");
 	printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 	theme(0);
+	printf("\n");
 }
 
 /****************************************
@@ -110,6 +113,7 @@ void userForm(Form *cpForm[MAX_ROW])
 		printf("\t%s:", cpForm[i]->m_cpTitle);
 		scanf("%10s", &cpForm[i]->m_cpContent);
 	}
+	printf("\n");
 }
 
 /****************************************
@@ -122,12 +126,13 @@ int alert()
 	int sign, status = 0;
 	do
 	{
-		theme(252);
+		theme(207);
 		printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
 		printf("%11s%s%11s\n","","ÊÇ·ñ¼ÌÐø£¿1.¼ÌÐø£¬0.ÖÕÖ¹","");
 		printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");	
 		theme(0);
 		scanf("%d", &sign);
+		printf("\n");
 		if (sign != 1 && sign != 0) {
 			printf("Ö¸ÁîÓÐÎó£¬ÇëÖØÐÂÊäÈë£º\n");
 			status = 1;

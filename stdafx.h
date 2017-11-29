@@ -26,6 +26,6 @@
 #define DST_SPP(type,pp,top) for(int i=0;i<top;i++){type*pTmp=(type*)malloc(sizeof(type));pp[i]=pTmp;}              //为结构图指针数组分配内存；
 #define DST_SPPI(type,pp,no) type*pTmp=(type*)malloc(sizeof(type));pp[no]=pTmp;
 
-void exportTable(char** cpTableTmp, char fileName[20]);
+void exportTable(char** cpTableTmp, char fileName[20],int iRow);
 
 // TODO: 在此处引用程序需要的其他头文件

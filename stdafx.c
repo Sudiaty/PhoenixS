@@ -10,10 +10,13 @@
 * Function:exportTable();
 * Description:Save the info to Point.dat.
 ****************************************/
-void exportTable(char** cpTableTmp,char fileName[20])
+void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 {
 	FILE *fp;
-	int i = 0;
+	int i = 0,j=0;
+	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>导出文件</title></head><body><table>";
+	char endHtml[1000]="</table></body></html>";
+
 	//char fileExtension[10] = ".html";
 	//strcat(fileName, fileExtension);
 	if ((fp = fopen(fileName, "w")) == NULL)
@@ -21,10 +24,16 @@ void exportTable(char** cpTableTmp,char fileName[20])
 		printf("Fail to open file!\n");
 		exit(0);
 	}
-	for (i = 0; cpTableTmp[i] != NULL; i++)
-	{
-		fprintf(fp, "<tr>%s<\\tr>\n", cpTableTmp[i]);
+	fprintf(fp, "%s",startHtml);
+	fprintf(fp,"\n<thead>%s</thead>\n",fileName);
+	for (i = 0; cpTableTmp[i*iRow] != NULL; i++)
+	{	
+		fprintf(fp, "<tr>\n");
+		for(j=0;j<iRow;j++)
+			fprintf(fp, "<th>%s</th>\n", cpTableTmp[iRow*i+j]);
+		fprintf(fp, "</tr>\n");
 	}
+	fprintf(fp, "%s",endHtml);
 	fclose(fp);
 }
 

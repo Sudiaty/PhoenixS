@@ -237,13 +237,13 @@ char** echoSubPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO], Poi
 	cpStuTable[1] = "姓名";
 	cpStuTable[2] = "班级";
 	cpStuTable[3] = "分数";
-	for (int iPointNo = 0; ppPoint[iPointNo] != NULL; iPointNo++)
-	{
-		if (strcmp(ppCourse[courseNo]->m_cpCourseNo, ppPoint[iPointNo]->m_cpCourseNo) == 0)
+		for (int iStuNo = 0; ppStu[iStuNo] != NULL; iStuNo++)				//对学生进行遍历，匹配课程代码
 		{
-			for (int iStuNo = 0; ppStu[iStuNo] != NULL; iStuNo++)				//对学生进行遍历，匹配课程代码
+			for (int iPointNo = 0; ppPoint[iPointNo] != NULL; iPointNo++)
 			{
-				if (strcmp(ppStu[iStuNo]->m_cpNo, ppPoint[iPointNo]->m_cpNo) == 0 && strcmp(ppStu[iStuNo]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+				if (strcmp(ppStu[iStuNo]->m_cpNo, ppPoint[iPointNo]->m_cpNo) == 0 &&
+					strcmp(ppCourse[courseNo]->m_cpCourseNo, ppPoint[iPointNo]->m_cpCourseNo) == 0 && 
+					(strcmp(ppStu[iStuNo]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0))
 				{
 					cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
 					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpNo);
@@ -256,7 +256,6 @@ char** echoSubPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO], Poi
 					fSum += ppPoint[iPointNo]->m_fGoal;
 					iNo++;
 					Row++;
-				}
 			}
 		}
 	}

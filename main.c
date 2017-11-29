@@ -288,7 +288,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"°à¼¶");
 					if (searchClass(ppStu, cpClass)&&(courseNo=searchCourse(ppCourse,cpCourseNo)))
 						cpPointTmp = echoSubPoint(ppStu,ppCourse,ppPoint,cpClass,courseNo);
 					table(cpPointTmp, 4);
-					exportTable(cpPointTmp,"SubPoint.html");
+					exportTable(cpPointTmp,"SubPoint.html",4);
 					goto totalMenu;
 				case 3:
 					system("cls");
