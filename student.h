@@ -25,7 +25,7 @@ typedef struct StudentClass
 
 
 //声明对学生信息操作函数
-void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
+int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
 
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum);
 

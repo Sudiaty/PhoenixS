@@ -137,13 +137,17 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				break;
 			case 2:
 				system("cls");
-				echo("  学生数据录入  ");
+				echo(" 学生数据录入 ");
 				do
 				{
 					userForm(ppStuForm);
-					DST_SPPI(Student,ppStu,stuNum);
-					addStudent(ppStu,ppStuForm,&stuNum);
-					saveStudent(ppStu);
+					if(addStudent(ppStu,ppStuForm,&stuNum))
+						saveStudent(ppStu);
+					else
+					{
+						BACK
+						break;
+					}
 				}while(alert("注册成功,"));
 				system("cls");
 				break;
@@ -159,6 +163,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					else
 					{
 						BACK
+						break;
 					}
 				}while(alert("修改成功，"));
 				break;
@@ -207,19 +212,18 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					table(cpCourseTmp,3);
 					do
 					{
-						if (courseNo = searchCourse(ppCourse, cpCourseNo))
+						if ((courseNo = searchCourse(ppCourse, cpCourseNo))&& addCourse(ppStu, ppCourse, stuNo, courseNo))
 						{
-							addCourse(ppStu, ppCourse, stuNo, courseNo);
 							saveStudent(ppStu);
 						}
 						else
+						{
 							BACK
+							break;
+						}
 					}while(alert("添加成功"));				//判断是否继续添加
 				}
-				else
-				{
-					BACK
-				}
+				BACK
 				break;
 			case 2:
 				system("cls");

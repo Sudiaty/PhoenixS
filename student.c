@@ -10,15 +10,40 @@
 * Function:addStudent();
 * Description:Add a student's record.
 ****************************************/
-void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
+int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
 {
-	int iStuCourseNo = 0;
-	strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
-	for (iStuCourseNo=0;iStuCourseNo<MAX_SUB_NO;iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo],"\0");
-	(*stuNum)++;
+	int iStuCourseNo = 0,iStuNo=0,status=1;
+	if (strcmp(ppStu[iStuNo]->m_cpGender, "男") || strcmp(ppStu[iStuNo]->m_cpGender, "女") || strcmp(ppStu[iStuNo]->m_cpGender, "f") || strcmp(ppStu[iStuNo]->m_cpGender, "m"))
+		status = -1;
+	for (iStuNo = 0; iStuNo < MAX_STU_NO&&ppStu[iStuNo]!=NULL; iStuNo++)
+	{
+		if (strcmp(ppStu[iStuNo]->m_cpNo, ppForm[0]->m_cpContent) == 0)
+		{
+			status = 0;
+			break;
+		}
+	}
+	if (status==1)
+	{
+		DST_SPPI(Student, ppStu, *stuNum);
+		strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
+		for (iStuCourseNo = 0; iStuCourseNo<MAX_SUB_NO; iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo], "\0");
+		(*stuNum)++;
+		return 1;
+	}
+	else if(status==0)
+	{
+		printf("学号已注册！\n\n");
+		return 0;
+	}
+	else
+	{
+		printf("性别不合法（“男/女”、“f/m”）！\n\n");
+		return 0;
+	}
 }
 
 

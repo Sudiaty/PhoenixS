@@ -36,13 +36,30 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 * Function:addCourse();				
 * Description:Add a Course for a student.
 ****************************************/
-void addCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO],long stuNo,int courseNo)
+int addCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO],long stuNo,int courseNo)
 {
 	char cpMajor[10];
-	int j;
+	int iStuCourseNo,status=1;
 	stuNo--;
 	courseNo--;
-	strcpy(ppStu[stuNo]->m_cpMajor[j],ppCourse[courseNo]->m_cpCourseNo);
+	for (iStuCourseNo = 0; iStuCourseNo < MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[iStuCourseNo],"\0"); iStuCourseNo++)
+	{
+		if (strcmp(ppStu[stuNo]->m_cpMajor[iStuCourseNo], ppCourse[courseNo]->m_cpCourseNo)==0)
+		{
+			status = 0;
+			break;
+		}
+	}
+	if (status)
+	{
+		strcpy(ppStu[stuNo]->m_cpMajor[iStuCourseNo], ppCourse[courseNo]->m_cpCourseNo);
+		return 1;
+	}
+	else
+	{
+		printf("已选该课程！\n\n");
+		return 0;
+	}
 }
 
 
