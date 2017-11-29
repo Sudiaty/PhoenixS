@@ -18,10 +18,6 @@ typedef struct FormClass
 	char m_cpContent[20];
 }Form;
 
-void menuSelect();
-
-void menu();
-
 void list(char ppList[MAX_ROW][20]);
 
 void table(char **cpTable, int iRow);
