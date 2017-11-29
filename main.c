@@ -284,21 +284,22 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					table(cpCourseTmp,5);
 					do
 					{
-						courseNo=searchCourse(ppCourse,cpCourseNo);
-						if (searchStuCourse(ppStu, ppCourse, stuNo, courseNo))
-						{
-							DST_SPPI(Point, ppPoint, pointNum)
-							addPoint(ppStu, ppPoint, stuNo, cpCourseNo, &pointNum);			//searchCourse参数传递
-						}
+						if ((courseNo = searchCourse(ppCourse, cpCourseNo)) && searchStuCourse(ppStu, ppCourse, stuNo, courseNo));				//判断课程代码是否匹配
 						else
 						{
 							echo("  无匹配记录  ");
 							BACK
 							break;
 						}
+						if (addPoint(ppStu, ppPoint, stuNo, cpCourseNo, &pointNum));
+						else
+						{
+							BACK
+							break;
+						}
 					}while(alert("录入成功！"));
 					savePoint(ppPoint);
-					calGPA(ppStu,ppCourse,ppPoint,stuNo);
+					calGPA(ppStu, ppCourse, ppPoint, stuNo);
 					saveStudent(ppStu);
 					system("cls");
 				}

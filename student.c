@@ -13,7 +13,7 @@
 int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
 {
 	int iStuCourseNo = 0,iStuNo=0,status=1;
-	if (strcmp(ppStu[iStuNo]->m_cpGender, "ÄÐ") || strcmp(ppStu[iStuNo]->m_cpGender, "Å®") || strcmp(ppStu[iStuNo]->m_cpGender, "f") || strcmp(ppStu[iStuNo]->m_cpGender, "m"))
+	if (strcmp(ppForm[2]->m_cpContent, "ÄÐ")&&strcmp(ppForm[2]->m_cpContent, "Å®")&&strcmp(ppForm[2]->m_cpContent, "f")&&strcmp(ppForm[2]->m_cpContent, "m"))
 		status = -1;
 	for (iStuNo = 0; iStuNo < MAX_STU_NO&&ppStu[iStuNo]!=NULL; iStuNo++)
 	{

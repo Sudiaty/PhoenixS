@@ -11,23 +11,41 @@
 * Function:addPoint();
 * Description:录入成绩
 ****************************************/
-void addPoint(Student *ppStu[MAX_STU_NO],
+int addPoint(Student *ppStu[MAX_STU_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
 	long stuNo,char cpCourseNo[10],int *pointNum)
 {
+	int iPointNo=0,status=1;
 	float fGoal;
 	stuNo--;
 	for(int j=0;j<MAX_STU_NO;j++)
 	{
 		if(strcmp(ppStu[stuNo]->m_cpMajor[j],cpCourseNo)==0)
 		{
-			printf("请输入成绩：");
-			scanf("%f",&fGoal);
-			strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
-			strcpy(ppPoint[*pointNum]->m_cpNo, ppStu[stuNo]->m_cpNo);
-			ppPoint[*pointNum]->m_fGoal=fGoal;
-			(*pointNum)++;
-			break;
+			for (iPointNo = 0; iPointNo < *pointNum; iPointNo++)
+			{
+				if (strcmp(ppPoint[iPointNo]->m_cpCourseNo, ppStu[stuNo]->m_cpMajor[j]) == 0)
+				{
+					status = 0;
+					break;
+				}
+			}
+			if (status)
+			{
+				printf("请输入成绩：");
+				scanf("%f", &fGoal);
+				DST_SPPI(Point, ppPoint, *pointNum)
+				strcpy(ppPoint[*pointNum]->m_cpCourseNo, cpCourseNo);
+				strcpy(ppPoint[*pointNum]->m_cpNo, ppStu[stuNo]->m_cpNo);
+				ppPoint[*pointNum]->m_fGoal = fGoal;
+				(*pointNum)++;
+				return 1;
+			}
+			else
+			{
+				printf("成绩已录入！\n\n");
+				return 0;
+			}
 		}
 	}
 }
