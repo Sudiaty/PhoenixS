@@ -12,10 +12,12 @@
 ****************************************/
 void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
 {
+	int iStuCourseNo = 0;
 	strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
 	strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
+	for (iStuCourseNo=0;iStuCourseNo<MAX_SUB_NO;iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo],"\0");
 	(*stuNum)++;
 }
 
@@ -30,19 +32,18 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	FILE *fp;
 	int i;
 
-	//è¯»å–Student.txt
+	//¶ÁÈ¡Student.txt
 	if ((fp = fopen("Student.dat", "wb")) == NULL)
 	{
 		printf("Fail to open file!\n");
 		exit(0);
 	}
 
-	//è·å–å½“å‰å­¦ç”Ÿäººæ•°
 	for (i = 0; i<MAX_STU_NO&&ppStu[i]!=NULL; i++)
 	{
-		//å†™å…¥æ•°æ®è‡³Student.txt
+		//Ğ´ÈëÊı¾İÖÁStudent.dat
 		if (fwrite(ppStu[i], sizeof(Student), 1, fp) != 1)
-			printf("å†™å…¥å¤±è´¥ï¼\n");
+			printf("Ğ´ÈëÊ§°Ü£¡\n");
 	}
 	fclose(fp);
 }
@@ -57,7 +58,7 @@ void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 {
 	FILE *fp;
 	int i=0;
-	//è¯»å–Student.dat
+	//¶ÁÈ¡Student.dat
 	if ((fp = fopen("Student.dat", "rb")) == NULL)
 	{
 		return;
@@ -75,27 +76,27 @@ void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum)
 /****************************************
 * Author:JiaZG;
 * Function:searchStudent();
-* Description:é€šè¿‡å­¦å·è·å–å­¦ç”Ÿåºæ•°
+* Description:Í¨¹ıÑ§ºÅ»ñÈ¡Ñ§ÉúĞòÊı
 ****************************************/
-long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10])
+long searchStudent(Student *ppStu[MAX_STU_NO])
 {
 	long i = 0;
-	printf("\nè¯·è¾“å…¥å­¦ç”Ÿçš„å­¦å·ï¼š");
+	char cpNo[10];
+	printf("\nÇëÊäÈëÑ§ÉúµÄÑ§ºÅ£º");
 	scanf("%s", cpNo);
 	for (i = 0; ppStu[i]!=NULL&&i<MAX_STU_NO; i++)
 	{
 		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
 		{
-			printf("\nè¯¥å­¦ç”Ÿè®°å½•å¦‚ä¸‹ï¼š\n");
-			printf("|\tå­¦å·\t|\tå§“å\t|\tæ€§åˆ«\t|\n");
+			printf("\n¸ÃÑ§Éú¼ÇÂ¼ÈçÏÂ£º\n");
+			printf("|\tÑ§ºÅ\t|\tĞÕÃû\t|\tĞÔ±ğ\t|\n");
 			printf("|\t%s\t|\t%s\t|\t%s\t|\n\n", ppStu[i]->m_cpNo, ppStu[i]->m_cpName, ppStu[i]->m_cpGender);
 			return i+1;
 		}
 	}
-	printf("\nä¸å­˜åœ¨è¯¥å­¦ç”Ÿè®°å½•ï¼\n");
+	printf("\n²»´æÔÚ¸ÃÑ§Éú¼ÇÂ¼£¡\n");
 	return 0;
 }
-
 
 /****************************************
 * Author:LiuXL;
@@ -106,10 +107,11 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 {
 	char **cpStuTable;
 	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 4) * sizeof(char*));
-	cpStuTable[0] = "å­¦å·";
-	cpStuTable[1] = "å§“å";
-	cpStuTable[2] = "æ€§åˆ«";
-	cpStuTable[3] = "ç­çº§";
+	for (int i = 0; i < MAX_STU_NO*4+4; i++) cpStuTable[i] = 0x0;
+	cpStuTable[0] = "Ñ§ºÅ";
+	cpStuTable[1] = "ĞÕÃû";
+	cpStuTable[2] = "ĞÔ±ğ";
+	cpStuTable[3] = "°à¼¶";
 	int j = 4;
 	for (int i = 0; i<MAX_STU_NO&&ppStu[i]!=NULL; i++)
 	{
@@ -131,22 +133,15 @@ char **echoStudent(Student *ppStu[MAX_STU_NO])
 * Function:delStudent();
 * Description:Delete info of Student.txt.
 ****************************************/
-void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
+void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 {
-
-	for (int i = 0; i<MAX_STU_NO; i++)
+	for (int j = stuNo-1; j<MAX_STU_NO&&ppStu[j]->m_cpNo!=NULL; j++)
 	{
-		if (strcmp(ppStu[i]->m_cpNo, cpNo) == 0)
-		{
-			for (int j = i; j<MAX_STU_NO&&strcmp(ppStu[j]->m_cpNo, "\0") != 0; j++)
-			{
-				ppStu[j] = ppStu[j + 1];
-			}
-			(*stuNum)--;
-			printf("æ­£åœ¨åˆ é™¤......\n");
-			printf("å·²ç»åˆ é™¤å­¦å·ä¸º%s çš„å­¦ç”Ÿè®°\n", cpNo);
-		}
+		ppStu[j] = ppStu[j + 1];
 	}
+	(*stuNum)--;
+	printf("ÕıÔÚÉ¾³ı......\n");
+	printf("ÒÑ¾­É¾³ı¸ÃÑ§ÉúµÄ¼ÇÂ¼\n");
 }
 
 
@@ -157,25 +152,43 @@ void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum)
 ****************************************/
 void altStudent(Student *ppStu[MAX_STU_NO], long *lNo)
 {
-	char c;
-	printf("è¦ä¿®æ”¹å“ªæ¡ä¿¡æ¯ï¼Ÿ(å§“ånï¼Œæ€§åˆ«sï¼Œç­çº§c)\n");
+	char c,cpTmp[20];
+	printf("ÒªĞŞ¸ÄÄÄÌõĞÅÏ¢£¿(ĞÕÃûn£¬ĞÔ±ğs£¬°à¼¶c)\n");
 	scanf("%s", &c);
+	printf("\nĞŞ¸ÄºóµÄĞÅÏ¢Îª£º");
+	scanf("%s",cpTmp);
 	switch (c)
 	{
 		case 'n':
-			printf("\nè¯·è¾“å…¥ä¿®æ”¹åè¯¥å­¦ç”Ÿçš„å§“åï¼š");
-			scanf("%s", &ppStu[*lNo-1]->m_cpName);
+			strcpy(ppStu[*lNo-1]->m_cpName,cpTmp);
 			break;
 		case 's':
-			printf("\nè¯·è¾“å…¥ä¿®æ”¹åè¯¥å­¦ç”Ÿçš„æ€§åˆ«(ç”·mï¼Œå¥³fï¼‰ï¼š");
-			scanf("%s", &ppStu[*lNo-1]->m_cpGender);
+			strcpy(ppStu[*lNo-1]->m_cpGender,cpTmp);
 			break;
 		case 'c':
-			printf("\nè¯·è¾“å…¥ä¿®æ”¹åè¯¥å­¦ç”Ÿçš„ç­çº§ï¼š");
-			scanf("%s", &ppStu[*lNo-1]->m_cpClass);
+			strcpy(ppStu[*lNo-1]->m_cpClass,cpTmp);
 			break;
 		default:
-			printf("éæ³•è¾“å…¥ï¼\n");
+			printf("·Ç·¨ÊäÈë£¡\n");
 			break;
 	}
+}
+
+/****************************************
+* Author:JiaZG;
+* Function:searchClass();
+* Description:²éÑ¯°à¼¶ÊÇ·ñ´æÔÚ
+****************************************/
+char* searchClass(Student *ppStu[MAX_STU_NO],char cpClass[20])
+{
+	int i = 0;
+	printf("\nÇëÊäÈë°à¼¶(*±íÊ¾ËùÓĞ°à¼¶)£º");
+	scanf("%s", cpClass);
+	for (i = 0; ppStu[i]!= NULL&&i<MAX_STU_NO; i++)
+	{
+		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+			return cpClass;
+	}
+	printf("\n²»´æÔÚ¸Ã°à¼¶£¡\n");
+	return NULL;
 }

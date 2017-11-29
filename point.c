@@ -9,30 +9,24 @@
 /****************************************
 * Author:LiuXL;
 * Function:addPoint();
-* Description:å½•å…¥æˆç»©
+* Description:Â¼Èë³É¼¨
 ****************************************/
 void addPoint(Student *ppStu[MAX_STU_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
-	char cpNo[10],char cpCourseNo[10],int *pointNum)
+	long stuNo,char cpCourseNo[10],int *pointNum)
 {
 	float fGoal;
-    for(int i=0;i<MAX_STU_NO;i++)
+	stuNo--;
+	for(int j=0;j<MAX_STU_NO;j++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		if(strcmp(ppStu[stuNo]->m_cpMajor[j],cpCourseNo)==0)
 		{
-			for(int j=0;j<MAX_STU_NO;j++)
-			{
-				if(strcmp(ppStu[i]->m_cpMajor[j],cpCourseNo)==0)
-				{
-					printf("è¯·è¾“å…¥æˆç»©ï¼š");
-					scanf("%f",&fGoal);
-					strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
-					strcpy(ppPoint[*pointNum]->m_cpNo,cpNo);
-					ppPoint[*pointNum]->m_fGoal=fGoal;
-					(*pointNum)++;
-					break;
-				}
-			}
+			printf("ÇëÊäÈë³É¼¨£º");
+			scanf("%f",&fGoal);
+			strcpy(ppPoint[*pointNum]->m_cpCourseNo,cpCourseNo);
+			strcpy(ppPoint[*pointNum]->m_cpNo, ppStu[stuNo]->m_cpNo);
+			ppPoint[*pointNum]->m_fGoal=fGoal;
+			(*pointNum)++;
 			break;
 		}
 	}
@@ -56,7 +50,7 @@ void savePoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO])
 	for (i = 0;i<MAX_STU_NO*MAX_SUB_NO&&ppPoint[i]!=NULL;i++)
 	{
 		if (fwrite(ppPoint[i], sizeof(Point), 1, fp) != 1)
-			printf("å†™å…¥å¤±è´¥ï¼\n");
+			printf("Ğ´ÈëÊ§°Ü£¡\n");
 	}
 	fclose(fp);
 }
@@ -87,63 +81,57 @@ void getPoint(Point *ppPoint[MAX_STU_NO*MAX_SUB_NO], int *pointNum)
 /****************************************
 * Author:LiuXL;
 * Function:calGPA();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„ç»©ç‚¹
+* Description:·µ»ØÖ¸¶¨Ñ§ÉúµÄ¼¨µã
 ****************************************/
 float calGPA(Student *ppStu[MAX_STU_NO],
 	Course *ppCourse[MAX_SUB_NO],
 	Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],
-	char cpNo[10])
+	long stuNo)
 {
 	float fpPoint[MAX_SUB_NO][2],fGPA=0,fSumPoint=0,fSumGoal=0;
-	for(int i=0;i<MAX_STU_NO;i++)			//å¯¹å­¦ç”Ÿè¡¨éå†
+	int j=0;		//Ö¸¶¨Ñ§ÉúµÄ¿Î³ÌĞòÊı
+	stuNo--;
+	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0");j++)
 	{
-		if(strcmp(ppStu[i]->m_cpNo,cpNo)==0)
+		for(int k=0;k<MAX_SUB_NO;k++)				//¶Ô¿Î³Ì±í±éÀú£¬kÎªµÚj+1ÃÇ¿Î³ÌÔÚpChemÖĞµÄĞòÊı
 		{
-			int j=0;		//æŒ‡å®šå­¦ç”Ÿçš„è¯¾ç¨‹åºæ•°
-			for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[i]->m_cpMajor[j],"\0");j++)
+			if(!strcmp(ppStu[stuNo]->m_cpMajor[j],ppCourse[k]->m_cpCourseNo))
 			{
-				for(int k=0;k<MAX_SUB_NO;k++)				//å¯¹è¯¾ç¨‹è¡¨éå†ï¼Œkä¸ºç¬¬j+1ä»¬è¯¾ç¨‹åœ¨pChemä¸­çš„åºæ•°
+				fpPoint[j][0]=ppCourse[k]->m_fGoal;				//Í³¼ÆÒÑÑ¡¿Î³ÌÑ§·Ö
+				for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//¶Ô³É¼¨Êı×é±éÀú
 				{
-					if(!strcmp(ppStu[i]->m_cpMajor[j],ppCourse[k]->m_cpCourseNo))
+					if(ppPoint[m]==NULL)
 					{
-						fpPoint[j][0]=ppCourse[k]->m_fGoal;				//ç»Ÿè®¡å·²é€‰è¯¾ç¨‹å­¦åˆ†
-						for(int m=0;m<MAX_STU_NO*MAX_SUB_NO;m++)				//å¯¹æˆç»©æ•°ç»„éå†
-						{
-							if(ppPoint[m]==NULL)
-							{
-								printf("æ²¡æœ‰â€œ%sâ€çš„æˆç»©è®°å½•ï¼\n",ppCourse[k]->m_cpCourseName);				//Debug
-								fpPoint[j][1]=0;
-								break;
-							}
-							if(!strcmp(cpNo,ppPoint[m]->m_cpNo)&&!strcmp(ppCourse[k]->m_cpCourseNo,ppPoint[m]->m_cpCourseNo))
-							{
-								// printf("1\n");		//Debug
-								fpPoint[j][1]=0.05*ppPoint[m]->m_fGoal;
-								break;
-							}
-						}
-						break;				//æ‰¾åˆ°æŒ‡å®šè¯¾ç¨‹åè·³å‡ºå¾ªç¯
+						printf("Ã»ÓĞ¡°%s¡±µÄ³É¼¨¼ÇÂ¼£¡\n",ppCourse[k]->m_cpCourseName);				//Debug
+						fpPoint[j][1]=0;
+						break;
+					}
+					if(!strcmp(ppStu[stuNo]->m_cpNo,ppPoint[m]->m_cpNo)&&!strcmp(ppCourse[k]->m_cpCourseNo,ppPoint[m]->m_cpCourseNo))
+					{
+						// printf("1\n");		//Debug
+						fpPoint[j][1]=0.05*ppPoint[m]->m_fGoal;
+						break;
 					}
 				}
+				break;				//ÕÒµ½Ö¸¶¨¿Î³ÌºóÌø³öÑ­»·
 			}
-			for(int n=0;n<j;n++)
-			{
-				fSumPoint+=fpPoint[n][0];
-				fSumGoal+=fpPoint[n][1]*fpPoint[n][0];
-			}
-			fGPA=fSumGoal/fSumPoint;
-			ppStu[i]->m_fPoint=fGPA;
-			// printf("%.2f",fGPA);				//Debug
-			break;			//æ‰¾åˆ°æŒ‡å®šå­¦ç”Ÿåè·³å‡ºå¾ªç¯
 		}
 	}
+	for(int n=0;n<j;n++)
+	{
+		fSumPoint+=fpPoint[n][0];
+		fSumGoal+=fpPoint[n][1]*fpPoint[n][0];
+	}
+	fGPA=fSumGoal/fSumPoint;
+	ppStu[stuNo]->m_fPoint=fGPA;
+	// printf("%.2f",fGPA);				//Debug
 	return fGPA;
 }
 
 /****************************************
 * Author:LiuXL;
 * Function:echoPoint();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„æˆç»©å•
+* Description:·µ»ØÖ¸¶¨Ñ§ÉúµÄ³É¼¨µ¥
 ****************************************/
 char** echoPoint(Student *ppStu[MAX_STU_NO],
 	Course *ppCourse[MAX_SUB_NO],
@@ -154,15 +142,15 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 	cpPointTable=(char **)malloc((MAX_SUB_NO*3+3)*sizeof(char*));
 	for (int k=0;k<3;k++)  
 		cpPointTable[k]=(char *)malloc(20*sizeof(char));  
-		cpPointTable[0]="è¯¾ç¨‹åç§°";
-		cpPointTable[1]="å­¦åˆ†";
-		cpPointTable[2]="æˆç»©";
+		cpPointTable[0]="¿Î³ÌÃû³Æ";
+		cpPointTable[1]="Ñ§·Ö";
+		cpPointTable[2]="³É¼¨";
 	int j=3;
-	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[lNo]->m_cpMajor[n],"\0")!=0;n++)				//å¯¹æŒ‡å®šå­¦ç”Ÿæ‰€é€‰è¯¾ç¨‹è¿›è¡Œéå†ï¼Œnä¸ºè¯¥ç”Ÿæ‰€é€‰è¯¾ç¨‹åºæ•°
+	for(int n=0;n<MAX_SUB_NO&&strcmp(ppStu[lNo]->m_cpMajor[n],"\0")!=0;n++)				//¶ÔÖ¸¶¨Ñ§ÉúËùÑ¡¿Î³Ì½øĞĞ±éÀú£¬nÎª¸ÃÉúËùÑ¡¿Î³ÌĞòÊı
 	{
 		for(int m=0;m<MAX_SUB_NO;m++)
 		{
-			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[lNo]->m_cpMajor[n])==0)				//åŒ¹é…è¯¾ç¨‹ä¿¡æ¯
+			if(strcmp(ppCourse[m]->m_cpCourseNo,ppStu[lNo]->m_cpMajor[n])==0)				//Æ¥Åä¿Î³ÌĞÅÏ¢
 			{
 				cpPointTable[3*n+3]=(char *)malloc(20*sizeof(char)); 
 				strcpy(cpPointTable[j++],ppCourse[m]->m_cpCourseName);
@@ -191,6 +179,90 @@ char** echoPoint(Student *ppStu[MAX_STU_NO],
 
 /****************************************
 * Author:LiuXL;
-* Function:echoPoint();
-* Description:è¿”å›æŒ‡å®šå­¦ç”Ÿçš„æˆç»©å•
+* Function:echoTotalPoint();
+* Description:·µ»ØÖ¸¶¨°à¼¶µÄ³É¼¨µ¥
 ****************************************/
+char** echoTotalPoint(Student *ppStu[MAX_STU_NO],char cpClass[20])
+{
+	float fSum=0,fAvg=0;
+	int iNo=0;
+	char **cpStuTable;
+	int j = 4,Row=0;
+	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 8) * sizeof(char*));
+	for (int i = 0; i < MAX_STU_NO * 4 + 4; i++) cpStuTable[i] = 0x0;
+	cpStuTable[0] = "Ñ§ºÅ";
+	cpStuTable[1] = "ĞÕÃû";
+	cpStuTable[2] = "°à¼¶";
+	cpStuTable[3] = "¼¨µã";
+	for (int i = 0; i<MAX_STU_NO&&ppStu[i] != NULL; i++)
+	{
+		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
+		{
+			cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpNo);
+			cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpName);
+			cpStuTable[4 * Row + 6] = (char *)malloc(20 * sizeof(char));
+			strcpy(cpStuTable[j++], ppStu[i]->m_cpClass);
+			cpStuTable[4 * Row + 7] = (char *)malloc(20 * sizeof(char));
+			sprintf(cpStuTable[j++], "%.2f", ppStu[i]->m_fPoint);
+			fSum += ppStu[i]->m_fPoint;
+			iNo++;
+			Row++;
+		}
+	}
+	fAvg = fSum / iNo;
+	cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+	cpStuTable[j++] = "Æ½¾ù¼¨µã£º";
+	cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+	sprintf(cpStuTable[j++], "%.2f", fAvg);
+	return cpStuTable;
+}
+
+/****************************************
+* Author:LiuXL;
+* Function:echoSubPoint();
+* Description:·µ»ØÖ¸¶¨°à¼¶µÄ³É¼¨µ¥
+****************************************/
+char** echoSubPoint(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO], Point *ppPoint[MAX_STU_NO*MAX_SUB_NO],char cpClass[20],int courseNo)
+{
+	float fSum = 0, fAvg = 0;
+	int iNo = 0;
+	char **cpStuTable;
+	int j = 4, Row = 0;
+	courseNo--;
+	cpStuTable = (char **)malloc((MAX_STU_NO * 4 + 8) * sizeof(char*));
+	for (int i = 0; i < MAX_STU_NO * 4 + 4; i++) cpStuTable[i] = 0x0;
+	cpStuTable[0] = "Ñ§ºÅ";
+	cpStuTable[1] = "ĞÕÃû";
+	cpStuTable[2] = "°à¼¶";
+	cpStuTable[3] = "·ÖÊı";
+		for (int iStuNo = 0; ppStu[iStuNo] != NULL; iStuNo++)				//¶ÔÑ§Éú½øĞĞ±éÀú£¬Æ¥Åä¿Î³Ì´úÂë
+		{
+			for (int iPointNo = 0; ppPoint[iPointNo] != NULL; iPointNo++)
+			{
+				if (strcmp(ppStu[iStuNo]->m_cpNo, ppPoint[iPointNo]->m_cpNo) == 0 &&
+					strcmp(ppCourse[courseNo]->m_cpCourseNo, ppPoint[iPointNo]->m_cpCourseNo) == 0 && 
+					(strcmp(ppStu[iStuNo]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0))
+				{
+					cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpNo);
+					cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpName);
+					cpStuTable[4 * Row + 6] = (char *)malloc(20 * sizeof(char));
+					strcpy(cpStuTable[j++], ppStu[iStuNo]->m_cpClass);
+					cpStuTable[4 * Row + 7] = (char *)malloc(20 * sizeof(char));
+					sprintf(cpStuTable[j++], "%.2f", ppPoint[iPointNo]->m_fGoal);
+					fSum += ppPoint[iPointNo]->m_fGoal;
+					iNo++;
+					Row++;
+			}
+		}
+	}
+	fAvg = fSum / iNo;
+	cpStuTable[4 * Row + 4] = (char *)malloc(20 * sizeof(char));
+	cpStuTable[j++] = "Æ½¾ù·Ö£º";
+	cpStuTable[4 * Row + 5] = (char *)malloc(20 * sizeof(char));
+	sprintf(cpStuTable[j++], "%.2f", fAvg);
+	return cpStuTable;
+}
