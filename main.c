@@ -150,7 +150,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"°à¼¶");
 				do
 				{
 					if(stuNo=searchStudent(ppStu))
-						altStudent(ppStu,&stuNo);
+						altStudent(ppStu,stuNo);
 						saveStudent(ppStu);
 				}while(alert());
 				//system("cls");
