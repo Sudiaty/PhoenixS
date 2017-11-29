@@ -36,15 +36,13 @@ char** echoCourse(Course *ppCourse[MAX_SUB_NO])
 * Function:addCourse();				
 * Description:Add a Course for a student.
 ****************************************/
-void addCourse(Student *ppStu[MAX_STU_NO],long stuNo)
+void addCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO],long stuNo,int courseNo)
 {
 	char cpMajor[10];
 	int j;
 	stuNo--;
-	for(j=0;j<MAX_SUB_NO&&strcmp(ppStu[stuNo]->m_cpMajor[j],"\0")!=0;j++);
-	printf("ÇëÊäÈë¿Î³Ì´úÂë£º");
-	scanf("%s",cpMajor);
-	strcpy(ppStu[stuNo]->m_cpMajor[j],cpMajor);
+	courseNo--;
+	strcpy(ppStu[stuNo]->m_cpMajor[j],ppCourse[courseNo]->m_cpCourseNo);
 }
 
 
