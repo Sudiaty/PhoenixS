@@ -28,6 +28,6 @@ void dialog(char content[10]);
 
 void userForm(Form *ppForm[MAX_ROW]);
 
-int alert();
+int alert(char content[20]);
 
 #endif // VIEW_H

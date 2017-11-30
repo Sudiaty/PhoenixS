@@ -25,7 +25,7 @@ typedef struct StudentClass
 
 
 //声明对学生信息操作函数
-void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
+int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
 
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum);
 
@@ -37,7 +37,7 @@ long searchStudent(Student *ppStu[MAX_STU_NO]);
 
 void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum);
 
-void altStudent(Student *ppStu[MAX_STU_NO], long *lNo);
+int altStudent(Student *ppStu[MAX_STU_NO], long lNo);
 
 char* searchClass(Student *ppStu[MAX_STU_NO], char cpClass[20]);
 #endif // MODEL_H
