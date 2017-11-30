@@ -12,21 +12,22 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <malloc.h>
-#include <conio.h>
-#include <Windows.h>
+#include <unistd.h>
+//#include <malloc.h>
+//#include <conio.h>
+//#include <Windows.h>
 
 #include "view.h"
 #include "student.h"
 #include "course.h"
-#include "Point.h"
+#include "point.h"
 
 #define INIT_SPP(pp,top) for(int i=0;i<top;i++)pp[i]=0x0                //初始化结构体指针，解决Windows段错误（未初始化的结构体指针数组不全为空；
 
 #define DST_SPP(type,pp,top) for(int i=0;i<top;i++){type*pTmp=(type*)malloc(sizeof(type));pp[i]=pTmp;}              //为结构图指针数组分配内存；
 #define DST_SPPI(type,pp,no) type*pTmp=(type*)malloc(sizeof(type));pp[no]=pTmp;
 
-#define BACK echo(" 2秒后返回……");Sleep(1500);system("cls");
+#define BACK echo(" 2秒后返回……  ");sleep(1.5);system("clear");
 
 void exportTable(char** cpTableTmp, char fileName[20],int iRow);
 
