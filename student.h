@@ -11,8 +11,8 @@
 #include "view.h"
 
 //创建学生信息结构体
-#define MAX_STU_NO 5
-#define MAX_SUB_NO 5
+#define MAX_STU_NO 30
+#define MAX_SUB_NO 8
 typedef struct StudentClass
 {
 	char m_cpNo[10];
@@ -25,7 +25,7 @@ typedef struct StudentClass
 
 
 //声明对学生信息操作函数
-void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
+int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum);
 
 void getStudent(Student *ppStu[MAX_STU_NO], int *stuNum);
 
@@ -33,10 +33,11 @@ void saveStudent(Student *ppStu[MAX_STU_NO]);
 
 char** echoStudent(Student *ppStu[MAX_STU_NO]);
 
-long searchStudent(Student *ppStu[MAX_STU_NO], char cpNo[10]);
+long searchStudent(Student *ppStu[MAX_STU_NO]);
 
-void delStudent(Student *ppStu[MAX_STU_NO], char cpNo[10], int *stuNum);
+void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum);
 
-void altStudent(Student *ppStu[MAX_STU_NO], long lNo);
+int altStudent(Student *ppStu[MAX_STU_NO], long lNo);
 
+char* searchClass(Student *ppStu[MAX_STU_NO], char cpClass[20]);
 #endif // MODEL_H

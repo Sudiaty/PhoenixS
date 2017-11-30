@@ -6,38 +6,7 @@ items.
 #include "stdafx.h"
 
 /****************************************
-* Author:ZhangLY;
-* Function:menuSelect();
-* Description:Add a menu.
-****************************************/
-void menuSelect()
-{
-
-	int number;                       /*定义输入的数字*/
-	printf("\n\n");                   /*在屏幕上输出3个空行*/
-									  /*开始输出菜单*/
-	printf("—————————————————————————————————————————————\n");
-	printf("\033[47;31m\t\t                             \033[0m\n");
-	printf("\033[47;31m\t\t 学生管理系统                  \033[0m\n");
-	printf("\033[47;31m\t\t                             \033[0m\n");
-	printf("—————————————————————————————————————————————\n");
-	printf("\t\t\033[47;31m  *主菜单项*  \033[0m\n");
-	printf("\t\t—————————————\n");
-	printf("\n");
-	printf("\t\033[47;31m1、数据录入\033[0m\t\t\033[47;31m2、数据编辑\033[0m\n");
-	printf("\t\033[47;31m3、数据查询\033[0m\t\t\033[47;31m4、数据删除\033[0m\n");
-	printf("\t\033[47;31m5、数据保存\033[0m\t\t\033[47;31m6、数据显示\033[0m\n");
-}
-
-/****************************************
-* Author:ZhangLY,LiuXL;
-* Function:list();
-* Description:Form used to input.
-****************************************/
-void stuMenu();
-
-/****************************************
-* Author:LiuXL;
+* Author:LiuXL,ZhangLY;
 * Function:list();
 * Description:List the options.
 ****************************************/
@@ -45,18 +14,18 @@ void list(char ppList[MAX_ROW][20])
 {
 	for (int i = 0; i <= MAX_ROW&&strcmp(ppList[2 * i], "\0"); i++)
 	{
-		printf("\n\033[47;31m                                             \033[0m\n");
+		printf("\n\033[47;31m%46s\033[0m\n"," ");
 		for (int j = 0; j<2 && strcmp(ppList[2 * i + j], "\0"); j++)
 		{
-			printf("\033[47;31m        \033[0m%2d.%6s", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
+			printf("\033[47;31m%8s\033[0m%-2d.%-6s"," ", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
 		}
-		printf("\033[47;31m       \033[0m");
-		printf("\n\033[47;31m                                             \033[0m\n");
+		printf("\033[47;31m%8s\033[0m"," ");
+		printf("\n\033[47;31m%46s\033[0m"," ");
 	}
 }
 
 /****************************************
-* Author:LiuXL;
+* Author:LiuXL,ZhangLY;
 * Function:table();
 * Description:Show table.
 ****************************************/
@@ -64,17 +33,29 @@ void table(char **cpTable, int iRow)
 {
 	for (int k = 0; k<iRow; k++)
 	{
-		printf("\033[47;31m|%12s\033[0m", cpTable[k]);
+		printf("|\033[47;31m\t%s\t\033[0m", cpTable[k]);
 	}
 	printf("|\n");
 	for (int i = 1; cpTable[iRow*i] != NULL; i++)
 	{
 		for (int j = 0; j<iRow&&cpTable[iRow*i + j] != NULL; j++)
 		{
-			printf("|%10s", cpTable[iRow*i + j]);
+			printf("|\t%-s\t",cpTable[iRow*i+j]);
 		}
 		printf("|\n");
 	}
+}
+
+/****************************************
+* Author:LiuXL;
+* Function:echo();
+* Description:
+****************************************/
+void echo(char content[10])
+{
+	printf("————————————————————————————————————————————————————————————————————————————————————————————————\n");
+	printf("\033[47;31m%42s%-7s%42s\033[0m\n","",content,"");
+	printf("————————————————————————————————————————————————————————————————————————————————————————————————\n");
 }
 
 /****************************************
@@ -84,11 +65,11 @@ void table(char **cpTable, int iRow)
 ****************************************/
 void dialog(char content[10])
 {
-	printf("—————————————————————————————————————————————\n");
-	printf("\033[47;31m                                             \033[0m\n");
-	printf("\033[47;31m                %6s                 \033[0m\n", content);
-	printf("\033[47;31m                                             \033[0m\n");
-	printf("—————————————————————————————————————————————\n");
+	printf("——————————————————————————————————————————————\n");
+	printf("\033[47;31m%46s\033[0m\n","");
+	printf("\033[47;31m%17s%-6s%17s\033[0m\n","",content,"");
+	printf("\033[47;31m%46s\033[0m\n","");
+	printf("——————————————————————————————————————————————\n");
 }
 
 /****************************************
@@ -96,31 +77,32 @@ void dialog(char content[10])
 * Function:form();
 * Description:Form used to input.
 ****************************************/
-void form(Form *cpForm[MAX_ROW])
+void userForm(Form *cpForm[MAX_ROW])
 {
 	int i;
 	for (i = 0; i<MAX_ROW&&cpForm[i]->m_cpTitle!=NULL; i++)
 	{
-		printf("%s", cpForm[i]->m_cpTitle);
-		scanf("%s", &cpForm[i]->m_cpContent);
+		printf("\t%s:", cpForm[i]->m_cpTitle);
+		scanf("%10s", &cpForm[i]->m_cpContent);
 	}
 }
 
 /****************************************
-* Author:LiuXL;
+* Author:LiuXL,ZhangLY
 * Function:alert();
 * Description:
 ****************************************/
 int alert()
 {
 	int sign, status = 0;
-loop:
 	do
 	{
-		printf("是否继续？1.继续，0.终止");
+		printf("——————————————————————————————————————————————\n");
+		printf("\033[47;31m%11s%s%11s\033[0m\n","","是否继续？1.继续，0.终止","");
+		printf("——————————————————————————————————————————————\n");	
 		scanf("%d", &sign);
 		if (sign != 1 && sign != 0) {
-			printf("指令有误，请重新输入：\n");
+			printf("\033[47;31m指令有误，请重新输入：\033\n");
 			status = 1;
 		}
 		else {
