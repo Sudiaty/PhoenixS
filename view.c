@@ -6,22 +6,6 @@ items.
 #include "stdafx.h"
 
 /****************************************
-* Author:LiuXL;
-* Function:theme();
-* Description:Windows环境下输出彩色字体
-****************************************/
-void theme(int color)
-{
-	HANDLE hOut;
-	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (color>0&&color<256){
-		SetConsoleTextAttribute(hOut, color);
-	}else{
-		SetConsoleTextAttribute(hOut, 0x0007);
-	}
-}
-
-/****************************************
 * Author:LiuXL,ZhangLY;
 * Function:list();
 * Description:List the options.
@@ -30,16 +14,13 @@ void list(char ppList[MAX_ROW][20])
 {
 	for (int i = 0; i <= MAX_ROW&&strcmp(ppList[2 * i], "\0"); i++)
 	{
-		theme(124);
-		printf("%46s\n"," ");
+		printf("\n\033[47;31m%46s\033[0m\n"," ");
 		for (int j = 0; j<2 && strcmp(ppList[2 * i + j], "\0"); j++)
 		{
-			printf("%8s%-2d.%-6s"," ", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
+			printf("\033[47;31m%8s\033[0m%-2d.%-6s"," ", 2 * i + j + 1, ppList[2 * i + j]);		//@ZhangLY：待优化
 		}
-
-		printf("%8s"," ");
-		printf("\n%46s\n"," ");
-		theme(0);
+		printf("\033[47;31m%8s\033[0m"," ");
+		printf("\n\033[47;31m%46s\033[0m"," ");
 	}
 }
 
@@ -52,9 +33,7 @@ void table(char **cpTable, int iRow)
 {
 	for (int k = 0; k<iRow; k++)
 	{
-		theme(124);
-		printf("|\t%s\t", cpTable[k]);
-		theme(0);
+		printf("|\033[47;31m\t%s\t\033[0m", cpTable[k]);
 	}
 	printf("|\n");
 	for (int i = 1; cpTable[iRow*i] != NULL; i++)
@@ -65,7 +44,6 @@ void table(char **cpTable, int iRow)
 		}
 		printf("|\n");
 	}
-	printf("\n");
 }
 
 /****************************************
@@ -75,12 +53,9 @@ void table(char **cpTable, int iRow)
 ****************************************/
 void echo(char content[10])
 {
-	theme(252);
-	printf("——————————————————————————————————————————————\n");
-	printf("%42s%-7s%42s\n","",content,"");
-	printf("——————————————————————————————————————————————\n");
-	theme(0);
-	printf("\n");
+	printf("————————————————————————————————————————————————————————————————————————————————————————————————\n");
+	printf("\033[47;31m%42s%-7s%42s\033[0m\n","",content,"");
+	printf("————————————————————————————————————————————————————————————————————————————————————————————————\n");
 }
 
 /****************************************
@@ -90,19 +65,16 @@ void echo(char content[10])
 ****************************************/
 void dialog(char content[10])
 {
-	theme(252);
-	printf("———————————————————————\n");
-	printf("%46s\n","");
-	printf("%17s%-6s%17s\n","",content,"");
-	printf("%46s\n","");
-	printf("———————————————————————\n");
-	theme(0);
-	printf("\n");
+	printf("——————————————————————————————————————————————\n");
+	printf("\033[47;31m%46s\033[0m\n","");
+	printf("\033[47;31m%17s%-6s%17s\033[0m\n","",content,"");
+	printf("\033[47;31m%46s\033[0m\n","");
+	printf("——————————————————————————————————————————————\n");
 }
 
 /****************************************
 * Author:LiuXL;
-* Function:Form();
+* Function:form();
 * Description:Form used to input.
 ****************************************/
 void userForm(Form *cpForm[MAX_ROW])
@@ -113,11 +85,10 @@ void userForm(Form *cpForm[MAX_ROW])
 		printf("\t%s:", cpForm[i]->m_cpTitle);
 		scanf("%10s", &cpForm[i]->m_cpContent);
 	}
-	printf("\n");
 }
 
 /****************************************
-* Author:LiuXL,ZhangLY;
+* Author:LiuXL,ZhangLY
 * Function:alert();
 * Description:
 ****************************************/
@@ -126,15 +97,12 @@ int alert()
 	int sign, status = 0;
 	do
 	{
-		theme(207);
-		printf("———————————————————————\n");
-		printf("%11s%s%11s\n","","是否继续？1.继续，0.终止","");
-		printf("———————————————————————\n");	
-		theme(0);
+		printf("——————————————————————————————————————————————\n");
+		printf("\033[47;31m%11s%s%11s\033[0m\n","","是否继续？1.继续，0.终止","");
+		printf("——————————————————————————————————————————————\n");	
 		scanf("%d", &sign);
-		printf("\n");
 		if (sign != 1 && sign != 0) {
-			printf("指令有误，请重新输入：\n");
+			printf("\033[47;31m指令有误，请重新输入：\033\n");
 			status = 1;
 		}
 		else {

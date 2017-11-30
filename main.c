@@ -92,7 +92,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 	switch(mainItem)
 	{
 		case 1:
-			system("cls");
+			system("clear");
 			stuMenu:
 			dialog("学生信息管理");
 			list(stuList);
@@ -100,14 +100,14 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 			scanf("%d",&stuItem);
 			break;
 		case 2:
-			system("cls");
+			system("clear");
 			dialog("  课程管理  ");
 			courseMenu:list(courseList);
 			printf("\n请输入菜单项数字(1 - 4):");
 			scanf("%d",&courseItem);
 			break;
 		case 3:
-			system("cls");
+			system("clear");
 			pointMenu:
 			dialog("  成绩管理  ");
 			list(pointList);
@@ -117,7 +117,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 		case 4:
 			exit(0);
 		default:
-			system("cls");
+			system("clear");
 			dialog("  非法输入！");
 			goto home;
 	}
@@ -128,13 +128,13 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 		switch(stuItem) 
 		{
 			case 1:
-				system("cls");
+				system("clear");
 				dialog("学生信息显示"); 
 				cpStuTmp=echoStudent(ppStu);
 				table(cpStuTmp,4);
 				break;
 			case 2:
-				system("cls");
+				system("clear");
 				dialog("学生数据录入");
 				do
 				{
@@ -143,7 +143,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					addStudent(ppStu,ppStuForm,&stuNum);
 					saveStudent(ppStu);
 				}while(alert());
-				system("cls");
+				system("clear");
 				break;
 			case 3:
 				dialog("修改学生信息");
@@ -153,7 +153,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 						altStudent(ppStu,&stuNo);
 						saveStudent(ppStu);
 				}while(alert());
-				//system("cls");
+				//system("clear");
 				break;
 			case 4:
 				dialog("删除学生学籍");
@@ -161,17 +161,17 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				if(alert())
 				delStudent(ppStu,stuNo,&stuNum);
 				saveStudent(ppStu);
-				system("cls");
+				system("clear");
 				break;
 			case 5:
-				system("cls");
+				system("clear");
 				stuItem=0;
 				goto home;
 				break;
 			case 6:
 				exit(0);
 			default:
-				system("cls");
+				system("clear");
 				dialog("  非法输入！");
 				goto stuMenu;
 		}
@@ -184,7 +184,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 		switch(courseItem)
 		{
 			case 1:
-				system("cls");
+				system("clear");
 				dialog("  添加课程  ");
 				if(stuNo=searchStudent(ppStu))
 				{
@@ -195,11 +195,11 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 						addCourse(ppStu,stuNo);
 					}while(alert());
 					saveStudent(ppStu);
-					system("cls");
+					system("clear");
 				}
 				break;
 			case 2:
-				system("cls");
+				system("clear");
 				dialog("  退选课程  ");
 				if(stuNo=searchStudent(ppStu))
 				{
@@ -210,7 +210,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				}
 				break;
 			case 3:
-				system("cls");
+				system("clear");
 				dialog("  打印课表  ");
 				if(stuNo=searchStudent(ppStu)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
@@ -219,11 +219,11 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				}
 				break;
 			case 4:
-				system("cls");
+				system("clear");
 				courseItem=0;
 				goto home;
 			default:
-				system("cls");
+				system("clear");
 				dialog("  非法输入！");
 				goto courseMenu;
 		}
@@ -236,7 +236,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 		switch(pointItem)
 		{
 			case 1:
-				system("cls");
+				system("clear");
 				dialog("  成绩录入  ");
 				if(stuNo=searchStudent(ppStu)){
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
@@ -251,11 +251,11 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					savePoint(ppPoint);
 					calGPA(ppStu,ppCourse,ppPoint,stuNo);
 					saveStudent(ppStu);
-					system("cls");
+					system("clear");
 				}
 				break;
 			case 2:
-				system("cls");
+				system("clear");
 				dialog("  成绩查询  ");
 				stuNo=searchStudent(ppStu);
 				if(stuNo)
@@ -267,7 +267,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				}
 				break;
 			case 3:
-				system("cls");
+				system("clear");
 				totalMenu:
 				dialog("  成绩统计  ");
 				list(totalList);
@@ -276,14 +276,14 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 				switch (pointTotalItem)
 				{
 				case 1:
-					system("cls");
+					system("clear");
 					dialog("班级成绩统计");
 					if (searchClass(ppStu, cpClass))
 						cpPointTmp = echoTotalPoint(ppStu, cpClass);
 					table(cpPointTmp, 4);
 					goto totalMenu;
 				case 2:
-					system("cls");
+					system("clear");
 					dialog("单科成绩统计");
 					if (searchClass(ppStu, cpClass)&&(courseNo=searchCourse(ppCourse,cpCourseNo)))
 						cpPointTmp = echoSubPoint(ppStu,ppCourse,ppPoint,cpClass,courseNo);
@@ -291,23 +291,23 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					exportTable(cpPointTmp,"SubPoint.html",4);
 					goto totalMenu;
 				case 3:
-					system("cls");
+					system("clear");
 					pointTotalItem = 0;
 					goto pointMenu;
 					break;
 				case 4:
 					exit(0);
 				default:
-					system("cls");
+					system("clear");
 					dialog("  非法输入！");
 					goto totalMenu;
 				}
 			case 4:
-				system("cls");
+				system("clear");
 				pointItem=0;
 				goto home;
 			default:
-				system("cls");
+				system("clear");
 				dialog("  非法输入！");
 				goto pointMenu;
 		}

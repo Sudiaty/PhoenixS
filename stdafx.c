@@ -14,7 +14,7 @@ void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 {
 	FILE *fp;
 	int i = 0,j=0;
-	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>导出文件</title></head><body><table>";
+	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>导出文件</title></head><body><table>";
 	char endHtml[1000]="</table></body></html>";
 
 	//char fileExtension[10] = ".html";
