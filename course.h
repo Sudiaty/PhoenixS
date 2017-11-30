@@ -31,9 +31,9 @@ static Course pChem[MAX_SUB_NO] = {
 
 //声明Course对象具有的方法
 char** echoCourse(Course *ppCourse[MAX_SUB_NO]);
-void addCourse(Student *ppStu[MAX_STU_NO],long stuNo);
+int addCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long stuNo, int courseNo);
 int searchCourse(Course *ppCourse[MAX_SUB_NO],char cpCourseNo[10]);
 void delCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long iStuNo, int iCourseNo);
 char** printCourse(Student *ppStu[MAX_STU_NO],Course *ppCourse[MAX_SUB_NO],long stuNo);
-
+int searchStuCourse(Student *ppStu[MAX_STU_NO], Course *ppCourse[MAX_SUB_NO], long stuNo, int courseNo);
 #endif

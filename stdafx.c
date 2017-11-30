@@ -14,7 +14,7 @@ void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 {
 	FILE *fp;
 	int i = 0,j=0;
-	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>导出文件</title></head><body><table>";
+	char startHtml[1000]="<!DOCTYPE html><html><head><meta charset=\"gbk\"><title>导出文件</title></head><body><style>.midCol{margin: auto;}table{border: 0px;cellpadding:4px;background-color:#cccccc;	}</style><table class = \"midCol\" border = \"1px\">";
 	char endHtml[1000]="</table></body></html>";
 
 	//char fileExtension[10] = ".html";
@@ -25,7 +25,7 @@ void exportTable(char** cpTableTmp,char fileName[20],int iRow)
 		exit(0);
 	}
 	fprintf(fp, "%s",startHtml);
-	fprintf(fp,"\n<thead>%s</thead>\n",fileName);
+	fprintf(fp,"\n<tr><th colspan = \"%d\">SubPoint.html</th></tr>\n",iRow,fileName);
 	for (i = 0; cpTableTmp[i*iRow] != NULL; i++)
 	{	
 		fprintf(fp, "<tr>\n");
