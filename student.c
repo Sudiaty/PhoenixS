@@ -10,15 +10,40 @@
 * Function:addStudent();
 * Description:Add a student's record.
 ****************************************/
-void addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
+int addStudent(Student *ppStu[MAX_STU_NO], Form *ppForm[MAX_ROW], int *stuNum)
 {
-	int iStuCourseNo = 0;
-	strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
-	strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
-	for (iStuCourseNo=0;iStuCourseNo<MAX_SUB_NO;iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo],"\0");
-	(*stuNum)++;
+	int iStuCourseNo = 0,iStuNo=0,status=1;
+	if (strcmp(ppForm[2]->m_cpContent, "男")&&strcmp(ppForm[2]->m_cpContent, "女")&&strcmp(ppForm[2]->m_cpContent, "f")&&strcmp(ppForm[2]->m_cpContent, "m"))
+		status = -1;
+	for (iStuNo = 0; iStuNo < MAX_STU_NO&&ppStu[iStuNo]!=NULL; iStuNo++)
+	{
+		if (strcmp(ppStu[iStuNo]->m_cpNo, ppForm[0]->m_cpContent) == 0)
+		{
+			status = 0;
+			break;
+		}
+	}
+	if (status==1)
+	{
+		DST_SPPI(Student, ppStu, *stuNum);
+		strcpy(ppStu[*stuNum]->m_cpNo, ppForm[0]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpName, ppForm[1]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpGender, ppForm[2]->m_cpContent);
+		strcpy(ppStu[*stuNum]->m_cpClass, ppForm[3]->m_cpContent);
+		for (iStuCourseNo = 0; iStuCourseNo<MAX_SUB_NO; iStuCourseNo++) strcpy(ppStu[*stuNum]->m_cpMajor[iStuCourseNo], "\0");
+		(*stuNum)++;
+		return 1;
+	}
+	else if(status==0)
+	{
+		printf("学号已注册！\n\n");
+		return 0;
+	}
+	else
+	{
+		printf("性别不合法（“男/女”、“f/m”）！\n\n");
+		return 0;
+	}
 }
 
 
@@ -43,7 +68,7 @@ void saveStudent(Student *ppStu[MAX_STU_NO])
 	{
 		//写入数据至Student.dat
 		if (fwrite(ppStu[i], sizeof(Student), 1, fp) != 1)
-			printf("写入失败！\n");
+			printf("写入失败！\n\n");
 	}
 	fclose(fp);
 }
@@ -94,7 +119,7 @@ long searchStudent(Student *ppStu[MAX_STU_NO])
 			return i+1;
 		}
 	}
-	printf("\n不存在该学生记录！\n");
+	printf("\n不存在该学生记录！\n\n");
 	return 0;
 }
 
@@ -140,8 +165,6 @@ void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 		ppStu[j] = ppStu[j + 1];
 	}
 	(*stuNum)--;
-	printf("正在删除......\n");
-	printf("已经删除该学生的记录\n");
 }
 
 
@@ -150,28 +173,32 @@ void delStudent(Student *ppStu[MAX_STU_NO], long stuNo, int *stuNum)
 * Function:altStudent();
 * Description:alt a student's record.;
 ****************************************/
-void altStudent(Student *ppStu[MAX_STU_NO], long *lNo)
+int altStudent(Student *ppStu[MAX_STU_NO], long lNo)
 {
 	char c,cpTmp[20];
+	int status=0;
+	lNo--;
 	printf("要修改哪条信息？(姓名n，性别s，班级c)\n");
 	scanf("%s", &c);
-	printf("\n修改后的信息为：");
-	scanf("%s",cpTmp);
 	switch (c)
 	{
-		case 'n':
-			strcpy(ppStu[*lNo-1]->m_cpName,cpTmp);
-			break;
-		case 's':
-			strcpy(ppStu[*lNo-1]->m_cpGender,cpTmp);
-			break;
-		case 'c':
-			strcpy(ppStu[*lNo-1]->m_cpClass,cpTmp);
-			break;
-		default:
-			printf("非法输入！\n");
-			break;
+	case 'n':
+		printf("\n修改后的姓名为：");
+		scanf("%s", ppStu[lNo]->m_cpName);
+		break;
+	case 's':
+		printf("\n修改后的性别为：");
+		scanf("%s", ppStu[lNo]->m_cpGender);
+		break;
+	case 'c':
+		printf("\n修改后的班级为：");
+		scanf("%s", ppStu[lNo]->m_cpClass);
+		break;
+	default:
+		printf("非法输入！\n\n");
+		return 0;
 	}
+	return 1;
 }
 
 /****************************************
@@ -189,6 +216,6 @@ char* searchClass(Student *ppStu[MAX_STU_NO],char cpClass[20])
 		if (strcmp(ppStu[i]->m_cpClass, cpClass) == 0 || strcmp("*", cpClass) == 0)
 			return cpClass;
 	}
-	printf("\n不存在该班级！\n");
+	printf("\n不存在该班级！\n\n");
 	return NULL;
 }
