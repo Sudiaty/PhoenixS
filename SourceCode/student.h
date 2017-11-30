@@ -15,7 +15,7 @@
 #define MAX_SUB_NO 8
 typedef struct StudentClass
 {
-	char m_cpNo[10];
+	char m_cpNo[20];
 	char m_cpName[20];
 	char m_cpGender[4];
 	char m_cpClass[20];
