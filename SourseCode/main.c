@@ -251,6 +251,7 @@ strcpy(ppStuForm[3]->m_cpTitle,"班级");
 					cpCourseTmp=printCourse(ppStu,ppCourse,stuNo);
 					echo(" 个人课表打印 ");
 					table(cpCourseTmp,5);
+					exportTable(cpCourseTmp, "CourseTable.html", 5);
 				}
 				else
 				{
